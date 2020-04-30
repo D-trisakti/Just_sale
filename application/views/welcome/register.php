@@ -409,5 +409,3 @@ $(document).ready(function() {
   </body>
 
   </html>
-  git config --global user.email "denytrisakti@gmail.com"
-  git config --global user.name "D-trisakti"
