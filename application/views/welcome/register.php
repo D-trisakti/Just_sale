@@ -129,8 +129,8 @@
                                                               <i class="fas fa-map"></i>
                                                         </span>
                                                   </div>
-                                                  <select class="form-control" id="provinsi" name="provinsis">
-                                                        <option value="0">Pilih provinsi</option>
+                                                  <select class="form-control" id="provinsi" name="provinsi" required>
+                                                        <option value="">Pilih provinsi</option>
                                                         <?php foreach ($province as $prov ): ?>
                                                         <option value="<?= $prov['id_propinsi'];?>">
                                                               <?= $prov['nama_propinsi'];?>
@@ -153,8 +153,8 @@
                                                               <i class="fas fa-map-marked"></i>
                                                         </span>
                                                   </div>
-                                                  <select class="form-control kota" id="kota" name="kotas">
-                                                        <option value="0">Pilih kabupaten/ Kota</option>
+                                                  <select class="form-control kota" id="kota" name="kota" required>
+                                                        <option value="">Pilih kabupaten/ Kota</option>
                                                   </select>
                                             </div>
                                       </div>
@@ -172,8 +172,8 @@
                                                               <i class="fas fa-map-marked-alt"></i>
                                                         </span>
                                                   </div>
-                                                  <select class="form-control" id="kecamatan" name="kecamatan">
-                                                        <option value="0">Pilih kecamatan</option>
+                                                  <select class="form-control" id="kecamatan" name="kecamatan" required>
+                                                        <option value="">Pilih kecamatan</option>
                                                   </select>
                                             </div>
                                       </div>
@@ -191,8 +191,8 @@
                                                               <i class="fas fa-map-marker"></i>
                                                         </span>
                                                   </div>
-                                                  <select class="form-control" id="kelurahan" name="kelurahan">
-                                                        <option value="0">Pilih Kelurahan</option>
+                                                  <select class="form-control" id="kelurahan" name="kelurahan" required>
+                                                        <option value="">Pilih Kelurahan</option>
                                                   </select>
                                             </div>
                                       </div>
@@ -330,7 +330,7 @@ $(document).ready(function() {
                   success: function(data) {
                         console.log(data);
                         var html =
-                              '     <option value="0">Pilih kabupaten/ Kota</option>';
+                              '     <option value="">Pilih kabupaten/ Kota</option>';
                         var i;
                         for (i = 0; i < data.length; i++) {
                               html += '<option  value="' + data[
@@ -358,7 +358,7 @@ $(document).ready(function() {
                   success: function(data) {
                         console.log(data);
                         var html =
-                              '     <option value="0">Pilih kecamatan</option>';
+                              '     <option value="">Pilih kecamatan</option>';
                         var i;
                         for (i = 0; i < data.length; i++) {
 
@@ -388,7 +388,7 @@ $(document).ready(function() {
                   success: function(data) {
                         console.log(data);
                         var html =
-                              '     <option value="0">Pilih kelurahan</option>';
+                              '     <option value="">Pilih kelurahan</option>';
                         var i;
                         for (i = 0; i < data.length; i++) {
 

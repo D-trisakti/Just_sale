@@ -17,7 +17,8 @@
       <!-- integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
       <!-- CSS Files -->
       <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" />
-      <link href="<?= base_url();?>assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+      <!-- <link href="<?= base_url();?>assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" /> -->
+      <link href="<?= base_url();?>assets/css/material-kit.css" rel="stylesheet" />
 </head>
 
 <body class="landing-page sidebar-collapse">
@@ -39,7 +40,9 @@
                                     <a class="nav-link" href="<?= base_url();?>users">Profile</a>
                               </li>
                               <li class="nav-item">
-                                    <a class="nav-link" href="<?= base_url();?>welcome">Keluar</a>
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                                          Keluar
+                                    </a>
                               </li>
                         </ul>
                   </div>
