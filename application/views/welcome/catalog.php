@@ -18,29 +18,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Seragam</a>
+                                                <?php foreach ($pakaian as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Baju
-                                                            hangat</a></li>
-                                                <li class="list-group-item"><a href="" class="card-title">Sarung
-                                                            Tangan</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Pakaian
-                                                            Dalam</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Jaket &
-                                                            Jas</a></li>
-                                                <li class="list-group-item"><a href="" class="card-title">Penutup
-                                                            kepala</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tahan Air</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Sweeter &
-                                                            Hoodie</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Ikat
-                                                            Pinggang</a>
-                                                </li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -51,19 +34,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Hidrasi</a>
+                                                <?php foreach ($tempur as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Perlengkapan
-                                                            Dada</a></li>
-                                                <li class="list-group-item"><a href="" class="card-title">Rompi
-                                                            Multiguna</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Bantalan
-                                                            Pelindung</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Sarung
-                                                            Pistol</a>
-                                                </li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -74,16 +50,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Sepatu
-                                                            Dinasan</a>
+                                                <?php foreach ($sepatu as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Kaos Kaki</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Gaiters</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Sepatu
-                                                            Outdoors</a>
-                                                </li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -94,26 +66,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Ransel</a>
+                                                <?php foreach ($tas as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href=""
-                                                            class="card-title">Bergens/Carrier</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tas
-                                                            Selempang</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tas
-                                                            Pinggang</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tas Alat</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Koper</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tas Kering</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tas
-                                                            Lainnya</a>
-                                                </li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -124,15 +82,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Kacamata</a>
+                                                <?php foreach ($mata as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Teropong</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Kacamata
-                                                            Balistik</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Goggles</a>
-                                                </li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -143,22 +98,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Alat Masak</a>
+                                                <?php foreach ($camp as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Alat Makan</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Kompor /
-                                                            pembakaran</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Lampu
-                                                            Darurat</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Kompas</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Perlengkapan
-                                                            Tidur</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tenda</a></li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>
@@ -169,20 +114,12 @@
                                           alt="Card image cap">
                                     <div class="card-body">
                                           <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="" class="card-title">Penerangan</a>
+                                                <?php foreach ($lainnya as $pakai) : {?>
+                                                <li class="list-group-item"><?=$pakai['nama_sub_kategori']?><a href=""
+                                                            class="card-title"></a>
                                                 </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Jam</a></li>
-                                                <li class="list-group-item"><a href="" class="card-title">Lencana &
-                                                            patches</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">tongkat
-                                                            Jalan</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Krim Camo</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Payung</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="" class="card-title">Tali</a></li>
+                                                <?php } 
+                                                endforeach?>
                                           </ul>
                                     </div>
                               </div>

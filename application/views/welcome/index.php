@@ -1,7 +1,7 @@
 <div class="wrapper">
       <div class="page-header page-header-small">
             <div class="page-header-image" data-parallax="true"
-                  style="background-image: url('<?= base_url();?>assets/img/head.jpg');">
+                  style="background-image: url('<?= base_url();?>assets/img/head.jpg')">
             </div>
             <div class="content-center">
                   <div class="container">
@@ -23,73 +23,254 @@
                   <div class="content-center ">
                         <div class="container  text-center">
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top " src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
+
                               <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
-                                    <div class="card-body">
-                                          <p class="card-text">Some quick example text to build on the card title
-                                                and make up the bulk of the card's content.</p>
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
+                                    </div>
+                              </div>
+
+                              <div class="card mr-2 ml-2" style="width: 20rem;">
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
+                                    </div>
+                              </div>
+
+                              <div class="card mr-2 ml-2" style="width: 20rem;">
+                                    <div class="card wrapper">
+                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
+                                                alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <button class="btn btn-md btn-primary btn-round">
+                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
+                                                </button>
+                                          </div>
+                                    </div>
+                                    <div class="card-body mt--5">
+                                          <h4 class="card-title card-text">Product Name</h4>
+                                          <p class="card-description card-text">
+                                                Product description
+                                          </p>
+                                          <a href="http://" class="btn btn-md btn-success btn-round">
+                                                <h5 class="card-title card-text">Beli Sekarang </h5>
+                                          </a>
                                     </div>
                               </div>
                         </div>

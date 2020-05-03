@@ -17,50 +17,53 @@
             </div>
       </div>
 </div>
-<footer class="footer footer-center">
-      <div class=" container ">
-            <nav>
+<footer class="footer footer-default">
+      <div class="container">
+            <nav class="float-left">
                   <ul>
                         <li>
-                              <a href="http://presentation.creative-tim.com">
+                              <a href="https://www.creative-tim.com/">
+                                    Creative Tim
+                              </a>
+                        </li>
+                        <li>
+                              <a href="https://www.creative-tim.com/presentation">
                                     About Us
                               </a>
                         </li>
                         <li>
-                              <a href="http://blog.creative-tim.com">
-                                    Contact Us
+                              <a href="https://www.creative-tim.com/blog">
+                                    Blog
+                              </a>
+                        </li>
+                        <li>
+                              <a href="https://www.creative-tim.com/license">
+                                    Licenses
                               </a>
                         </li>
                   </ul>
             </nav>
-            <div class="copyright text-center" id="copyright">
+            <div class="copyright float-right">
                   &copy;
                   <script>
-                  document.getElementById('copyright').appendChild(document.createTextNode(
-                        new Date().getFullYear()))
-                  </script>, Designed by
-                  <h6>Deny Trisakti</h6>
+                  document.write(new Date().getFullYear())
+                  </script>, made with <i class="material-icons">favorite</i> by
+                  <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
             </div>
       </div>
 </footer>
-</div>
 <!--   Core JS Files   -->
 <script src="<?= base_url();?>assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="<?= base_url();?>assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="<?= base_url();?>assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="<?= base_url();?>assets/js/plugins/bootstrap-switch.js"></script>
+<script src="<?= base_url();?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="<?= base_url();?>assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="<?= base_url();?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="<?= base_url();?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="<?= base_url();?>assets/js/plugins/bootstrap-datepicker.js" type="text/javascript">
-</script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="<?= base_url();?>assets/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
-<!-- font awsome plugin -->
-<script src="<?= base_url();?>assets/js/all.js" type="text/javascript"></script>
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<script src="<?= base_url();?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
 </body>
 
 </html>

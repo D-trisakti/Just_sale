@@ -28,4 +28,21 @@ class Users Extends CI_Controller {
         $this->session->unset_userdata('role');
         redirect('welcome/login');
     }
+    public function edit(){
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id_prov =$data['user']['provinsi'];
+        $id_kota =$data['user']['kota'];
+        $id_kec =$data['user']['kecamatan'];
+        $id_kel =$data['user']['kelurahan'];
+        $this -> load -> model ('M_Admin');
+        $data['province'] = $this -> M_Admin -> select_province();
+        $data['prov_name'] = $this -> M_Admin -> get_province_name($id_prov);
+        $data['kota_name'] = $this -> M_Admin -> get_kota_name($id_prov,$id_kota);
+        $data['kecamatan_name'] = $this -> M_Admin -> get_kec_name($id_prov,$id_kota,$id_kec);
+        $data['kelurahan_name'] = $this -> M_Admin -> get_kel_name($id_prov,$id_kota,$id_kec,$id_kel);
+        // var_dump ($data['kelurahan_name']);
+        // die;
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/ubah_profile',$data);
+    }
 }
