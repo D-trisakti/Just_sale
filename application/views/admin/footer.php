@@ -8,7 +8,7 @@
 <footer class="sticky-footer bg-white">
       <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                  <span>Copyright &copy; Tria Anugerah Shop 2019</span>
+                  <span>Copyright &copy; Just Sale 2020</span>
             </div>
       </div>
 </footer>
@@ -183,102 +183,113 @@ $(document).ready(function() {
                                     prices = JSON
                                           .parse(data
                                                 .price_product
-                                                );
+                                          );
                                     console.log(
-                                          prices);
+                                          prices
+                                          );
                                     $('#harga' + i +
                                                 '')
                                           .val(data
                                                 .price_product
-                                                );
+                                          );
                                     $('#id_product' +
                                           i + ''
-                                          ).val(
+                                    ).val(
                                           data
                                           .id_product
-                                          );
+                                    );
                                     $('#price' + i +
                                                 '')
                                           .val(data
                                                 .price_product
-                                                );
+                                          );
                                     $('#jumlah' + i +
                                                 '')
                                           .attr('max',
                                                 data
                                                 .stock_product
-                                                );
+                                          );
                                     $('#jumlah' + i +
                                                 '')
                                           .keyup(
                                                 function() {
                                                       v = parseInt(
                                                             $(
-                                                                  this)
+                                                                  this
+                                                                  )
                                                             .val()
-                                                            );
+                                                      );
                                                       min = parseInt(
                                                             $(
-                                                                  this)
+                                                                  this
+                                                                  )
                                                             .attr(
-                                                                  'min')
-                                                            );
+                                                                  'min'
+                                                                  )
+                                                      );
                                                       max = parseInt(
                                                             $(
-                                                                  this)
+                                                                  this
+                                                                  )
                                                             .attr(
-                                                                  'max')
-                                                            );
+                                                                  'max'
+                                                                  )
+                                                      );
                                                       console
                                                             .log(
-                                                                  max);
+                                                                  max
+                                                                  );
                                                       if (v <
                                                             min
-                                                            ) {
+                                                      ) {
                                                             $(this)
                                                                   .val(
-                                                                        min);
+                                                                        min
+                                                                        );
                                                       } else if (
                                                             v >
                                                             max
-                                                            ) {
+                                                      ) {
                                                             $(this)
                                                                   .val(
-                                                                        max);
+                                                                        max
+                                                                        );
                                                       }
                                                       var a =
                                                             parseInt(
                                                                   $('#jumlah' +
                                                                         i +
                                                                         ''
-                                                                        )
+                                                                  )
                                                                   .val()
-                                                                  );
+                                                            );
                                                       var b =
                                                             parseInt(
                                                                   $('#harga' +
                                                                         i +
                                                                         ''
-                                                                        )
+                                                                  )
                                                                   .val()
-                                                                  );
+                                                            );
                                                       var c =
                                                             a *
                                                             b;
                                                       $('#totals' +
                                                                   i +
                                                                   ''
-                                                                  )
+                                                            )
                                                             .val(
-                                                                  c);
+                                                                  c
+                                                                  );
                                                       // untuk form input hidden
                                                       total =
                                                             c;
                                                       $('#total' + i +
                                                                   ''
-                                                                  )
+                                                            )
                                                             .val(
-                                                                  total);
+                                                                  total
+                                                                  );
                                                 });
                               }
                         });

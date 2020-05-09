@@ -8,7 +8,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
 
-      <title>admin</title>
+      <title>Nama Halaman</title>
 
       <!-- ?=$title;?> -->
       <!-- Custom fonts for this template-->

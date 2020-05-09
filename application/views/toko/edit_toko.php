@@ -3,7 +3,7 @@
 <div class="main main-raised">
       <div class="card card-nav-tabs">
             <div class="card-header card-header-primary">
-                  <h3 class="card-title text-center">Buat Toko</h3>
+                  <h3 class="card-title text-center">Edit Toko</h3>
             </div>
             <div class="container">
                   <div class="card-body">

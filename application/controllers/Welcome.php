@@ -159,11 +159,19 @@ class Welcome extends CI_Controller {
 		$this -> load -> view ('welcome/catalog',$data);
 		$this -> load -> view ('welcome/footer');
 	}
-	public function test(){
-		$this -> load -> model ('M_produk');
-		$data = $this -> M_produk -> get_subkategori();
-		var_dump($data);
-		die;
-		$this -> load -> view ('welcome/test');
+	public function subcatalog(){
+
+		// $this -> load -> model ('M_produk');
+		// $data['pakaian'] = $this -> M_produk -> get_subkategori_1();
+		// $data['tempur'] = $this -> M_produk -> get_subkategori_2();
+		// $data['sepatu'] = $this -> M_produk -> get_subkategori_3();
+		// $data['tas'] = $this -> M_produk -> get_subkategori_4();
+		// $data['mata'] = $this -> M_produk -> get_subkategori_5();
+		// $data['camp'] = $this -> M_produk -> get_subkategori_6();
+		// $data['lainnya'] = $this -> M_produk -> get_subkategori_7();
+
+		$this -> load -> view ('welcome/header');
+		$this -> load -> view ('welcome/sub_catalog');
+		$this -> load -> view ('welcome/footer');
 	}
 }

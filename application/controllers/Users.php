@@ -45,4 +45,45 @@ class Users Extends CI_Controller {
         $this -> load -> view ('users/header');
         $this -> load -> view ('users/ubah_profile',$data);
     }
+    public function pengaduan_produk(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/form_pengaduan_produk');
+        $this -> load -> view ('users/footer');
+    }
+    public function pengaduan_toko(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/form_pengaduan_toko');
+        $this -> load -> view ('users/footer');
+    }
+
+    public function keranjang_belanja(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/keranjang_belanja');
+        $this -> load -> view ('users/footer');
+    }
+    public function payment(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/pembayaran');
+        $this -> load -> view ('users/footer');
+    }
+    public function track_shipping(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/lacak_barang');
+        $this -> load -> view ('users/footer');
+    }
+    public function review(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/ulasan');
+        $this -> load -> view ('users/footer');
+    }
+    public function rekening(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/rekening');
+        $this -> load -> view ('users/footer');
+    }
+    public function tambah_rekening(){
+        $this -> load -> view ('users/header');
+        $this -> load -> view ('users/tambah_rekening');
+        $this -> load -> view ('users/footer');
+    }
 }

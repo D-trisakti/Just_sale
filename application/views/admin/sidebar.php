@@ -9,8 +9,8 @@
                   <!-- Sidebar - Brand -->
                   <a class="sidebar-brand d-flex align-items-center justify-content-center"
                         href="<?=base_url();?>admin">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                              <i class="fas fa-fighter-jet"></i>
+                        <div class="sidebar-brand-icon ">
+                              <i class="fas fa-user-cog"></i>
                         </div>
                         <div class="sidebar-brand-text mx-3">Admin </div>
                   </a>
@@ -20,7 +20,7 @@
 
                   <!-- Nav Item - Dashboard -->
                   <li class="nav-item active">
-                        <a class="nav-link" href="<?=base_url();?>admin">
+                        <a class="nav-link" href="<?=base_url();?>admin/dashboard">
                               <i class="fas fa-fw fa-tachometer-alt"></i>
                               <span>Dashboard</span></a>
                   </li>
@@ -43,11 +43,9 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?= base_url(); ?>product/add_product">Kelola
-                                          Seller</a>
-                                    <a class="collapse-item" href="<?= base_url();?>product">Kelola user</a>
-                                    <a class="collapse-item" href="<?= base_url();?>product/out_stock_product"> Non-
-                                          aktifkan pengguna</a>
+                                    <a class="collapse-item" href="<?= base_url();?>admin/user">Kelola user</a>
+                                    <a class="collapse-item" href="<?= base_url();?>admin/user_not_active">Pengguna
+                                          Non-aktif</a>
                                     <!-- <a class="collapse-item" href="cards.html">Supplier</a> -->
                               </div>
                         </div>
@@ -62,7 +60,7 @@
                         <div id="collapseorder" class="collapse" aria-labelledby="headingTwo"
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?= base_url();?>transaksi">Kelola Toko</a>
+                                    <a class="collapse-item" href="<?= base_url();?>admin/toko">Kelola Toko</a>
                                     <a class="collapse-item" href="<?= base_url();?>transaksi">Kelola Produk</a>
                                     <!-- <a class="collapse-item" href="cards.html">Supplier</a> -->
                               </div>
@@ -142,15 +140,15 @@
                               </button>
                               <ul class="navbar-nav ml-auto">
 
-                                    <!-- Nav Item - Alerts -->
-                                    <li class="nav-item dropdown no-arrow mx-1">
+
+                                    <!-- <li class="nav-item dropdown no-arrow mx-1">
                                           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-bell fa-fw"></i>
-                                                <!-- Counter - Alerts -->
+                                          
                                                 <span class="badge badge-danger badge-counter">+</span>
                                           </a>
-                                          <!-- Dropdown - Alerts -->
+                                          
                                           <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                                 aria-labelledby="alertsDropdown">
                                                 <h6 class="dropdown-header">
@@ -173,7 +171,7 @@
                                                       href="<?=base_url();?>transaksi">Lihat Semua Pesanan</a>
                                           </div>
                                     </li>
-                                    <div class="topbar-divider d-none d-sm-block"></div>
+                                    <div class="topbar-divider d-none d-sm-block"></div> -->
 
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">

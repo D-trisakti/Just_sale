@@ -8,12 +8,11 @@
                         <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pengguna
-                                          Aktif
-                                          (Bulanan)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.4.000.000,00</div>
+                                          Aktif</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">600 Pengguna</div>
                               </div>
                               <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    <i class="fas fa-users fa-2x text-gray-300"></i>
                               </div>
                         </div>
                   </div>
@@ -22,16 +21,17 @@
 
       <!-- Earnings (Monthly) Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2">
                   <div class="card-body">
                         <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Toko
-                                          (Tahunan)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.48.000.000,00</div>
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">jumlah
+                                          Toko</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                          242 toko</div>
                               </div>
                               <div class="col-auto">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    <i class="fas fa-store fa-2x text-gray-300"></i>
                               </div>
                         </div>
                   </div>
@@ -47,7 +47,25 @@
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">jumlah
                                           Transaksi perhari</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                          Pesanan</div>
+                                          729 Transaksi</div>
+                              </div>
+                              <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">jumlah
+                                          Laporan perhari</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                          3 Laporan</div>
                               </div>
                               <div class="col-auto">
                                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -67,7 +85,7 @@
             <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Pendapatan keseluruhan</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Jumlah Transaksi Perbulan</h6>
                         <div class="dropdown no-arrow">
                               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,7 +115,7 @@
             <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Sumber Pendapatan</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Kategori Produk yang di minati</h6>
                         <div class="dropdown no-arrow">
                               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
