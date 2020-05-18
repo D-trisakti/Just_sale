@@ -4,16 +4,16 @@
             <?= $this -> session -> flashdata('pesan');?>
       </div>
 </div>
+<h3 class="title">Kelola Toko</h3>
 <br>
 <br>
 <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                   <tr>
-                        <th>Nama Pengguna</th>
-                        <th>Email</th>
-                        <th>No Telepon</th>
-                        <th>Status</th>
+                        <th>Nama Toko</th>
+                        <th>Pemilik Toko</th>
+                        <th>Status Toko</th>
                         <th>aksi</th>
                   </tr>
             </thead>
@@ -40,7 +40,29 @@
                         </td>
                   </tr>
                   <?php endforeach ?> -->
-
+                  <tr>
+                        <td>Tria anugerah</td>
+                        <td>Gondor</td>
+                        <td>aktif</td>
+                        <td>
+                              <a href="" class="btn btn-danger m-1"
+                                    onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                    data-toggle="tooltip" data-html="true" title="Non - aktifkan Toko">
+                                    <i class="fas fa-store-alt-slash"></i></a>
+                              <a href="" class="btn btn-info m -1"
+                                    onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                    data-toggle="tooltip" data-html="true" title="Lihat Toko">
+                                    <i class="fas fa-info"></i></a>
+                              <a href="" class="btn btn-primary m-1"
+                                    onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                    data-toggle="tooltip" data-html="true" title="Lihat Transaksi Toko">
+                                    <i class="fas fa-cash-register"></i>
+                                    <a href="" class="btn btn-warning m-1"
+                                          onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                          data-toggle="tooltip" data-html="true" title="Lihat produk Toko">
+                                          <i class="fas fa-boxes"></i></a>
+                        </td>
+                  </tr>
             </tbody>
       </table>
 

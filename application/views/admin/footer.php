@@ -186,7 +186,7 @@ $(document).ready(function() {
                                           );
                                     console.log(
                                           prices
-                                          );
+                                    );
                                     $('#harga' + i +
                                                 '')
                                           .val(data
@@ -216,36 +216,36 @@ $(document).ready(function() {
                                                       v = parseInt(
                                                             $(
                                                                   this
-                                                                  )
+                                                            )
                                                             .val()
                                                       );
                                                       min = parseInt(
                                                             $(
                                                                   this
-                                                                  )
+                                                            )
                                                             .attr(
                                                                   'min'
-                                                                  )
+                                                            )
                                                       );
                                                       max = parseInt(
                                                             $(
                                                                   this
-                                                                  )
+                                                            )
                                                             .attr(
                                                                   'max'
-                                                                  )
+                                                            )
                                                       );
                                                       console
                                                             .log(
                                                                   max
-                                                                  );
+                                                            );
                                                       if (v <
                                                             min
                                                       ) {
                                                             $(this)
                                                                   .val(
                                                                         min
-                                                                        );
+                                                                  );
                                                       } else if (
                                                             v >
                                                             max
@@ -253,7 +253,7 @@ $(document).ready(function() {
                                                             $(this)
                                                                   .val(
                                                                         max
-                                                                        );
+                                                                  );
                                                       }
                                                       var a =
                                                             parseInt(
@@ -280,7 +280,7 @@ $(document).ready(function() {
                                                             )
                                                             .val(
                                                                   c
-                                                                  );
+                                                            );
                                                       // untuk form input hidden
                                                       total =
                                                             c;
@@ -289,7 +289,7 @@ $(document).ready(function() {
                                                             )
                                                             .val(
                                                                   total
-                                                                  );
+                                                            );
                                                 });
                               }
                         });
@@ -346,7 +346,11 @@ $(document).ready(function() {
 // // });
 // 
 </script>
-
+<script type="text/javascript">
+$(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </body>
 
 </html>

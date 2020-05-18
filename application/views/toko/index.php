@@ -1,5 +1,5 @@
 <div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url();?>assets/img/header.jpg');"></div>
+      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="profile-content">
             <div class="container">
@@ -7,21 +7,25 @@
                         <div class="col-md-6 ml-auto mr-auto">
                               <div class="profile">
                                     <div class="avatar">
-                                          <img src="<?= base_url();?>assets/img/ryan.jpg" alt="Circle Image"
+                                          <img src="<?= base_url(); ?>assets/img/ryan.jpg" alt="Circle Image"
                                                 class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <div class="name">
                                           <h3 class="title">
-                                                Toko Name
+                                                <?= $toko['nama_toko'] ?>
                                           </h3>
-                                          <p class="card- description">Lorem, ipsum dolor sit amet consectetur
-                                                adipisicing elit. Voluptas, quod ducimus! Sit, cum voluptates eligendi
-                                                perspiciatis aut laborum recusandae dignissimos, dolorum nesciunt nulla
-                                                porro sint nam quos facilis provident molestias.</p>
+                                          <p class="card- description"><?= $toko['deskripsi_toko'] ?></p>
+                                          <p class="card- description text-capitalize">Toko ini Beralamat di
+                                                <?= $toko['address'] ?>
+                                                kelurahan <?= $kelurahan_name['nama']; ?>,Kecamatan
+                                                <?= $kecamatan_name['nama']; ?>,Kab/Kota <?= $kota_name['nama']; ?>,
+                                                Provinsi <?= $prov_name['nama']; ?> HUB :(<?= $toko['phone']; ?>)
+                                          </p>
                                     </div>
                               </div>
                         </div>
                   </div>
+
                   <!-- <div class="description text-center">
                         <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
                               Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and

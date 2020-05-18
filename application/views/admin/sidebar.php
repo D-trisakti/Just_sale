@@ -8,7 +8,7 @@
 
                   <!-- Sidebar - Brand -->
                   <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="<?=base_url();?>admin">
+                        href="<?= base_url(); ?>admin">
                         <div class="sidebar-brand-icon ">
                               <i class="fas fa-user-cog"></i>
                         </div>
@@ -20,7 +20,7 @@
 
                   <!-- Nav Item - Dashboard -->
                   <li class="nav-item active">
-                        <a class="nav-link" href="<?=base_url();?>admin/dashboard">
+                        <a class="nav-link" href="<?= base_url(); ?>admin/dashboard">
                               <i class="fas fa-fw fa-tachometer-alt"></i>
                               <span>Dashboard</span></a>
                   </li>
@@ -43,8 +43,8 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?= base_url();?>admin/user">Kelola user</a>
-                                    <a class="collapse-item" href="<?= base_url();?>admin/user_not_active">Pengguna
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/user">Kelola user</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/user_not_active">Pengguna
                                           Non-aktif</a>
                                     <!-- <a class="collapse-item" href="cards.html">Supplier</a> -->
                               </div>
@@ -60,8 +60,10 @@
                         <div id="collapseorder" class="collapse" aria-labelledby="headingTwo"
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?= base_url();?>admin/toko">Kelola Toko</a>
-                                    <a class="collapse-item" href="<?= base_url();?>transaksi">Kelola Produk</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/toko">Kelola Toko</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/toko_nonaktif">Kelola Toko
+                                          Non-aktif</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/product">Kelola Produk</a>
                                     <!-- <a class="collapse-item" href="cards.html">Supplier</a> -->
                               </div>
                         </div>
@@ -77,12 +79,12 @@
                         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?=base_url();?>admin/laporan_penjualan">Pembayaran
-                                          masuk</a>
-                                    <a class="collapse-item" href="<?=base_url();?>admin/laporan_barang">Pembayaran
-                                          Pending</a>
-                                    <a class="collapse-item" href="<?=base_url();?>admin/laporan_pegawai">Pembayaran
-                                          kembali</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_penjualan">Kelola
+                                          Pemesanan</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_barang">Kelola
+                                          Payment</a>
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_pegawai">Riwayat
+                                          Transaksi</a>
                               </div>
                         </div>
                   </li>
@@ -106,10 +108,10 @@
                               data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Kelola:</h6>
-                                    <a class="collapse-item" href="<?= base_url('admin/user');?>">Penyalahgunaan
+                                    <a class="collapse-item" href="<?= base_url('admin/user'); ?>">Penyalahgunaan
                                           akun</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/pegawai');?>">Iklan palsu</a>
-                                    <a class="collapse-item" href="<?= base_url('admin/pegawai');?>">Lainnya</a>
+                                    <a class="collapse-item" href="<?= base_url('admin/pegawai'); ?>">Iklan palsu</a>
+                                    <a class="collapse-item" href="<?= base_url('admin/pegawai'); ?>">Lainnya</a>
 
                               </div>
                         </div>
@@ -168,7 +170,7 @@
                                                 </a>
 
                                                 <a class="dropdown-item text-center small text-gray-500"
-                                                      href="<?=base_url();?>transaksi">Lihat Semua Pesanan</a>
+                                                      href="<?= base_url(); ?>transaksi">Lihat Semua Pesanan</a>
                                           </div>
                                     </li>
                                     <div class="topbar-divider d-none d-sm-block"></div> -->
@@ -183,7 +185,7 @@
                                           <!-- Dropdown - User Information -->
                                           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                                 aria-labelledby="userDropdown">
-                                                <a class="dropdown-item" href="<?=base_url();?>admin/edit_profile">
+                                                <a class="dropdown-item" href="<?= base_url(); ?>admin/edit_profile">
                                                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                       Profile
                                                 </a>
@@ -192,8 +194,8 @@
                   Activity Log
                 </a> -->
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                                      data-target="#logoutModal">
+                                                <a class="dropdown-item" href="<?= base_url('admin/logout') ?>"
+                                                      data-toggle="modal" data-target="#logoutModal">
                                                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                                       Logout
                                                 </a>

@@ -4,19 +4,17 @@
             <?= $this -> session -> flashdata('pesan');?>
       </div>
 </div>
-<h3 class="title">Kelola Produk</h3>
+<h3 class="title">Kelola Toko Nonaktif</h3>
 <br>
 <br>
-<div class="table-striped">
+<div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                   <tr>
-                        <th>No Transaksi</th>
-                        <th>Nama Pembeli</th>
-                        <th>Nama Barang</th>
-                        <th>Jumlah barang</th>
-                        <th>Jumlah pembayaran</th>
-                        <th>Status Payment</th>
+                        <th>Nama Toko</th>
+                        <th>Pemilik Toko</th>
+                        <th>Status Toko</th>
+                        <th>Alasan Tidak Aktif</th>
                         <th>aksi</th>
                   </tr>
             </thead>
@@ -44,21 +42,27 @@
                   </tr>
                   <?php endforeach ?> -->
                   <tr>
-                        <td>21361237127423</td>
+                        <td>Tria anugerah</td>
                         <td>Gondor</td>
-                        <td>Sepatu</td>
-                        <td>20</td>
-                        <td>Rp.1.502.124</td>
-                        <td>Pending</td>
+                        <td>tidak aktif</td>
+                        <td>suspend</td>
                         <td>
                               <a href="" class="btn btn-success m-1"
-                                    onclick="return confirm ('Apakah anda akan non-aktifkan Toko ?');"
-                                    data-toggle="tooltip" data-html="true" title="Lanjutkan Pemesanan">
-                                    <i class="fas fa-cart-plus"></i></a>
-                              <a href="" class="btn btn-danger m-1"
-                                    onclick="return confirm ('Apakah anda akan non-aktifkan Toko ?');"
-                                    data-toggle="tooltip" data-html="true" title="Batalkan Pemesanan">
-                                    <i class="fas fa-cart-arrow-down"></i></a>
+                                    onclick="return confirm ('Apakah anda akan aktifkan Toko ?');" data-toggle="tooltip"
+                                    data-html="true" title="aktifkan Toko">
+                                    <i class="fas fa-store"></i></a>
+                              <a href="" class="btn btn-info m -1"
+                                    onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                    data-toggle="tooltip" data-html="true" title="Lihat Toko">
+                                    <i class="fas fa-info"></i></a>
+                              <a href="" class="btn btn-primary m-1"
+                                    onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                    data-toggle="tooltip" data-html="true" title="Lihat Transaksi Toko">
+                                    <i class="fas fa-cash-register"></i>
+                                    <a href="" class="btn btn-warning m-1"
+                                          onclick="return confirm ('Apakah anda akan Non-aktifkan Toko ?');"
+                                          data-toggle="tooltip" data-html="true" title="Lihat produk Toko">
+                                          <i class="fas fa-boxes"></i></a>
                         </td>
                   </tr>
             </tbody>

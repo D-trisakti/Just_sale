@@ -26,25 +26,13 @@
                         <td>081239233727</td>
                         <td>Tidak Aktif</td>
                         <td>Reported</td>
-                        <td> <a href="" class="btn btn-danger"
-                                    onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                    Non-Aktifkan Pengguna</a>
-                              <a href="" class="btn btn-info "
-                                    onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                    Detail Pengguna</a>
-                  </tr>
-                  <tr>
-                        <td>azkha</td>
-                        <td>azkhanm@gmail.com</td>
-                        <td>081239233727</td>
-                        <td>Tidak Aktif</td>
-                        <td>Melanggar Peraturan</td>
-                        <td> <a href="" class="btn btn-success"
-                                    onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                    Aktifkan Pengguna</a>
-                              <a href="" class="btn btn-info "
-                                    onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                    Detail Pengguna</a>
+                        <td><a href="<?= $usr['id']; ?>" class="btn btn-success"
+                                    onclick="return confirm ('Apakah anda akan menaktifkan Pengguna ini ?');"
+                                    data-toggle="tooltip" data-html="true" title="aktifkan Pengguna">
+                                    <i class="fas fa-user-check"></i></a>
+                              <a href="<?= $usr['id']; ?>" class="btn btn-info" data-toggle="tooltip" data-html="true"
+                                    title="Detail Pengguna">
+                                    <i class="fas fa-info"></i></a>
                   </tr>
             </tbody>
       </table>

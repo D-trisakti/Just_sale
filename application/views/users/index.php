@@ -1,5 +1,5 @@
 <div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url();?>assets/img/header.jpg');"></div>
+      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="profile-content">
             <div class="container">
@@ -7,16 +7,18 @@
                         <div class="col-md-6 ml-auto mr-auto">
                               <div class="profile">
                                     <div class="avatar">
-                                          <img src="<?= base_url();?>assets/img/ryan.jpg" alt="Circle Image"
+                                          <img src="<?= base_url(); ?>assets/img/ryan.jpg" alt="Circle Image"
                                                 class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <div class="name">
+                                          <?= $this->session->flashdata('pesan'); ?>
                                           <h3 class="title">Halo, Selamat Datang</h3>
                                           <h3 class="title">
-                                                <?= $user['first_name'];?>
-                                                <?= $user['last_name'];?>
+                                                <?= $user['first_name']; ?>
+                                                <?= $user['last_name']; ?>
                                           </h3>
-                                          <small><a href="" class="btn btn-sm btn-info btn-round">edit
+                                          <small><a href="<?= base_url('users/edit') ?>"
+                                                      class="btn btn-sm btn-info btn-round">edit
                                                       profile</a></small>
                                     </div>
                               </div>
@@ -42,7 +44,7 @@
                                           <ul class="list-group list-group-flush" data-background-color="orange">
                                                 <li class="list-group-item" data-background-color="orange">
                                                       <h6 class="text">Troli Masih Kosong, <a
-                                                                  href="<?=base_url();?>toko/create"
+                                                                  href="<?= base_url(); ?>toko/create"
                                                                   class="link text-info">Belanja
                                                                   Sekarang</a></h6>
                                                 </li>
@@ -60,50 +62,50 @@
                                                       Kelola Toko</h4>
                                           </div>
                                     </div>
+
                                     <div class="card-body">
-                                          <?php 
-                                                      if  ($toko ="[]"){?>
-                                          <h6 class="text-center mt-3">Belum Memiliki Toko, <a
-                                                      href="<?=base_url();?>toko/create" class="link text-info">Buat
-                                                      Sekarang</a></h1>
-                                                <?php } else {?>
-                                                <table class="table">
-                                                      <thead>
-                                                            <tr>
-                                                                  <th class="text-center">#</th>
-                                                                  <th class="text-center">Nama toko</th>
-                                                                  <th class="text-right">Actions</th>
-                                                            </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                            <tr>
-                                                                  <td class="text-center">3</td>
-                                                                  <td class="text-center">Alex Mike</td>
-                                                                  <td class="td-actions text-right">
-                                                                        <button type="button" rel="tooltip"
-                                                                              class="btn btn-info">
-                                                                              <i
-                                                                                    class="now-ui-icons users_single-02"></i>
-                                                                        </button>
-                                                                        <button type="button" rel="tooltip"
-                                                                              class="btn btn-success">
-                                                                              <i
-                                                                                    class="now-ui-icons ui-2_settings-90"></i>
-                                                                        </button>
-                                                                        <button type="button" rel="tooltip"
-                                                                              class="btn btn-danger">
-                                                                              <i
-                                                                                    class="now-ui-icons ui-1_simple-remove"></i>
-                                                                        </button>
-                                                                  </td>
-                                                            </tr>
-                                                      </tbody>
-                                                </table>
-                                                <?php } ?>
+                                          <table class="table table-bordered" id="dataTable" width="100%"
+                                                cellspacing="0">
+                                                <thead>
+                                                      <tr>
+                                                            <th>Nama Toko</th>
+                                                            <th>Aksi</th>
+                                                      </tr>
+                                                </thead>
+                                                <tbody>
+                                                      <?php foreach ($toko as $toko) : { ?>
+                                                      <tr>
+                                                            <td><?= $toko['nama_toko'] ?></td>
+                                                            <td>
+                                                                  <a href="" class="btn btn-danger"
+                                                                        onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                                        Non-Aktifkan Toko</a>
+                                                                  <a href="" class="btn btn-info "
+                                                                        onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                                        Edit Toko</a>
+                                                                  <a href="" class="btn btn-success "
+                                                                        onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                                        Lihat Toko</a>
+                                                            </td>
+                                                      </tr>
+                                                      <?php      }
+                                                      endforeach ?>
+                                                      <tr>
+                                                            <td colspan="2">
+                                                                  <h6 class="text-center mt-3"><a
+                                                                              href="<?= base_url(); ?>toko"
+                                                                              class="link text-info">Cek
+                                                                              Selengkapnya</a>
+                                                                  </h6>
+                                                            </td>
+                                                      </tr>
+                                                </tbody>
+                                          </table>
                                     </div>
                               </div>
                         </div>
                   </div>
             </div>
       </div>
+</div>
 </div>
