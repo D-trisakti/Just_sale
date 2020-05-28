@@ -4,7 +4,7 @@
       <div class="profile-content">
             <hr>
             <div class="container">
-                  <h2 class="title text-center">Kelola Produk <?= $toko['nama_toko']; ?></h2>
+                  <h2 class="title text-center">Kelola Transaksi <?= $toko['nama_toko']; ?></h2>
                   <?= $this->session->flashdata('pesan'); ?>
                   <a href="<?= base_url(); ?>toko/create_produk/<?= $toko['id_toko']; ?>"
                         class="btn btn-success btn-sm float-right">Tambah Produk</a>
@@ -12,12 +12,14 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                     <tr>
+                                          <th>No_pesanan</th>
                                           <th>Nama Produk</th>
                                           <th>Harga Produk</th>
-                                          <th>Deskripsi Produk</th>
-                                          <th>Status Produk</th>
                                           <th>Jumlah Produk</th>
-                                          <th>aksi</th>
+                                          <th>Pesan Pembeli</th>
+                                          <th>No Resi</th>
+                                          <th>Status</th>
+                                          <th>Aksi</th>
                                     </tr>
                               </thead>
                               <tbody>

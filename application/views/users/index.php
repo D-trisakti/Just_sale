@@ -49,7 +49,9 @@
                                                                   Sekarang</a></h6>
                                                 </li>
                                           </ul>
-                                          <h6 class="text-center mt-3">Cek selengkapnya</h1>
+                                          <h6 class="text-center mt-3"><a
+                                                      href="<?= base_url(); ?>toko/keranjang_belanja"
+                                                      class="link text-info">Cek Selengkapnya</a></h1>
                                     </div>
                               </div>
                         </div>
@@ -77,9 +79,19 @@
                                                       <tr>
                                                             <td><?= $toko['nama_toko'] ?></td>
                                                             <td>
-                                                                  <a href="" class="btn btn-danger"
+                                                                  <?php if ($toko['status'] == '0') { ?>
+                                                                  <a href="<?= base_url() ?>toko/active_toko/<?= $toko['id_toko'] ?>"
+                                                                        class="btn btn-success"
+                                                                        onclick="return confirm ('Apakah anda akan menaktifkan Toko ini ?');">
+                                                                        Aktifkan Toko</a>
+                                                                  <?php } else { ?>
+                                                                  <a href="<?= base_url() ?>toko/deactive_toko/<?= $toko['id_toko'] ?>"
+                                                                        class="btn btn-danger"
                                                                         onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
                                                                         Non-Aktifkan Toko</a>
+                                                                  <?php
+                                                                              }
+                                                                              ?>
                                                                   <a href="" class="btn btn-info "
                                                                         onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
                                                                         Edit Toko</a>

@@ -48,12 +48,9 @@
                                                 <a href="<?= base_url() ?>toko/kelola_produk/<?= $toko['id_toko'] ?>"
                                                       class="btn btn-danger">
                                                       Lihat Semua Produk</a>
-                                                <a href="" class="btn btn-info "
-                                                      onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                <a href="<?= base_url(); ?>toko/create_produk/<?= $toko['id_toko']; ?>"
+                                                      class="btn btn-info ">
                                                       Tambah produk</a>
-                                                <a href="" class="btn btn-success "
-                                                      onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                                      Status stok barang</a>
                                           </td>
                                           <td>
                                                 <a href="" class="btn btn-danger"

@@ -30,6 +30,8 @@ class Toko extends CI_Controller
             $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
             $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
             $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
+            $data['produk'] = $this->M_User->get_produk_by_toko($id);
+
             $this->load->view('users/header');
             $this->load->view('Toko/index', $data);
             $this->load->view('users/footer');
@@ -180,6 +182,8 @@ class Toko extends CI_Controller
                   $this->load->view('users/header');
                   $this->load->view('Toko/buat_produk', $data);
             } else {
+                  $id_tokos = htmlspecialchars($this->input->post('toko'), true);
+                  $param = (int) $id_tokos;
                   $upload_image = $_FILES['image']['name'];
                   if ($upload_image) {
 
@@ -199,7 +203,18 @@ class Toko extends CI_Controller
                           </button>
                           </div>'
                         );
-                        redirect('toko/kelola_produk');
+                        redirect("toko/kelola_produk/$param");
+                  } else {
+                        $this->session->set_flashdata(
+                              'pesan',
+                              $this->upload->display_errors()
+                        );
+                        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+                        $id_user = $data['user']['id'];
+                        $data['toko'] = $this->M_User->get_toko($id_user);
+                        $data['kategori'] = $this->M_User->get_kategori();
+                        $this->load->view('users/header');
+                        $this->load->view('Toko/buat_produk', $data);
                   }
             }
       }
@@ -232,6 +247,86 @@ class Toko extends CI_Controller
       {
             $this->load->view('users/header');
             $this->load->view('users/form_pengaduan_pelanggan');
+            $this->load->view('users/footer');
+      }
+      public function detail_produk($id)
+      {
+            $data['produk'] = $this->M_User->detail_produk($id);
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['toko'] = $this->M_User->detail_toko($id);
+            // $id_prov = $data['toko']['provinsi'];
+            // $id_kota = $data['toko']['kota'];
+            // $id_kec = $data['toko']['kecamatan'];
+            // $id_kel = $data['toko']['kelurahan'];
+            // $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
+            // $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
+            // $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
+            // $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
+            $this->load->view('users/header');
+            $this->load->view('Toko/detail_produk', $data);
+            $this->load->view('users/footer');
+      }
+      public function delete_produk($id)
+      {
+            $id_produk = $this->db->get_where('produk', ['id_produk' => $id])->row_array();
+            $param = $id_produk['id_toko'];
+            $params = (int) $param;
+            $this->M_User->delete_produk($id);
+
+            $this->session->set_flashdata(
+                  'pesan',
+                  '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                Produk telah di hapus
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+            );
+            redirect("toko/kelola_produk/$params");
+      }
+      public function add_keranjang_belanja()
+      {
+            $this->M_User->add_item_cart();
+            redirect('toko/keranjang_belanja');
+      }
+      public function keranjang_belanja()
+      {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $data['user']['id'];
+            $data['produk'] = $this->M_User->get_item_cart($id);
+
+            $this->load->view('users/header');
+            $this->load->view('Toko/shopping_cart', $data);
+            $this->load->view('users/footer');
+      }
+      public function shipping()
+      {
+            $this->load->view('users/header');
+            $this->load->view('Toko/shipping');
+            $this->load->view('users/footer');
+      }
+      public function payment()
+      {
+            $this->load->view('users/header');
+            $this->load->view('Toko/payment');
+            $this->load->view('users/footer');
+      }
+      public function thank_you()
+      {
+            $this->load->view('users/header');
+            $this->load->view('Toko/thank_you');
+            $this->load->view('users/footer');
+      }
+      public function riwayat_pembelian()
+      {
+            $this->load->view('users/header');
+            $this->load->view('Toko/buyer_transaksi');
+            $this->load->view('users/footer');
+      }
+      public function trace()
+      {
+            $this->load->view('users/header');
+            $this->load->view('Toko/lacak_pesanan');
             $this->load->view('users/footer');
       }
 }

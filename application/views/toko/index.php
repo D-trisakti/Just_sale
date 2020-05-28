@@ -35,187 +35,21 @@
                   <hr>
                   <h2 class="title text-center">Produk Dari Toko Ini</h2>
                   <div class="row">
+                        <?php foreach ($produk as $prod) : ?>
                         <div class="col col-md-3">
                               <div class="card" style="width: 15rem;">
                                     <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
+                                          src="<?= base_url('assets/uploads/') . $prod['img_produk']; ?>" rel="nofollow"
+                                          alt="Card image cap">
                                     <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
+                                          <h5 class="card-title"><?= $prod['nama_produk'] ?></h5>
+                                          <p class="card-text"><?= $prod['deskripsi_produk'] ?>.</p>
+                                          <a href="<?= base_url('toko/detail_produk') ?>/<?= $prod['id_produk']; ?>"
                                                 class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
                                     </div>
                               </div>
                         </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
-
-                        <div class="col col-md-3">
-                              <div class="card" style="width: 15rem;">
-                                    <img class="card-img-top"
-                                          src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                                          rel="nofollow" alt="Card image cap">
-                                    <div class="card-body">
-                                          <h5 class="card-title">Product Name</h5>
-                                          <p class="card-text">Product description.</p>
-                                          <a href=""
-                                                class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
-                                    </div>
-                              </div>
-                        </div>
+                        <?php endforeach ?>
                   </div>
             </div>
       </div>

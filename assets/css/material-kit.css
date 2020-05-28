@@ -19110,6 +19110,12 @@ footer .pull-center {
 		transform: translate3d(-25px, 0, 0);
 		width: 245px;
 	}
+
+	.number-input input[type="number"] {
+		-webkit-appearance: textfield;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
 }
 
 /*# sourceMappingURL=kit-free.css.map */

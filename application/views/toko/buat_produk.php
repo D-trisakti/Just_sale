@@ -4,9 +4,10 @@
       <div class="profile-content">
             <hr>
             <div class="container text-center">
-                  <h3 class="title text-center">Tambah Produk TOKO_NAME</h3>
+                  <h3 class="title text-center">Tambah Produk </h3>
                   <hr>
                   <?= form_open_multipart('toko/create_produk'); ?>
+                  <?= $this->session->flashdata('pesan'); ?>
                   <div class="form-row ">
                         <!-- form nama -->
                         <div class="form-group col-md-4">
@@ -32,7 +33,8 @@
                         <!-- form kategori -->
                         <div class="form-group col-md-2">
                               <label for="kategori">kategori produk</label>
-                              <select type="text" class="form-control" id="Kategori" name="kategori" required>
+                              <select type="text" class="form-control" id="Kategori" name="kategori" required
+                                    value="<?= set_value('kategori') ?>">
                                     <option value="">Pilih Kategori</option>
                                     <?php foreach ($kategori as $kat) : ?>
                                     <option value="<?= $kat['id_kategori'] ?>"><?= $kat['nama_kategori'] ?>
@@ -44,12 +46,24 @@
                         <!-- form-sub-kategori -->
                         <div class="form-group col-md-2">
                               <label for="subkategori"> subkategori produk</label>
-                              <select type="text" class="form-control" id="subkategori" name="subkategori" required>
+                              <select type="text" class="form-control" id="subkategori" name="subkategori" required
+                                    value="<?= set_value('subkategori') ?>>
                                     <option value="">Pilih subkategori</option>
                               </select>
                         </div>
+                        <div class=" form-group col-md-2">
+                                    <label for="toko">Toko</label>
+                                    <select type="text" class="form-control" id="toko" name="toko" required value="<?= set_value('toko') ?>>
+                                    <option value="">Pilih Toko</option>
+                                    <?php foreach ($toko as $toko) : ?>
+                                    <option value=" <?= $toko['id_toko'] ?>"><?= $toko['nama_toko'] ?>
+                                          </option>
+                                          <?php
+                                    endforeach ?>
+                                    </select>
+                        </div>
                         <!-- form-deskripsi-produk -->
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                               <label for="deskripsi_produk">Deskripsi Produk</label>
                               <textarea class="form-control" id="deskripsi_produk" rows="3" name="deskripsi_produk"
                                     value="<?= set_value('deskripsi_produk') ?>"></textarea>

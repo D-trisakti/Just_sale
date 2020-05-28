@@ -8,9 +8,9 @@ class M_user extends CI_Model
       {
             return $data = $this->db->query("SELECT * FROM toko WHERE user_id = '$id'")->result_array();
       }
-      public function get_toko_by_id($id)
+      public function get_toko_by_id($id_toko)
       {
-            return $data = $this->db->query("SELECT * FROM toko WHERE id_toko = '$id'")->row_array();
+            return $data = $this->db->query("SELECT * FROM toko WHERE id_toko = '$id_toko'")->row_array();
       }
       // function check_toko($id)
       // {
@@ -97,11 +97,39 @@ class M_user extends CI_Model
                   'subkategori' => htmlspecialchars($this->input->post('subkategori'), true),
                   'deskripsi_produk' => htmlspecialchars($this->input->post('deskripsi_produk'), true),
                   'img_produk' => $this->upload->data('file_name'),
+                  'id_toko' => htmlspecialchars($this->input->post('toko'), true),
             ];
             $this->db->insert('produk', $data);
       }
       public function get_produk($id)
       {
             return $data = $this->db->query("SELECT * FROM produk WHERE id_toko ='$id'")->result_array();
+      }
+      public function get_produk_by_toko($id)
+      {
+            return $data = $this->db->query("SELECT * FROM produk WHERE id_toko ='$id' AND jumlah_produk > 0")->result_array();
+      }
+      public function delete_produk($id)
+      {
+            $data = $this->db->get_where('produk', ['id_produk' => $id])->row_array();
+            $old_image = $data['img_produk'];
+            unlink(FCPATH . 'assets/uploads/' . $old_image);
+            $this->db->where('id_produk', $id);
+            $this->db->delete('produk');
+      }
+      public function detail_produk($id)
+      {
+            return $this->db->query("SELECT * FROM produk WHERE id_produk ='$id'")->row_array();
+      }
+      public function add_item_cart()
+      {
+            $user = htmlspecialchars($this->input->post('id_user'), true);
+            $toko = htmlspecialchars($this->input->post('id_toko'), true);
+            $produk = htmlspecialchars($this->input->post('id_produk'), true);
+            $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk) values ('$user','$toko','$produk')");
+      }
+      public function get_item_cart($id)
+      {
+            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id'")->result_array();
       }
 }

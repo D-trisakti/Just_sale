@@ -42,7 +42,7 @@
                         <ul class="navbar-nav ml-auto">
 
                               <li class="nav-item ">
-                                    <a class="nav-link" href="<?= base_url(); ?>welcome/catalog">Katalog</a>
+                                    <a class="nav-link" href="<?= base_url(); ?>users/katalog">Katalog</a>
                               </li>
                               <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdownMenuLink"
