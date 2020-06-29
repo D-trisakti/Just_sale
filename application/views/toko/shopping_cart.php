@@ -13,6 +13,7 @@
                         <table class="table table-borderedless" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                     <tr>
+                                          <th></th>
                                           <th>Nama Produk</th>
                                           <th>Harga Produk</th>
                                           <th>Jumlah</th>
@@ -24,6 +25,16 @@
                               <tbody>
                                     <?php foreach ($produk as $prod) : ?>
                                     <tr>
+                                          <td>
+                                                <div class="form-check">
+                                                      <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" value="">
+                                                            <span class="form-check-sign">
+                                                                  <span class="check"></span>
+                                                            </span>
+                                                      </label>
+                                                </div>
+                                          </td>
                                           <td><?= $prod['nama_produk'] ?></td>
                                           <td>
                                                 <?= $prod['harga_produk'] ?>
@@ -44,14 +55,15 @@
                                           </td>
                                           <td>
                                                 <input type="text" readonly class="form-control">
-                                          <td><button class="btn btn-danger">hapus</button></td>
+                                          <td><a href="<?= base_url() ?>toko/delete_keranjang/<?= $prod['id_pesan'] ?>"
+                                                      class="btn btn-danger">hapus</button></td>
                                     </tr>
 
                               </tbody>
                               <?php endforeach ?>
                               <tfoot>
                                     <tr>
-                                          <th colspan="4">Grand Total</th>
+                                          <th colspan="5">Grand Total</th>
                                           <th colspan="2">Rp.0</th>
                                     </tr>
                               </tfoot>

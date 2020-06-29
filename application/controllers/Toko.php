@@ -299,10 +299,38 @@ class Toko extends CI_Controller
             $this->load->view('Toko/shopping_cart', $data);
             $this->load->view('users/footer');
       }
+      public function delete_keranjang($id)
+      {
+            $this->M_User->delete_keranjang($id);
+            $this->session->set_flashdata(
+                  'pesan',
+                  '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                Produk telah di hapus
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+            );
+            redirect("toko/keranjang_belanja");
+      }
       public function shipping()
       {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id_prov = $data['user']['provinsi'];
+            $id_kota = $data['user']['kota'];
+            $id_kec = $data['user']['kecamatan'];
+            $id_kel = $data['user']['kelurahan'];
+            $this->load->model('M_Admin');
+            $data['province'] = $this->M_Admin->select_province();
+            $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
+            $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
+            $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
+            $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $data['user']['id'];
+            $data['produk'] = $this->M_User->get_item_cart($id);
             $this->load->view('users/header');
-            $this->load->view('Toko/shipping');
+            $this->load->view('Toko/shipping_filled', $data);
             $this->load->view('users/footer');
       }
       public function payment()

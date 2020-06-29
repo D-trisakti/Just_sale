@@ -132,4 +132,9 @@ class M_user extends CI_Model
       {
             return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id'")->result_array();
       }
+      public function delete_keranjang($id)
+      {
+            $this->db->where('id_pesan', $id);
+            $this->db->delete('keranjang');
+      }
 }
