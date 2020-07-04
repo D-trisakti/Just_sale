@@ -14,24 +14,21 @@
       </title>
       <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
       <!--     Fonts and icons     -->
-      <link rel="stylesheet" type="text/css"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
       <link rel="stylesheet" href="<?= base_url(); ?>assets/css/all.css">
       <!-- CSS Files -->
       <link href="<?= base_url(); ?>assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
 
-
+      <script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body class="profile-page sidebar-collapse">
-      <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100"
-            id="sectionsNav">
+      <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
             <div class="container">
                   <div class="navbar-translate">
                         <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
                               Material Kit </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-                              aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="sr-only">Toggle navigation</span>
                               <span class="navbar-toggler-icon"></span>
                               <span class="navbar-toggler-icon"></span>
@@ -45,8 +42,7 @@
                                     <a class="nav-link" href="<?= base_url(); ?>users/katalog">Katalog</a>
                               </li>
                               <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdownMenuLink"
-                                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Profile
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

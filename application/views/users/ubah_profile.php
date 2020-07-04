@@ -1,5 +1,4 @@
-<div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="card card-nav-tabs">
             <div class="card-header card-header-warning">
@@ -22,8 +21,7 @@
                                                             <i class="fas fa-user"></i>
                                                       </span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Nama Depan"
-                                                      name="nama_depan" value="<?= $user['first_name']; ?>">
+                                                <input type="text" class="form-control" placeholder="Nama Depan" name="nama_depan" value="<?= $user['first_name']; ?>">
                                           </div>
                                           <?= form_error('nama_depan', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -40,8 +38,7 @@
                                                             <i class="fas fa-user"></i>
                                                       </span>
                                                 </div>
-                                                <input type="text" placeholder="Nama Belakang" class="form-control"
-                                                      name="nama_belakang" value="<?= $user['last_name']; ?>">
+                                                <input type="text" placeholder="Nama Belakang" class="form-control" name="nama_belakang" value="<?= $user['last_name']; ?>">
                                           </div>
                                           <?= form_error('nama_belakang', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -58,8 +55,7 @@
                                                             <i class="fas fa-envelope"></i>
                                                       </span>
                                                 </div>
-                                                <input type="email" placeholder="Email Anda" class="form-control"
-                                                      name="email" value="<?= $user['email']; ?>" readonly>
+                                                <input type="email" placeholder="Email Anda" class="form-control" name="email" value="<?= $user['email']; ?>" readonly>
                                           </div>
                                           <?= form_error('email', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -76,8 +72,7 @@
                                                             <i class="fas fa-phone-square-alt"></i>
                                                       </span>
                                                 </div>
-                                                <input type="number" placeholder="Nomor Telepon" class="form-control"
-                                                      name="notelepon" value="<?= $user['phone']; ?>">
+                                                <input type="number" placeholder="Nomor Telepon" class="form-control" name="notelepon" value="<?= $user['phone']; ?>">
                                           </div>
                                           <?= form_error('notelepon', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -94,8 +89,7 @@
                                                             <i class="fas fa-home"></i>
                                                       </span>
                                                 </div>
-                                                <input type="text" placeholder="Alamat" class="form-control"
-                                                      name="alamat" value="<?= $user['address']; ?>">
+                                                <input type="text" placeholder="Alamat" class="form-control" name="alamat" value="<?= $user['address']; ?>">
                                           </div>
                                           <?= form_error('alamat', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -112,8 +106,7 @@
                                                             <i class="fab fa-usps"></i>
                                                       </span>
                                                 </div>
-                                                <input type="number" placeholder="Kode Pos" class="form-control"
-                                                      name="kode_pos" value="<?= $user['postal_code']; ?>">
+                                                <input type="number" placeholder="Kode Pos" class="form-control" name="kode_pos" value="<?= $user['postal_code']; ?>">
                                           </div>
                                           <?= form_error('kode_pos', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
@@ -135,9 +128,9 @@
                                                             <?= $prov_name['nama']; ?>
                                                       </option>
                                                       <?php foreach ($province as $prov) : ?>
-                                                      <option value="<?= $prov['id_propinsi']; ?>">
-                                                            <?= $prov['nama_propinsi']; ?>
-                                                      </option>
+                                                            <option value="<?= $prov['id_propinsi']; ?>">
+                                                                  <?= $prov['nama_propinsi']; ?>
+                                                            </option>
                                                       <?php endforeach ?>
 
 
@@ -220,95 +213,112 @@
                                                             <i class="fas fa-birthday-cake"></i>
                                                       </span>
                                                 </div>
-                                                <input type="date" placeholder="Tanggal lahir" class="form-control"
-                                                      name="TTL" value="<?= $user['TTL']; ?>">
+                                                <input type="date" placeholder="Tanggal lahir" class="form-control" name="TTL" value="<?= $user['TTL']; ?>">
                                           </div>
                                           <?= form_error('TTL', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
                               </div>
                               <!-- form password -->
+                              <div class="col-md-3">
+                                    <label for="image">Gambar Produk</label>
+                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+                              </div>
+                              <div class="col-md-6">
+                                    <div class="card bordered">
+                                          <img width="350" height="auto" id="output" />
+                                    </div>
+
+                                    <script>
+                                          var loadFile = function(event) {
+                                                var reader = new FileReader();
+                                                reader.onload = function() {
+                                                      var output = document.getElementById('output');
+                                                      output.src = reader.result;
+                                                };
+                                                reader.readAsDataURL(event.target.files[0]);
+                                          };
+                                    </script>
+                              </div>
 
                         </div>
-                        <div class="text-center">
-                              <div class="col-md-4 ml-auto mr-auto text-center">
-                                    <button class="btn btn-primary btn-round btn-lg btn-block btn-submit"
-                                          value="submit">Update Data</button>
-                                    </form>
-                              </div>
+                  </div>
+                  <div class="text-center">
+                        <div class="col-md-4 ml-auto mr-auto text-center">
+                              <button class="btn btn-primary btn-round btn-lg btn-block btn-submit" value="submit">Update Data</button>
+                              </form>
                         </div>
                   </div>
             </div>
+      </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                              <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin akan logout ?</h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">x</span>
-                                    </button>
-                              </div>
-                              <div class="modal-body">Pilih "Logout" Jika anda siap mengakhiri sesi ini.</div>
-                              <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button"
-                                          data-dismiss="modal">Kembali</button>
-                                    <a class="btn btn-primary" href="<?= base_url('users/logout') ?>">Logout</a>
-                              </div>
+      <!-- Modal -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin akan logout ?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">x</span>
+                              </button>
+                        </div>
+                        <div class="modal-body">Pilih "Logout" Jika anda siap mengakhiri sesi ini.</div>
+                        <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+                              <a class="btn btn-primary" href="<?= base_url('users/logout') ?>">Logout</a>
                         </div>
                   </div>
             </div>
-            <footer class="footer footer-default">
-                  <div class="container">
-                        <nav class="float-left">
-                              <ul>
-                                    <li>
-                                          <a href="https://www.creative-tim.com/">
-                                                Creative Tim
-                                          </a>
-                                    </li>
-                                    <li>
-                                          <a href="https://www.creative-tim.com/presentation">
-                                                About Us
-                                          </a>
-                                    </li>
-                                    <li>
-                                          <a href="https://www.creative-tim.com/blog">
-                                                Blog
-                                          </a>
-                                    </li>
-                                    <li>
-                                          <a href="https://www.creative-tim.com/license">
-                                                Licenses
-                                          </a>
-                                    </li>
-                              </ul>
-                        </nav>
-                        <div class="copyright float-right">
-                              &copy;
-                              <script>
+      </div>
+      <footer class="footer footer-default">
+            <div class="container">
+                  <nav class="float-left">
+                        <ul>
+                              <li>
+                                    <a href="https://www.creative-tim.com/">
+                                          Creative Tim
+                                    </a>
+                              </li>
+                              <li>
+                                    <a href="https://www.creative-tim.com/presentation">
+                                          About Us
+                                    </a>
+                              </li>
+                              <li>
+                                    <a href="https://www.creative-tim.com/blog">
+                                          Blog
+                                    </a>
+                              </li>
+                              <li>
+                                    <a href="https://www.creative-tim.com/license">
+                                          Licenses
+                                    </a>
+                              </li>
+                        </ul>
+                  </nav>
+                  <div class="copyright float-right">
+                        &copy;
+                        <script>
                               document.write(new Date().getFullYear())
-                              </script>, made with <i class="material-icons">favorite</i> by
-                              <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
-                        </div>
+                        </script>, made with <i class="material-icons">favorite</i> by
+                        <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
                   </div>
-            </footer>
-            <!--   Core JS Files   -->
-            <script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
-            <script src="<?= base_url(); ?>assets/js/core/popper.min.js" type="text/javascript"></script>
-            <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript">
-            </script>
-            <script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
-            <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-            <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript">
-            </script>
-            <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-            <script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-            <!--  Google Maps Plugin    -->
-            <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-            <script src="<?= base_url(); ?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
-            <script type="text/javascript">
+            </div>
+      </footer>
+      <!--   Core JS Files   -->
+      <script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
+      <script src="<?= base_url(); ?>assets/js/core/popper.min.js" type="text/javascript"></script>
+      <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript">
+      </script>
+      <script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
+      <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+      <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript">
+      </script>
+      <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+      <script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+      <!--  Google Maps Plugin    -->
+      <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+      <script src="<?= base_url(); ?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+      <script type="text/javascript">
             $(document).ready(function() {
                   $('#provinsi').change(function() {
                         var id = $(this).val();
@@ -390,7 +400,7 @@
                         });
                   });
             });
-            </script>
-            </body>
+      </script>
+      </body>
 
-            </html>
+      </html>

@@ -157,4 +157,12 @@ class Users extends CI_Controller
         $this->load->view('users/sub_katalog', $data);
         $this->load->view('users/footer');
     }
+    public function test()
+    {
+        var_dump($_POST);
+        die;
+        $this->load->view('users/header');
+        $this->load->view('users/katalog', $data);
+        $this->load->view('users/footer');
+    }
 }

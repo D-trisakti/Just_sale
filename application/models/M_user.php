@@ -126,7 +126,16 @@ class M_user extends CI_Model
             $user = htmlspecialchars($this->input->post('id_user'), true);
             $toko = htmlspecialchars($this->input->post('id_toko'), true);
             $produk = htmlspecialchars($this->input->post('id_produk'), true);
-            $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk) values ('$user','$toko','$produk')");
+            $a = $this->db->query("SELECT jumlah FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
+            $b = $this->db->query("SELECT * FROM keranjang WHERE id_produk = $produk and id_user =$user")->num_rows();
+            // var_dump($a[0]['jumlah']);
+            // die;
+            $a = $a[0]['jumlah'];
+            if ($b == 0) {
+                  $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah) values ('$user','$toko','$produk',1)");
+            } else {
+                  $this->db->query("UPDATE keranjang SET jumlah = $a+1 WHERE id_produk = $produk and id_user =$user");
+            }
       }
       public function get_item_cart($id)
       {
@@ -136,5 +145,52 @@ class M_user extends CI_Model
       {
             $this->db->where('id_pesan', $id);
             $this->db->delete('keranjang');
+      }
+      public function get_data_chart($id, $id_user)
+      {
+            $query = "select 
+                              k.id_pesan,
+                              k.id_toko,
+                              t.nama_toko,
+                              t.provinsi as toko_provinsi,
+                              t.kota as toka_kota,
+                              k.id_produk,
+                              p.nama_produk,
+                              p.img_produk,
+                              p.harga_produk,
+                              k.id_user,
+                              k.jumlah 
+                              from keranjang k,toko t,produk p
+                              where k.id_pesan in(" . $id . ")
+                              and k.id_user = " . $id_user . "
+                              and k.id_toko = t.id_toko
+                              and k.id_produk = p.id_produk
+                              group by t.id_toko";
+
+
+            return $this->db->query($query)->result_array();
+      }
+      public function get_data_chart_produk($id, $id_user)
+      {
+            $query = "select 
+                              k.id_pesan,
+                              k.id_toko,
+                              t.nama_toko,
+                              t.provinsi as toko_provinsi,
+                              t.kota as toka_kota,
+                              k.id_produk,
+                              p.nama_produk,
+                              p.img_produk,
+                              p.harga_produk,
+                              k.id_user,
+                              k.jumlah 
+                              from keranjang k,toko t,produk p
+                              where k.id_toko in(" . $id . ")
+                              and k.id_user = " . $id_user . "
+                              and k.id_toko = t.id_toko
+                              and k.id_produk = p.id_produk";
+
+
+            return $this->db->query($query)->result_array();
       }
 }

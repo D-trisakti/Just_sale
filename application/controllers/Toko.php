@@ -8,6 +8,7 @@ class Toko extends CI_Controller
             parent::__construct();
             $this->load->model('M_Admin');
             $this->load->model('M_User');
+            $this->load->model('M_GetApi');
       }
       public function index()
       {
@@ -294,7 +295,6 @@ class Toko extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $data['user']['id'];
             $data['produk'] = $this->M_User->get_item_cart($id);
-
             $this->load->view('users/header');
             $this->load->view('Toko/shopping_cart', $data);
             $this->load->view('users/footer');
@@ -316,6 +316,51 @@ class Toko extends CI_Controller
       public function shipping()
       {
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            // $id_prov = $data['user']['provinsi'];
+            // $id_kota = $data['user']['kota'];
+            // $id_kec = $data['user']['kecamatan'];
+            // $id_kel = $data['user']['kelurahan'];
+            // $this->load->model('M_Admin');
+            // $data['province'] = $this->M_Admin->select_province();
+            // $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
+            // $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
+            // $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
+            // $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
+            // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id_user = $data['user']['id'];
+            // $data['produk'] = $this->M_User->get_item_cart($id);
+            $id_pesan = $this->input->post("order_no");
+            $pesan = $this->input->post("pesan");
+            $subtotal = $this->input->post("subtotal");
+            $mix = array();
+            for ($i = 0; $i < count($id_pesan); $i++) {
+                  array_push($mix, array(
+                        "id_pesan" => $id_pesan[$i],
+                        "pesan" => $pesan[$i],
+                        "subtotal" => $subtotal[$i]
+                  ));
+            }
+            $data['mix'] = $mix;
+            $id = "";
+            foreach ($id_pesan as $a) {
+                  $id  = $id . $a . ",";
+            }
+            $id = rtrim($id, ",");
+            $data['chart'] = $this->M_User->get_data_chart($id, $id_user);
+            $data['api_province'] = $this->M_GetApi->get_all_province();
+            $this->load->view('users/header');
+            $this->load->view('Toko/shipping_filled', $data);
+            $this->load->view('users/footer');
+      }
+      public function get_kota()
+      {
+            $id = $this->input->post('province_id');
+            $city = $this->M_GetApi->get_city($id);
+            echo json_encode($city);
+      }
+      public function new_shipping()
+      {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id_prov = $data['user']['provinsi'];
             $id_kota = $data['user']['kota'];
             $id_kec = $data['user']['kecamatan'];
@@ -330,7 +375,7 @@ class Toko extends CI_Controller
             $id = $data['user']['id'];
             $data['produk'] = $this->M_User->get_item_cart($id);
             $this->load->view('users/header');
-            $this->load->view('Toko/shipping_filled', $data);
+            $this->load->view('Toko/shipping', $data);
             $this->load->view('users/footer');
       }
       public function payment()

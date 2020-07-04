@@ -23,11 +23,8 @@
                         <div class="col col-md-6">
                               <div class="card-body">
                                     <h2 class="title text-center ">Detail Produk</h2>
-                                    <h4 class="card-title"><?= $produk['nama_produk']; ?>Lorem.</h4>
-                                    <p class="card-text"><?= $produk['deskripsi_produk']; ?>Lorem ipsum dolor sit amet,
-                                          consectetur adipisicing elit. Repellendus, molestiae ratione? Ipsa corporis in
-                                          minima repudiandae expedita, aperiam ut impedit sequi harum dolorum iusto
-                                          natus vel consectetur obcaecati dignissimos nobis?</p>
+                                    <h4 class="card-title"><?= $produk['nama_produk']; ?></h4>
+                                    <p class="card-text"><?= $produk['deskripsi_produk']; ?></p>
                                     <form action="<?= base_url(); ?>/toko/add_keranjang_belanja" method="post">
                                           <input type="hidden" name="id_produk" value="<?= $produk['id_produk']; ?>">
                                           <input type="hidden" name="id_user" value="<?= $user['id']; ?>">
@@ -35,7 +32,6 @@
                                           <button type="submit" class="btn btn-primary btn-sm float-right">Beli
                                                 produk</button>
                                     </form>
-                                    <p class="card-text"><small>BELI</small></p>
                               </div>
                         </div>
                   </div>

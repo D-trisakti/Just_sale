@@ -58,9 +58,15 @@ if ($var >= 1 &&  $var <= 9) { ?>
                                     <img class="card-img-top"
                                           src="<?= base_url('assets/uploads/') . $prod['img_produk']; ?>" rel="nofollow"
                                           alt="Card image cap">
+                                    <div class="card-img-overlay text-right">
+                                          <div class="card-img-overlay text-right">
+                                                <p class="card-text btn btn-sm btn-primary btn-round">
+                                                      Rp.<?= $prod['harga_produk']; ?>,-IDR</p>
+                                          </div>
+                                    </div>
                                     <div class="card-body">
                                           <h5 class="card-title"><?= $prod['nama_produk'] ?></h5>
-                                          <p class="card-text"><?= $prod['deskripsi_produk'] ?>.</p>
+                                          <p class="card-text"><?= $prod['deskripsi_produk'] ?></p>
                                           <a href="<?= base_url('toko/detail_produk') ?>/<?= $prod['id_produk']; ?>"
                                                 class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
                                     </div>

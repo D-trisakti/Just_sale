@@ -6,8 +6,9 @@
             <div class="container">
                   <h2 class="title text-center ">Kelola Toko</h2>
                   <?= $this->session->flashdata('pesan'); ?>
-                  <a href="<?= base_url(); ?>toko/create_toko" class="btn btn-success btn-sm float-right">
-                        Tambah Toko</a>
+                  <a href="<?= base_url(); ?>toko/create_toko" class="btn btn-success btn-sm float-right"
+                        data-toggle="tooltip" data-placement="top" title="Tambah Toko">
+                        <i class="fas fa-plus"></i></a>
                   <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <thead>
@@ -25,40 +26,49 @@
                                           <td>
                                                 <?php if ($toko['status'] == '0') { ?>
                                                 <a href="<?= base_url() ?>toko/active_toko/<?= $toko['id_toko'] ?>"
-                                                      class="btn btn-success"
+                                                      class="btn btn-success" data-toggle="tooltip" data-placement="top"
+                                                      title="Aktifkan Toko"
                                                       onclick="return confirm ('Apakah anda akan menaktifkan Toko ini ?');">
-                                                      Aktifkan Toko</a>
+                                                      <i class="fas fa-check"></i></a>
                                                 <?php } else { ?>
                                                 <a href="<?= base_url() ?>toko/deactive_toko/<?= $toko['id_toko'] ?>"
-                                                      class="btn btn-danger"
-                                                      onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                                      Non-Aktifkan Toko</a>
+                                                      class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                                      title="Non-aktifkan Toko"
+                                                      onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');"><i
+                                                            class="fas fa-ban"></i>
+                                                </a>
                                                 <?php
                                                             }
                                                             ?>
 
                                                 <a href="<?= base_url(); ?>toko/edit_toko/<?= $toko['id_toko']; ?>"
-                                                      class="btn btn-info ">
-                                                      Edit Toko</a>
+                                                      class="btn btn-info " data-toggle="tooltip" data-placement="top"
+                                                      title="Edit Toko">
+                                                      <i class="fas fa-edit"></i></a>
                                                 <a href="<?= base_url() ?>toko/detail_toko/<?= $toko['id_toko'] ?>"
-                                                      class="btn btn-success ">
-                                                      Lihat Toko</a>
+                                                      class="btn btn-success " data-toggle="tooltip"
+                                                      data-placement="top" title="Lihat Toko">
+                                                      <i class="fas fa-eye"></i></a>
                                           </td>
                                           <td>
                                                 <a href="<?= base_url() ?>toko/kelola_produk/<?= $toko['id_toko'] ?>"
-                                                      class="btn btn-danger">
-                                                      Lihat Semua Produk</a>
+                                                      class="btn btn-success" data-toggle="tooltip" data-placement="top"
+                                                      title="Lihat Semua Produk">
+                                                      <i class="fas fa-eye"></i></a>
                                                 <a href="<?= base_url(); ?>toko/create_produk/<?= $toko['id_toko']; ?>"
-                                                      class="btn btn-info ">
-                                                      Tambah produk</a>
+                                                      class="btn btn-info " data-toggle="tooltip" data-placement="top"
+                                                      title="Tambah Produk">
+                                                      <i class="fas fa-plus"></i></a>
                                           </td>
                                           <td>
-                                                <a href="" class="btn btn-danger"
+                                                <a href="" class="btn btn-danger" data-toggle="tooltip"
+                                                      data-placement="top" title="Lihat Riwayat Transaksi"
                                                       onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                                      Lihat Transaksi</a>
-                                                <a href="" class="btn btn-info "
+                                                      <i class="fas fa-cash-register"></i></a>
+                                                <a href="" class="btn btn-info " data-toggle="tooltip"
+                                                      data-placement="top" title="Lihat Pemesanan Produk"
                                                       onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                                      Lihat Pemesanan</a>
+                                                      <i class="fas fa-shopping-cart"></i></a>
                                           </td>
                                     </tr>
                                     <?php      }

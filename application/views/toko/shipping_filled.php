@@ -1,166 +1,171 @@
-<div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
+<script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="profile-content">
             <hr>
             <div class="container">
                   <h2 class="title text-center ">Pengiriman Barang</h2>
                   <?= $this->session->flashdata('pesan'); ?>
+                  <hr>
+                  <h4>Alamat Pengiriman</h4>
                   <div class="form-row">
-                        <!-- form-alamat -->
-                        <div class="form-group col-sm-8">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left">
-                                          <h6>Alamat</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fas fa-home"></i>
-                                                </span>
-                                          </div>
-                                          <input type="text" class="form-control" name="alamat" readonly
-                                                value="<?= $user['address']; ?>">
-                                    </div>
-                                    <?= form_error('alamat', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
-                              </div>
+                        <div class="col-sm-6">
+                              <label for="alamat">alamat</label>
+                              <input type="text" class="form-control" name="alamat" id="alamat" readonly value="<?= $user['address']; ?>">
                         </div>
-                        <!-- form-kode pos -->
-                        <div class="form-group col-sm-4">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left">
-                                          <h6>Kode Pos</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fab fa-usps"></i>
-                                                </span>
-                                          </div>
-                                          <input type="number" placeholder="Kode Pos" class="form-control" readonly
-                                                name="kode_pos" value="<?= $user['postal_code']; ?>">
-                                    </div>
-                                    <?= form_error('kode_pos', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
-                              </div>
+                        <div class="col-sm-2">
+                              <label for="kode_pos">Provinsi</label>
+                              <select class="form-control" id="provinsi" name="provinsi" readonly>
+                                    <option value="0">Pilih Provinsi</option>
+                                    <?php
+                                    for ($i = 0; $i < count($api_province); $i++) : ?>
+                                          <option value="<?= $api_province[$i]->province_id ?>">
+                                                <?= $api_province[$i]->province ?></option>
+                                    <?php
+                                    endfor;
+                                    ?>
+                              </select>
                         </div>
-                        <!-- form-provinsi -->
-                        <div class="form-group col-sm-3">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left">
-                                          <h6>Provinsi</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fas fa-map"></i>
-                                                </span>
-                                          </div>
-                                          <select class="form-control" id="provinsi" name="provinsi" readonly>
-                                                <option value="<?= $user['provinsi']; ?>">
-                                                      <?= $prov_name['nama']; ?>
-                                                </option>
-                                          </select>
-                                    </div>
-                              </div>
-                              <?= form_error('provinsis', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
+                        <div class="col-sm-2">
+                              <label for="kota">Kota/Kabupaten</label>
+                              <select class="form-control kota" id="kota" name="kota" readonly>
+                                    <option value="0">Pilih Kota/kabupaten</option>
+                              </select>
                         </div>
-                        <!-- form-kota -->
-                        <div class="form-group col-sm-3">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left" for="kabupaten / kota">
-                                          <h6>kabupaten/ Kota</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fas fa-map-marked"></i>
-                                                </span>
-                                          </div>
-                                          <select class="form-control kota" id="kota" name="kota" readonly>
-                                                <option value="<?= $user['kota']; ?>"><?= $kota_name['nama']; ?>
-                                                </option>
-                                          </select>
-                                    </div>
-                              </div>
-                              <?= form_error('kotas', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
-                        </div>
-                        <!-- form-kecamatan -->
-                        <div class="form-group col-sm-3">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left" for="kecamatan">
-                                          <h6>kecamatan</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fas fa-map-marked-alt"></i>
-                                                </span>
-                                          </div>
-                                          <select class="form-control" id="kecamatan" name="kecamatan" readonly>
-                                                <option value="<?= $user['kecamatan']; ?>">
-                                                      <?= $kecamatan_name['nama']; ?>
-                                                </option>
-                                          </select>
-                                    </div>
-                              </div>
-                              <?= form_error('kecamatan', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
-                        </div>
-                        <!-- form-kelurahan -->
-                        <div class="form-group col-sm-3">
-                              <div class="card-body">
-                                    <Label class="col col-label text-left" for="kelurahan">
-                                          <h6>Kelurahan</h6>
-                                    </Label>
-                                    <div class="input-group no-border input-lg">
-                                          <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                      <i class="fas fa-map-marker"></i>
-                                                </span>
-                                          </div>
-                                          <select class="form-control" id="kelurahan" name="kelurahan" readonly>
-                                                <option value="<?= $user['kelurahan']; ?>">
-                                                      <?= $kelurahan_name['nama']; ?>
-                                                </option>
-                                          </select>
-                                    </div>
-                              </div>
-                              <?= form_error('kelurahan', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
+                        <div class="col-sm-2">
+                              <label for="kode_pos">Kode Pos</label>
+                              <input type="number" class="form-control" readonly name="kode_pos" id="kode_pos">
                         </div>
                   </div>
-                  <div class="table-striped">
+                  <div class="table-responsive">
                         <table class="table table-borderedless" id="dataTable" width="100%" cellspacing="0">
-                              <thead>
+                              <?php foreach ($chart as $ca) : ?>
+                                    <thead>
+                                          <tr>
+                                                <th colspan="5" class="alert alert-success">Toko Name : <?= $ca['nama_toko'] ?></th>
+                                          </tr>
+                                          <tr>
+                                                <th>Nama Produk</th>
+                                                <th>Harga Produk</th>
+                                                <th>Jumlah</th>
+                                                <th>Pesan pembelian</th>
+                                                <th>
+                                                      <p class="text-right">Total</p>
+                                                </th>
+                                          </tr>
+                                    </thead>
+                                    <?php $this->load->model('M_User');
+                                    $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
+                                    foreach ($produk as $pd) :
+                                    ?>
+                                          <tr>
+                                                <td><?= $pd['nama_produk'] ?></td>
+                                                <td><?= $pd['harga_produk'] ?></td>
+                                                <td><?= $pd['jumlah'] ?></td>
+                                                <td>
+                                                      <?php
+                                                      for ($i = 0; $i < count($mix); $i++) {
+                                                            if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                  echo $mix[$i]['pesan'];
+                                                            }
+                                                      }
+                                                      ?>
+                                                </td>
+                                                <td>
+                                                      <p class="text-right">
+                                                            <?php
+                                                            for ($i = 0; $i < count($mix); $i++) {
+                                                                  if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                        echo $mix[$i]['subtotal'];
+                                                                  }
+                                                            }
+                                                            ?>
+                                                      </p>
+                                                </td>
+                                          </tr>
+                                    <?php endforeach ?>
                                     <tr>
-                                          <th>Nama Produk</th>
-                                          <th>Harga Produk</th>
-                                          <th>Jumlah</th>
-                                          <th>Pesan pembelian</th>
-                                          <th>Total</th>
+                                          <th>Ongkir</th>
+                                          <th colspan="2"><select class="form-control" name="id_kurir" id="id_kurir">
+                                                      <option value="jne">JNE</option>
+                                                      <option value="pos">POS Indonesia</option>
+                                                      <option value="tiki">TIKI</option>
+                                                </select></th>
+                                          <th colspan="1"><select class="form-control" name="id_kurir" id="id_kurir">
+                                                      <option value="kilat">kilat</option>
+                                                      <option value="reguler">reguler</option>
+                                                </select></th>
+                                          <th>
+                                                <p class="text-right">Rp.0
+                                                </p>
+                                          </th>
                                     </tr>
-                              </thead>
-                              <?php foreach ($produk as $prod) : ?>
-                              <tr>
-                                    <td><?= $prod['nama_produk'] ?></td>
-                                    <td><?= $prod['harga_produk'] ?></td>
-                                    <td><?= $prod['jumlah'] ?></td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, enim optio? Ullam
-                                          amet assumenda itaque iusto atque unde omnis perspiciatis nesciunt earum animi
-                                          culpa odio rem cum voluptatum, exercitationem reiciendis.</td>
-                                    <td><?= $prod['nama_produk'] ?></td>
-                              </tr>
-                              <?php endforeach ?>
+                                    <tr>
+                                          <th colspan="4">
+                                                Subtotal
+                                          </th>
+                                          <th>
+                                                <p class="text-right">
+                                                      Rp.08808
+                                                </p>
+                                          </th>
+                                    </tr>
+                              <?php endforeach; ?>
                               <tfoot>
                                     <tr>
-                                          <th colspan="4">Grand Total</th>
-                                          <th colspan="2">Rp.0</th>
+                                          <th colspan="4" class="alert alert-danger">Grand Total</th>
+                                          <th class="alert alert-danger">
+                                                <p class="text-right">
+                                                      Rp.9000000000
+                                                </p>
+                                          </th>
                                     </tr>
                               </tfoot>
                         </table>
+                        <script>
+                              // function get_kota() {
+                              //       var province_id = $('#provinsi').val();
+                              //       $.ajax({
+                              //             url: ' <?= base_url('users/get_kota ') ?> ',
+                              //             data: province_id = province_id,
+                              //             method: 'post',
+                              //             dataType: 'json',
+                              //             success: function(data) {
+                              //                   $('#kota').val(data);
+                              //             }
+                              //       });
+                              // }
 
-                        <a href="<?= base_url(); ?>toko/payment"
-                              class="text-title btn btn-md btn-success text-right">Lanjutkan Bayar</a>
-                        <a href="<?= base_url(); ?>toko/payment"
-                              class="text-title btn btn-md btn-info float-right">Alamat Baru</a>
-                  </div>
-            </div>
-      </div>
+                              $('#provinsi').change(function() {
+                                    var province_id = $(this).val();
+                                    $.ajax({
+                                          url: " <?= base_url('toko/get_kota ') ?>",
+                                          method: "POST",
+                                          data: {
+                                                province_id: province_id
+                                          },
+                                          async: false,
+                                          dataType: 'json',
+                                          success: function(data) {
+                                                console.log(data);
+                                                var html =
+                                                      '     <option value="">Pilih kota/kabupaten</option>';
+                                                var i;
+                                                for (i = 0; i < data.length; i++) {
+
+                                                      html += '<option  value="' + data[i].city_id + '/' + data[i].postal_code + '">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                                                }
+                                                $('#kota').html(html);
+
+                                          }
+                                    });
+                              });
+
+                              $('#kota').change(function() {
+                                    var id = $(this).val();
+                                    id = id.split('/');
+                                    var city_id = id[0];
+                                    var postal_code = id[1];
+                                    $('#kode_pos').val(postal_code);
+                              });
+                        </script>
