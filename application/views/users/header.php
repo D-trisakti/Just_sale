@@ -18,8 +18,8 @@
       <link rel="stylesheet" href="<?= base_url(); ?>assets/css/all.css">
       <!-- CSS Files -->
       <link href="<?= base_url(); ?>assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
-
       <script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
+      <script src="<?= base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
 </head>
 
 <body class="profile-page sidebar-collapse">

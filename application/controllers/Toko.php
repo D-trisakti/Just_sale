@@ -71,33 +71,37 @@ class Toko extends CI_Controller
       }
       public function edit_toko($id)
       {
+            $data['api_province'] = $this->M_GetApi->get_all_province();
             $data['toko'] = $this->M_User->get_toko_by_id($id);
             $id_prov = $data['toko']['provinsi'];
             $id_kota = $data['toko']['kota'];
             $id_kec = $data['toko']['kecamatan'];
             $id_kel = $data['toko']['kelurahan'];
             $this->load->model('M_Admin');
-            $data['province'] = $this->M_Admin->select_province();
-            $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
-            $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
-            $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
-            $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
-            $this->form_validation->set_rules('nama_toko', 'nama toko', 'trim|required');
-            $this->form_validation->set_rules('Deskripsi_toko', 'Deskripsi toko', 'trim|required');
-            $this->form_validation->set_rules('notelepon', 'Nomor Telepon', 'required');
-            $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-            $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|trim');
-            if ($this->form_validation->run() == false) {
+            // $data['province'] = $this->M_Admin->select_province();
+            // $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
+            // $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
+            // $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
+            // $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
 
-                  $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-                  $data['province'] = $this->M_Admin->select_province();
-                  $this->load->view('users/header');
-                  $this->load->view('Toko/edit_toko', $data);
-            } else {
-                  $this->M_User->update_toko($id);
-                  $this->session->set_flashdata(
-                        'pesan',
-                        '<div class="alert alert-success">
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['province'] = $this->M_Admin->select_province();
+            $data['city'] = $this->M_GetApi->get_city_toko($id_prov, $id_kota);
+
+            $this->load->view('users/header');
+            $this->load->view('Toko/edit_toko', $data);
+      }
+      public function edit_toko_process()
+      {
+            $id = $this->input->post("id");
+            $kota_pos = $this->input->post("kota");
+            $explod = explode("/", $kota_pos);
+            $kota = $explod[0];
+            $kode_pos = $explod[1];
+            $this->M_User->update_toko($id, $kode_pos, $kota);
+            $this->session->set_flashdata(
+                  'pesan',
+                  '<div class="alert alert-success">
             <div class="container">
             <div class="alert-icon">
             <i class="material-icons">error_outline</i>
@@ -108,10 +112,10 @@ class Toko extends CI_Controller
             <b>Toko berhasil Diupdate</b>
             </div>
             </div>'
-                  );
-                  redirect('toko');
-            }
+            );
+            redirect('toko');
       }
+
       public function deactive_toko($id)
       {
             // var_dump($_POST);
@@ -401,5 +405,13 @@ class Toko extends CI_Controller
             $this->load->view('users/header');
             $this->load->view('Toko/lacak_pesanan');
             $this->load->view('users/footer');
+      }
+      public function get_ongkir()
+      {
+            $origin = $this->input->post('origin');
+            $des = $this->input->post('des');
+            $kurir = $this->input->post('kurir');
+            $ongkir = $this->M_GetApi->get_ongkir($origin, $des, $kurir);
+            echo json_encode($ongkir);
       }
 }

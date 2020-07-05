@@ -53,19 +53,14 @@ class M_user extends CI_Model
 
             $this->db->query("INSERT INTO toko (user_id,nama_toko,deskripsi_toko,phone,postal_code,address,provinsi,kota,kecamatan,kelurahan) values ('$userid','$nama_toko','$deskripsi','$phone','$kode_pos','$alamat','$provinsi','$kota','$kecamatan','$kelurahan')");
       }
-      public function update_toko($id)
+      public function update_toko($id, $kode_pos, $kota)
       {
             $nama_toko =  htmlspecialchars($this->input->post('nama_toko'), true);
             $deskripsi = htmlspecialchars($this->input->post('Deskripsi_toko'), true);
             $phone = htmlspecialchars($this->input->post('notelepon'), true);
-            $kode_pos = htmlspecialchars($this->input->post('kode_pos'), true);
             $alamat = htmlspecialchars($this->input->post('alamat'), true);
             $provinsi = htmlspecialchars($this->input->post('provinsi'), true);
-            $kota = htmlspecialchars($this->input->post('kota'), true);
-            $kecamatan = htmlspecialchars($this->input->post('kecamatan'), true);
-            $kelurahan = htmlspecialchars($this->input->post('kelurahan'), true);
-
-            $this->db->query("UPDATE toko SET nama_toko='$nama_toko',deskripsi_toko='$deskripsi',phone='$phone',postal_code='$kode_pos',address='$alamat',provinsi='$provinsi',kota='$kota',kecamatan='$kecamatan',kelurahan='$kelurahan' WHERE id_toko = '$id'");
+            $this->db->query("UPDATE toko SET nama_toko='$nama_toko',deskripsi_toko='$deskripsi',phone='$phone',postal_code='$kode_pos',address='$alamat',provinsi='$provinsi',kota='$kota' WHERE id_toko = '$id'");
       }
       public function detail_toko($id)
       {
@@ -139,7 +134,7 @@ class M_user extends CI_Model
       }
       public function get_item_cart($id)
       {
-            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id'")->result_array();
+            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id' AND (ISNULL(keranjang.status) OR keranjang.status = 'N')")->result_array();
       }
       public function delete_keranjang($id)
       {
@@ -153,7 +148,7 @@ class M_user extends CI_Model
                               k.id_toko,
                               t.nama_toko,
                               t.provinsi as toko_provinsi,
-                              t.kota as toka_kota,
+                              t.kota as toko_kota,
                               k.id_produk,
                               p.nama_produk,
                               p.img_produk,

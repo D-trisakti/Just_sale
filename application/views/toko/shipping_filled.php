@@ -42,8 +42,9 @@
                               <?php foreach ($chart as $ca) : ?>
                                     <thead>
                                           <tr>
-                                                <th colspan="5" class="alert alert-success">Toko Name : <?= $ca['nama_toko'] ?></th>
+                                                <th class="alert alert-success">Toko Name : <?= $ca['nama_toko'] ?></th>
                                           </tr>
+                                          <input type="hidden" value="<?= $ca['toko_kota'] ?>" id="<?= $ca['id_toko'] ?>toko_kota" name="toko_kota[]">
                                           <tr>
                                                 <th>Nama Produk</th>
                                                 <th>Harga Produk</th>
@@ -83,17 +84,18 @@
                                                       </p>
                                                 </td>
                                           </tr>
+
                                     <?php endforeach ?>
                                     <tr>
                                           <th>Ongkir</th>
-                                          <th colspan="2"><select class="form-control" name="id_kurir" id="id_kurir">
-                                                      <option value="jne">JNE</option>
+                                          <th colspan="2"><select class="form-control" name="id_kurir" id="<?= $ca['id_toko'] ?>id_kurir">
+                                                      <option value="0">Pilih Kurir</option>
                                                       <option value="pos">POS Indonesia</option>
+                                                      <option value="jne">JNE</option>
                                                       <option value="tiki">TIKI</option>
                                                 </select></th>
-                                          <th colspan="1"><select class="form-control" name="id_kurir" id="id_kurir">
-                                                      <option value="kilat">kilat</option>
-                                                      <option value="reguler">reguler</option>
+                                          <th colspan="1"><select class="form-control" name="id_layanan" id="<?= $ca['id_toko'] ?>id_layanan">
+                                                      <option value="0">Pilih Layanan</option>
                                                 </select></th>
                                           <th>
                                                 <p class="text-right">Rp.0
@@ -110,6 +112,38 @@
                                                 </p>
                                           </th>
                                     </tr>
+                                    <script>
+                                          $('#<?= $ca['id_toko'] ?>id_kurir').change(function() {
+                                                var kurir = $(this).val();
+                                                var city_id = $("#kota").val();
+                                                city_id = city_id.split('/');
+                                                var city = city_id[0];
+                                                var origin = city;
+                                                var des = $("#<?= $ca['id_toko'] ?>toko_kota").val();
+                                                $.ajax({
+                                                      url: " <?= base_url('toko/get_ongkir ') ?>",
+                                                      method: "POST",
+                                                      data: {
+                                                            origin: origin,
+                                                            des: des,
+                                                            kurir: kurir
+                                                      },
+                                                      //async: false,
+                                                      dataType: 'json',
+                                                      success: function(data) {
+                                                            console.log(data);
+                                                            var html =
+                                                                  '<option value="0">Pilih Layanan</option>';
+                                                            var i;
+                                                            for (i = 0; i < data.length; i++) {
+
+                                                                  html += '<option  value="' + data[i].service + '">' + data[i].description + '</option>';
+                                                            }
+                                                            $('#<?= $ca['id_toko'] ?>id_layanan').html(html);
+                                                      }
+                                                });
+                                          });
+                                    </script>
                               <?php endforeach; ?>
                               <tfoot>
                                     <tr>
@@ -123,23 +157,10 @@
                               </tfoot>
                         </table>
                         <script>
-                              // function get_kota() {
-                              //       var province_id = $('#provinsi').val();
-                              //       $.ajax({
-                              //             url: ' <?= base_url('users/get_kota ') ?> ',
-                              //             data: province_id = province_id,
-                              //             method: 'post',
-                              //             dataType: 'json',
-                              //             success: function(data) {
-                              //                   $('#kota').val(data);
-                              //             }
-                              //       });
-                              // }
-
                               $('#provinsi').change(function() {
                                     var province_id = $(this).val();
                                     $.ajax({
-                                          url: " <?= base_url('toko/get_kota ') ?>",
+                                          url: " <?= base_url('toko/get_kota') ?>",
                                           method: "POST",
                                           data: {
                                                 province_id: province_id
@@ -167,5 +188,27 @@
                                     var city_id = id[0];
                                     var postal_code = id[1];
                                     $('#kode_pos').val(postal_code);
+
+                              });
+
+                              $('#id_kurir').change(function() {
+                                    var city_id = $("#kota").val();
+                                    city_id = city_id.split('/');
+                                    var city = city_id[0];
+                                    var origin = city;
+                                    var des = $("#toko_kota").val();
+                                    console.log(des);
+                                    $.ajax({
+                                          url: " <?= base_url('toko/get_ongkir ') ?>",
+                                          method: "POST",
+                                          data: {
+                                                origin: origin
+                                          },
+                                          //async: false,
+                                          dataType: 'json',
+                                          success: function(data) {
+                                                console.log(data);
+                                          }
+                                    });
                               });
                         </script>
