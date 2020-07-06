@@ -351,6 +351,7 @@ class Toko extends CI_Controller
             }
             $id = rtrim($id, ",");
             $data['chart'] = $this->M_User->get_data_chart($id, $id_user);
+
             $data['api_province'] = $this->M_GetApi->get_all_province();
             $this->load->view('users/header');
             $this->load->view('Toko/shipping_filled', $data);
@@ -413,5 +414,14 @@ class Toko extends CI_Controller
             $kurir = $this->input->post('kurir');
             $ongkir = $this->M_GetApi->get_ongkir($origin, $des, $kurir);
             echo json_encode($ongkir);
+      }
+      public function get_ongkir_value()
+      {
+            $origin = $this->input->post('origin');
+            $des = $this->input->post('des');
+            $kurir = $this->input->post('kurir');
+            $service = $this->input->post('service');
+            $ongkir_value = $this->M_GetApi->get_ongkir($origin, $des, $kurir, $service);
+            echo json_encode($ongkir_value);
       }
 }

@@ -39,7 +39,8 @@
                   </div>
                   <div class="table-responsive">
                         <table class="table table-borderedless" id="dataTable" width="100%" cellspacing="0">
-                              <?php foreach ($chart as $ca) : ?>
+                              <?php 
+							  foreach ($chart as $ca) : ?>
                                     <thead>
                                           <tr>
                                                 <th class="alert alert-success">Toko Name : <?= $ca['nama_toko'] ?></th>
@@ -57,6 +58,7 @@
                                     </thead>
                                     <?php $this->load->model('M_User');
                                     $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
+
                                     foreach ($produk as $pd) :
                                     ?>
                                           <tr>
@@ -73,7 +75,7 @@
                                                       ?>
                                                 </td>
                                                 <td>
-                                                      <p class="text-right">
+                                                      <p class="text-right" id="<?= $ca['id_toko'] ?><?= $pd['id_pesan'] ?>t">
                                                             <?php
                                                             for ($i = 0; $i < count($mix); $i++) {
                                                                   if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
@@ -84,8 +86,10 @@
                                                       </p>
                                                 </td>
                                           </tr>
-
                                     <?php endforeach ?>
+
+
+
                                     <tr>
                                           <th>Ongkir</th>
                                           <th colspan="2"><select class="form-control" name="id_kurir" id="<?= $ca['id_toko'] ?>id_kurir">
@@ -98,7 +102,7 @@
                                                       <option value="0">Pilih Layanan</option>
                                                 </select></th>
                                           <th>
-                                                <p class="text-right">Rp.0
+                                                <p class="text-right" id="<?= $ca['id_toko'] ?>ongkir">Rp.0
                                                 </p>
                                           </th>
                                     </tr>
@@ -107,11 +111,29 @@
                                                 Subtotal
                                           </th>
                                           <th>
-                                                <p class="text-right">
-                                                      Rp.08808
+												<input type="hidden" id="<?= $ca['id_toko'] ?>subasli">
+                                                <p class="text-right" id="<?= $ca['id_toko'] ?>sub">
+													Rp. 0
                                                 </p>
                                           </th>
                                     </tr>
+                                    <script>
+                                          <?php $this->load->model('M_User');
+                                          $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
+                                          $tot = 0;
+                                          foreach ($produk as $pd) :
+                                                for ($i = 0; $i < count($mix); $i++) {
+                                                      if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                            //echo $mix[$i]['subtotal'];
+                                                            $t =  explode(" ", $mix[$i]['subtotal']);
+                                                            $tot = $tot + $t[1];
+                                                      }
+                                                }
+                                          endforeach;
+
+                                          ?>
+                                          $("#<?= $ca['id_toko'] ?>subasli").val('<?= $tot ?>');
+                                    </script>
                                     <script>
                                           $('#<?= $ca['id_toko'] ?>id_kurir').change(function() {
                                                 var kurir = $(this).val();
@@ -136,26 +158,60 @@
                                                                   '<option value="0">Pilih Layanan</option>';
                                                             var i;
                                                             for (i = 0; i < data.length; i++) {
-
-                                                                  html += '<option  value="' + data[i].service + '">' + data[i].description + '</option>';
+                                                                  console.log(data[i].cost[0]);
+                                                                  html += '<option  value="' + data[i].service + '/' + data[i].cost[0].value + '">' + data[i].description + '</option>';
                                                             }
                                                             $('#<?= $ca['id_toko'] ?>id_layanan').html(html);
                                                       }
                                                 });
                                           });
-                                    </script>
+                                          $('#<?= $ca['id_toko'] ?>id_layanan').change(function() {
+                                                var value = $(this).val();
+                                                value = value.split('/');
+                                                cost = value[1];
+												var sub =  $("#<?= $ca['id_toko'] ?>subasli").val();
+												var sub_total = parseInt(sub)+parseInt(cost);
+                                                //console.log(cost);
+                                                $('#<?= $ca['id_toko'] ?>ongkir').html(cost);
+												$("#<?= $ca['id_toko'] ?>sub").html('Rp. '+sub_total);
+                                          });
+										  $('#<?= $ca['id_toko'] ?>id_layanan').change(function() {
+                                                var value = $(this).val();
+                                                value = value.split('/');
+                                                cost = value[1];
+												var sub =  $("#<?= $ca['id_toko'] ?>subasli").val();
+												var sub_total = parseInt(sub)+parseInt(cost);
+                                                //console.log(cost);
+                                                $('#<?= $ca['id_toko'] ?>ongkir').html(cost);
+												$("#<?= $ca['id_toko'] ?>sub").html('Rp. '+ sub_total);
+												
+												//var z = $("#grand").val(sub_total);
+												console.log(z);
+                                          });
+									</script>
                               <?php endforeach; ?>
                               <tfoot>
                                     <tr>
                                           <th colspan="4" class="alert alert-danger">Grand Total</th>
                                           <th class="alert alert-danger">
-                                                <p class="text-right">
-                                                      Rp.9000000000
+                                                <p class="text-right" >
+                                                      <input type="text" id="grand">
                                                 </p>
                                           </th>
                                     </tr>
                               </tfoot>
                         </table>
+						<script>
+							setInterval(function(){ 
+								var grand_total = 0;
+								<?php foreach ($chart as $ca) : ?>
+									var sub = $("#<?= $ca['id_toko'] ?>sub").html()
+									sub = sub.split(" ");
+									grand_total = parseInt(grand_total) + parseInt(sub[1]);
+								<?php endforeach;?>
+								$("#grand").val(grand_total);
+							 }, 1000);
+						</script>
                         <script>
                               $('#provinsi').change(function() {
                                     var province_id = $(this).val();
