@@ -3,7 +3,7 @@
       <div class="card card-nav-tabs">
             <div class="card-header card-header-warning">
                   <h3 class="card-title text-center">Ubah Profile</h3>
-                  <form action="<?= base_url() ?>users/edit" method="post">
+                  <form action="<?= base_url() ?>users/edit" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= $user['id']; ?>">
             </div>
             <div class="container">
@@ -221,7 +221,7 @@
                               <!-- form password -->
                               <div class="col-md-3">
                                     <label for="image">Gambar Produk</label>
-                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" value="<?= $user['image']; ?>">
                               </div>
                               <div class="col-md-6">
                                     <div class="card bordered">

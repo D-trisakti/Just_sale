@@ -77,14 +77,34 @@
                                     </select>
                               </div>
                               <div class="col-sm-2">
-                                    <label for="kode_pos">Kode Pos</label>
-                                    <input type="number" class="form-control" readonly name="kode_pos" id="kode_pos" value="<?= $city->postal_code ?>">
                                     <label for="kota">Kota/Kabupaten</label>
-                                    <select class="form-control kota" id="kota" name="kota">
-                                          <option value="<?= $city->city_id ?>"><?= $city->type ?> <?= $city->city_name ?></option>
+                                    <select class="form-control alamatk" id="kota" name="kota">
+                                          <option value="<?= $user['kota']; ?>"><?= $city->city_name; ?></option>
                                     </select>
                               </div>
+                              <div class="col-md-3">
+                                    <label for="image">Gambar Produk</label>
+                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+                              </div>
+                              <div class="col-md-3">
+                                    <div class="card bordered">
+                                          <img width="350" height="auto" id="output" />
+                                    </div>
+
+                                    <script>
+                                          var loadFile = function(event) {
+                                                var reader = new FileReader();
+                                                reader.onload = function() {
+                                                      var output = document.getElementById('output');
+                                                      output.src = reader.result;
+                                                };
+                                                reader.readAsDataURL(event.target.files[0]);
+                                          };
+                                    </script>
+                              </div>
+
                         </div>
+
                         <div class="text-center">
                               <div class="col-md-4 ml-auto mr-auto text-center">
                                     <button class="btn btn-primary btn-round btn-lg btn-block btn-submit" type="button" onclick="submit()">Update Data Toko</button>
@@ -180,7 +200,7 @@
                         var i;
                         for (i = 0; i < data.length; i++) {
 
-                              html += '<option  value="' + data[i].city_id + '/' + data[i].postal_code + '">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                              html += '<option  value="' + data[i].city_id + '">' + data[i].type + ' ' + data[i].city_name + '</option>';
                         }
                         $('#kota').html(html);
 
@@ -188,7 +208,7 @@
             });
       });
 
-      $('#kota').change(function() {
+      $('#kota').update(function() {
             var id = $(this).val();
             id = id.split('/');
             var city_id = id[0];

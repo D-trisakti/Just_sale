@@ -41,7 +41,7 @@
 
                                                       <td>
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-primary btn-round btn-sm">-</button>
-                                                            <input id="<?= $prod['id_produk'] ?>quantity" class="form-control" min="1" max="<?= $prod['jumlah_produk'] ?>" name="quantity[]" value="<?= $prod['jumlah'] ?>" type="number" readonly style="width: 50px;">
+                                                            <input id="<?= $prod['id_produk'] ?>quantity" class="form-control" min="1" max="<?= $prod['jumlah_produk'] ?>" name="quantity[]" value="<?= $prod['jumlah_pesan'] ?>" type="number" readonly style="width: 50px;">
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-primary btn-round btn-sm">+</button>
                                                       </td>
 
@@ -70,12 +70,7 @@
                                                 </script>
                                     </tbody>
                               <?php endforeach ?>
-                              <tfoot>
-                                    <tr>
-                                          <th colspan="5">Grand Total</th>
-                                          <th colspan="2">Rp.0</th>
-                                    </tr>
-                              </tfoot>
+
                               </table>
                   </form>
                   <!-- <a href="<?= base_url(); ?>toko/shipping">Lanjutkan Bayar</a> -->

@@ -7,7 +7,22 @@ class Users extends CI_Controller
     {
         parent::__construct();
         if (!$this->session->userdata('email')) {
-            redirect(site_url('welcome'));
+            // redirect(site_url('welcome'));
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-info">
+		  <div class="container">
+		  <div class="alert-icon">
+		  <i class="material-icons">error_outline</i>
+		  </div>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+		  </button>
+		  <b>Anda harus login untuk melanjutkan</b>
+		  </div>
+		  </div>'
+            );
+            redirect('welcome/login');
         } else {
             $this->load->model('M_User');
         }
@@ -16,6 +31,7 @@ class Users extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $id = $data['user']['id'];
+        $data['produk'] = $this->M_User->get_item_cart($id);
         // $data['cek'] = $this->M_User->check_toko($id);
         // var_dump($data['cek']);
         // die;
@@ -33,6 +49,7 @@ class Users extends CI_Controller
     public function edit()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id = $data['user']['id'];
         $id_prov = $data['user']['provinsi'];
         $id_kota = $data['user']['kota'];
         $id_kec = $data['user']['kecamatan'];
@@ -54,6 +71,35 @@ class Users extends CI_Controller
             $this->load->view('users/header');
             $this->load->view('users/ubah_profile', $data);
         } else {
+            // cek jika ada gambar yang akan diupload
+            $old_image = $data['user']['image'];
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image != "") {
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']      = '2048';
+                $config['upload_path'] = './assets/img/profile';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('image')) {
+                    if ($upload_image != 'default.svg') {
+                        unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                    }
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->query("UPDATE user SET image = '$new_image' WHERE id ='$id'");
+                    $this->M_User->edit_user();
+                    redirect('users');
+                } else {
+                    $this->session->set_flashdata(
+                        'pesan',
+                        $this->upload->display_errors()
+                    );
+                    $this->load->view('users/header');
+                    $this->load->view('users/ubah_profile', $data);
+                }
+            } else {
+                $this->M_User->edit_user();
+                redirect('users');
+            }
+
 
             $this->M_User->edit_user();
             $this->session->set_flashdata(
@@ -112,15 +158,62 @@ class Users extends CI_Controller
     }
     public function rekening()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id = $data['user']['id'];
+        $data['rek'] = $this->M_User->get_rekening($id);
+
         $this->load->view('users/header');
-        $this->load->view('users/rekening');
+        $this->load->view('users/rekening', $data);
         $this->load->view('users/footer');
     }
     public function tambah_rekening()
     {
-        $this->load->view('users/header');
-        $this->load->view('users/tambah_rekening');
-        $this->load->view('users/footer');
+        $this->form_validation->set_rules('bank', 'bank', 'required|trim');
+        $this->form_validation->set_rules('norek', 'Nomor Rekening', 'required|trim');
+        $this->form_validation->set_rules('pemilik', 'Pemilik', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('users/header');
+            $this->load->view('users/tambah_rekening');
+            $this->load->view('users/footer');
+        } else {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $data['user']['id'];
+            $this->M_User->add_rekening($id);
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success">
+          <div class="container">
+          <div class="alert-icon">
+          <i class="material-icons">error_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Rekening Berhasil Ditambahkan</b>
+          </div>
+          </div>'
+            );
+            redirect('users/rekening');
+        }
+    }
+    public function delete_rekening($id)
+    {
+        $this->M_User->delete_rekening($id);
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success">
+  <div class="container">
+  <div class="alert-icon">
+  <i class="material-icons">error_outline</i>
+  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+  </button>
+  <b>Rekening Berhasil Dihapus</b>
+  </div>
+  </div>'
+        );
+        redirect('users/rekening');
     }
     public function katalog()
     {
@@ -162,7 +255,7 @@ class Users extends CI_Controller
         var_dump($_POST);
         die;
         $this->load->view('users/header');
-        $this->load->view('users/katalog', $data);
+        $this->load->view('users/katalog');
         $this->load->view('users/footer');
     }
 }

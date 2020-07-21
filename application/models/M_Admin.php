@@ -42,4 +42,20 @@ class M_Admin extends CI_Model
   {
     return $this->db->query("SELECT * FROM user WHERE user_status = 0")->result_array();
   }
+  public function get_user_not_active()
+  {
+    return $this->db->query("SELECT * FROM user WHERE user_status = 1")->result_array();
+  }
+  public function get_toko()
+  {
+    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 0")->result_array();
+  }
+  public function get_toko_not_active()
+  {
+    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 1")->result_array();
+  }
+  public function get_produk()
+  {
+    return $this->db->query("SELECT * FROM produk p JOIN toko t ON p.id_toko = t.id_toko")->result_array();
+  }
 }

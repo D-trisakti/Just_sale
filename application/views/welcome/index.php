@@ -1,282 +1,36 @@
-<div class="wrapper">
-      <div class="page-header page-header-small">
-            <div class="page-header-image" data-parallax="true"
-                  style="background-image: url('<?= base_url();?>assets/img/head.jpg')">
-            </div>
-            <div class="content-center">
-                  <div class="container">
-                        <h1 class="title">Just Sale</h1>
-                        <div class="text-center">
-                              Tempatnya Jual Beli Aksesoris Pelengkapan TNI- POLRI dan Satpam Online
-                        </div>
+<div class="page-header header-filter clear-filter no-filter" data-parallax="true" style="background-image: url('<?= base_url(); ?>assets/img/head.jpg');">
+</div>
+<div class="main main-raised">
+      <div class="profile-content">
+            <hr>
+            <div class="container">
+                  <div class="brand">
+                        <h2 class="title text-center">Produk Terlaris</h2>
                   </div>
+                  <hr>
+                  <div class="row">
+                        <?php foreach ($produk as $prod) : ?>
+                              <div class="col col-md-3">
+                                    <div class="card" style="width: 15rem;">
+                                          <img class="card-img-top" src="<?= base_url('assets/uploads/') . $prod['img_produk']; ?>" rel="nofollow" alt="Card image cap">
+                                          <div class="card-img-overlay text-right">
+                                                <div class="card-img-overlay text-right">
+                                                      <p class="card-text btn btn-sm btn-primary btn-round">
+                                                            Rp.<?= $prod['harga_produk']; ?>,-IDR</p>
+                                                </div>
+                                          </div>
+                                          <div class="card-body">
+                                                <h5 class="card-title"><?= $prod['nama_produk'] ?></h5>
+                                                <p class="card-text"><?= $prod['deskripsi_produk'] ?></p>
+                                                <a href="<?= base_url('toko/detail_produk') ?>/<?= $prod['id_produk']; ?>" class="card-title text-center btn btn-sm btn-rounded btn-rose">Beli</a>
+                                          </div>
+                                    </div>
+                              </div>
+                        <?php endforeach ?>
+                  </div>
+                  <h4 class="text-center">Temukan produk lainnya <a href="<?= base_url() ?>welcome/catalog">Disini !</a> !</h4>
+                  <hr>
+
             </div>
       </div>
-      <div class="section section-about-us">
-            <div class="container">
-                  <div class="row">
-                        <div class="col-md-8 ml-auto mr-auto text-center">
-                              <h2 class="title">Produk Trending !</h2>
-                              <h5 class="description">Produk - produk terlaris saat ini.</h5>
-                        </div>
-                  </div>
-                  <div class="content-center ">
-                        <div class="container  text-center">
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-
-                              <div class="card mr-2 ml-2" style="width: 20rem;">
-                                    <div class="card wrapper">
-                                          <img class="card-img-top" src="<?= base_url();?>assets/img/3.jpg"
-                                                alt="Card image cap">
-                                          <div class="card-img-overlay text-right">
-                                                <button class="btn btn-md btn-primary btn-round">
-                                                      <h5 class="card-title card-text">Rp.1000.0000</h5>
-                                                </button>
-                                          </div>
-                                    </div>
-                                    <div class="card-body mt--5">
-                                          <h4 class="card-title card-text">Product Name</h4>
-                                          <p class="card-description card-text">
-                                                Product description
-                                          </p>
-                                          <a href="http://" class="btn btn-md btn-success btn-round">
-                                                <h5 class="card-title card-text">Beli Sekarang </h5>
-                                          </a>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-                  <hr>
-                  <div class="col-md-8 ml-auto mr-auto text-center">
-                        <a href="<?= base_url();?>welcome/catalog" class="title">Lihat Produk lainnya !</a>
-                  </div>
-                  <hr>
+</div>

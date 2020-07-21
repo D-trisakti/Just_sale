@@ -7,11 +7,8 @@ class Admin extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// if (!$this->session->userdata('id')) {
-		// 	redirect(site_url('admin_auth'));
-		// } else {
-		// 	$this->load->model('M_Admin');
-		// }
+
+		$this->load->model('M_Admin');
 	}
 	public function dashboard()
 	{
@@ -23,7 +20,6 @@ class Admin extends CI_Controller
 	public function user()
 	{
 		$data['user'] = $this->M_Admin->get_user();
-		var_dump($data);
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/pengguna/index', $data);
@@ -31,30 +27,36 @@ class Admin extends CI_Controller
 	}
 	public function user_not_active()
 	{
+		$data['user'] = $this->M_Admin->get_user_not_active();
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/pengguna/non_active_user');
+		$this->load->view('admin/pengguna/non_active_user', $data);
 		$this->load->view('admin/footer');
 	}
 	public function toko()
 	{
+		$data['toko'] = $this->M_Admin->get_toko();
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/toko/index');
+		$this->load->view('admin/toko/index', $data);
 		$this->load->view('admin/footer');
 	}
 	public function toko_nonaktif()
 	{
+		$data['toko'] = $this->M_Admin->get_toko_not_active();
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/toko/nonaktif_toko');
+		$this->load->view('admin/toko/nonaktif_toko', $data);
 		$this->load->view('admin/footer');
 	}
 	public function product()
 	{
+		$data['product'] = $this->M_Admin->get_produk();
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/produk/index');
+		$this->load->view('admin/produk/index', $data);
 		$this->load->view('admin/footer');
 	}
 	public function transaksi()
@@ -62,6 +64,20 @@ class Admin extends CI_Controller
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/index');
+		$this->load->view('admin/footer');
+	}
+	public function riwayat()
+	{
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/transaksi/riwayat_transaksi');
+		$this->load->view('admin/footer');
+	}
+	public function payment()
+	{
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/transaksi/payment');
 		$this->load->view('admin/footer');
 	}
 	public function laporan()

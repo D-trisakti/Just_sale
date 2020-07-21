@@ -5,8 +5,10 @@ class Welcome extends CI_Controller
 {
 	public function index()
 	{
+		$this->load->model('M_Welcome');
+		$data['produk'] = $this->M_Welcome->get_item();
 		$this->load->view('welcome/header');
-		$this->load->view('welcome/index');
+		$this->load->view('welcome/index', $data);
 		$this->load->view('welcome/footer');
 	}
 	public function login()
@@ -96,25 +98,35 @@ class Welcome extends CI_Controller
 	{
 		$this->load->model('M_Admin');
 		$data['province'] = $this->M_Admin->select_province();
-		$this->form_validation->set_rules('nama_depan', 'Nama Depan', 'required|trim');
-		$this->form_validation->set_rules('nama_belakang', 'Nama Belakang', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', ['is_unique' => 'Email sudah ada']);
-		$this->form_validation->set_rules('notelepon', 'Nomor Telepon', 'required');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-		$this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|trim');
-		$this->form_validation->set_rules('TTL', 'Tanggal Lahir', 'required|trim');
-		$this->form_validation->set_rules('password', 'password', 'required|trim|matches[password_konfirmasi]', [
+		$this->form_validation->set_rules('phone', 'Nomor Telepon', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required|trim|matches[password2]', [
 			'matches' => 'Password tidak sama',
 			'min_length' => 'Password terlalu pendek',
 			'max_length' => 'Password terlalu panjang'
 		]);
-		$this->form_validation->set_rules('password_konfirmasi', 'password', 'required|trim|matches[password]');
+		$this->form_validation->set_rules('password2', 'password', 'required|trim|matches[password]');
 		if ($this->form_validation->run() == false) {
 			$this->load->view('welcome/header');
 			$this->load->view('welcome/register', $data);
 		} else {
 			$this->load->model('M_Welcome');
 			$this->M_Welcome->register();
+			$this->session->set_flashdata(
+				'pesan',
+				'<div class="alert alert-success">
+		  <div class="container">
+		  <div class="alert-icon">
+		  <i class="material-icons">error_outline</i>
+		  </div>
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true"><i class="material-icons">clear</i></span>
+		  </button>
+		  <b>Berhasil Registrasi</b>
+		  </div>
+		  </div>'
+			);
+			redirect('welcome/login');
 		}
 	}
 	function get_city()

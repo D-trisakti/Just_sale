@@ -15,7 +15,7 @@
                                                 <?= $user['first_name']; ?>
                                                 <?= $user['last_name']; ?>
                                           </h3>
-                                          <small><a href="<?= base_url('users/edit') ?>" class="btn btn-sm btn-info btn-round">edit
+                                          <small><a href="<?= base_url('users/edit') ?>/<?= $user['id']; ?>" class="btn btn-sm btn-info btn-round">edit
                                                       profile</a></small>
                                     </div>
                               </div>
@@ -38,12 +38,22 @@
                                           </div>
                                     </div>
                                     <div class="card-body">
-                                          <ul class="list-group list-group-flush" data-background-color="orange">
-                                                <li class="list-group-item" data-background-color="orange">
-                                                      <h6 class="text">Troli Masih Kosong, <a href="<?= base_url(); ?>users/katalog" class="link text-info">Belanja
-                                                                  Sekarang</a></h6>
-                                                </li>
-                                          </ul>
+
+
+                                          <table class="table table-striped">
+                                                <thead>
+                                                      <th>
+                                                            No Pesanan
+                                                      </th>
+                                                </thead>
+                                                <tbody>
+                                                      <?php foreach ($produk as $prod) : ?>
+                                                            <tr>
+                                                                  <td><?= $prod['nama_produk'] ?></td>
+                                                            </tr>
+                                                      <?php endforeach ?>
+                                                </tbody>
+                                          </table>
                                           <h6 class="text-center mt-3"><a href="<?= base_url(); ?>toko/keranjang_belanja" class="link text-info">Cek Selengkapnya</a></h1>
                                     </div>
                               </div>

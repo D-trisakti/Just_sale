@@ -121,15 +121,16 @@ class M_user extends CI_Model
             $user = htmlspecialchars($this->input->post('id_user'), true);
             $toko = htmlspecialchars($this->input->post('id_toko'), true);
             $produk = htmlspecialchars($this->input->post('id_produk'), true);
-            $a = $this->db->query("SELECT jumlah FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
+            $a = $this->db->query("SELECT jumlah_pesan FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
             $b = $this->db->query("SELECT * FROM keranjang WHERE id_produk = $produk and id_user =$user")->num_rows();
             // var_dump($a[0]['jumlah']);
             // die;
-            $a = $a[0]['jumlah'];
+
+            $a = $a[0]['jumlah_pesan'];
             if ($b == 0) {
-                  $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah) values ('$user','$toko','$produk',1)");
+                  $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah_pesan) values ('$user','$toko','$produk',1)");
             } else {
-                  $this->db->query("UPDATE keranjang SET jumlah = $a+1 WHERE id_produk = $produk and id_user =$user");
+                  $this->db->query("UPDATE keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
             }
       }
       public function get_item_cart($id)
@@ -154,7 +155,7 @@ class M_user extends CI_Model
                               p.img_produk,
                               p.harga_produk,
                               k.id_user,
-                              k.jumlah 
+                              k.jumlah_pesan 
                               from keranjang k,toko t,produk p
                               where k.id_pesan in(" . $id . ")
                               and k.id_user = " . $id_user . "
@@ -178,7 +179,7 @@ class M_user extends CI_Model
                               p.img_produk,
                               p.harga_produk,
                               k.id_user,
-                              k.jumlah 
+                              k.jumlah_pesan 
                               from keranjang k,toko t,produk p
                               where k.id_toko in(" . $id . ")
                               and k.id_user = " . $id_user . "
@@ -187,5 +188,23 @@ class M_user extends CI_Model
 
 
             return $this->db->query($query)->result_array();
+      }
+      public function add_rekening($id)
+      {
+            $data = [
+                  'no_rek'  => htmlspecialchars($this->input->post('norek'), true),
+                  'bank' => htmlspecialchars($this->input->post('bank'), true),
+                  'pemilik' => htmlspecialchars($this->input->post('pemilik'), true),
+                  'user_id' => $id
+            ];
+            $this->db->insert('rekening', $data);
+      }
+      public function get_rekening($id)
+      {
+            return $this->db->query("SELECT * FROM rekening WHERE user_id = '$id' ")->result_array();
+      }
+      public function delete_rekening($id)
+      {
+            $this->db->query("DELETE FROM rekening where no_rek = $id");
       }
 }

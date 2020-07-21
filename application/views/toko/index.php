@@ -15,9 +15,8 @@
                                           <p class="card- description"><?= $toko['deskripsi_toko'] ?></p>
                                           <p class="card- description text-capitalize">Toko ini Beralamat di
                                                 <?= $toko['address'] ?>
-                                                kelurahan <?= $kelurahan_name['nama']; ?>,Kecamatan
-                                                <?= $kecamatan_name['nama']; ?>,Kab/Kota <?= $kota_name['nama']; ?>,
-                                                Provinsi <?= $prov_name['nama']; ?> HUB :(<?= $toko['phone']; ?>)
+                                                Kab/Kota <?= $city->city_name  ?>,
+                                                Provinsi <?= $city->province ?> HUB :(<?= $toko['phone']; ?>)
                                           </p>
                                     </div>
                               </div>

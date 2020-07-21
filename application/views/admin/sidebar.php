@@ -7,8 +7,7 @@
             <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
                   <!-- Sidebar - Brand -->
-                  <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="<?= base_url(); ?>admin">
+                  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>admin">
                         <div class="sidebar-brand-icon ">
                               <i class="fas fa-user-cog"></i>
                         </div>
@@ -35,13 +34,11 @@
 
                   <!-- Nav Item - Pages Collapse Menu -->
                   <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                              aria-expanded="true" aria-controls="collapseTwo">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                               <i class="fas fa-tshirt"></i>
                               <span>Pengguna</span>
                         </a>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                              data-parent="#accordionSidebar">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
                                     <a class="collapse-item" href="<?= base_url(); ?>admin/user">Kelola user</a>
                                     <a class="collapse-item" href="<?= base_url(); ?>admin/user_not_active">Pengguna
@@ -52,13 +49,11 @@
                   </li>
 
                   <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseorder"
-                              aria-expanded="true" aria-controls="collapseTwo">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseorder" aria-expanded="true" aria-controls="collapseTwo">
                               <i class="fas fa-fw fa-chart-area"></i>
                               <span>Toko</span>
                         </a>
-                        <div id="collapseorder" class="collapse" aria-labelledby="headingTwo"
-                              data-parent="#accordionSidebar">
+                        <div id="collapseorder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
                                     <a class="collapse-item" href="<?= base_url(); ?>admin/toko">Kelola Toko</a>
                                     <a class="collapse-item" href="<?= base_url(); ?>admin/toko_nonaktif">Kelola Toko
@@ -71,19 +66,17 @@
 
                   <!-- Nav Item - Utilities Collapse Menu -->
                   <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                              aria-expanded="true" aria-controls="collapseUtilities">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                               <i class="far fa-file-excel"></i>
                               <span>Transaksi</span>
                         </a>
-                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                              data-parent="#accordionSidebar">
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_penjualan">Kelola
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/transaksi">Kelola
                                           Pemesanan</a>
-                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_barang">Kelola
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/payment">Kelola
                                           Payment</a>
-                                    <a class="collapse-item" href="<?= base_url(); ?>admin/laporan_pegawai">Riwayat
+                                    <a class="collapse-item" href="<?= base_url(); ?>admin/riwayat">Riwayat
                                           Transaksi</a>
                               </div>
                         </div>
@@ -99,13 +92,11 @@
 
                   <!-- Nav Item - Pages Collapse Menu -->
                   <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                              aria-expanded="true" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                               <i class="fas fa-users"></i>
                               <span>Laporan</span>
                         </a>
-                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-                              data-parent="#accordionSidebar">
+                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                               <div class="bg-white py-2 collapse-inner rounded">
                                     <h6 class="collapse-header">Kelola:</h6>
                                     <a class="collapse-item" href="<?= base_url('admin/user'); ?>">Penyalahgunaan
@@ -177,14 +168,12 @@
 
                                     <!-- Nav Item - User Information -->
                                     <li class="nav-item dropdown no-arrow">
-                                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                                 <img class="img-profile rounded-circle" src="">
                                           </a>
                                           <!-- Dropdown - User Information -->
-                                          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                                aria-labelledby="userDropdown">
+                                          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                                 <a class="dropdown-item" href="<?= base_url(); ?>admin/edit_profile">
                                                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                       Profile
@@ -194,8 +183,7 @@
                   Activity Log
                 </a> -->
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="<?= base_url('admin/logout') ?>"
-                                                      data-toggle="modal" data-target="#logoutModal">
+                                                <a class="dropdown-item" href="<?= base_url('admin/logout') ?>" data-toggle="modal" data-target="#logoutModal">
                                                       <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                                       Logout
                                                 </a>

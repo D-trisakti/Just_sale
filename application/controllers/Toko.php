@@ -3,18 +3,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Toko extends CI_Controller
 {
+
       public function __construct()
       {
             parent::__construct();
             $this->load->model('M_Admin');
             $this->load->model('M_User');
             $this->load->model('M_GetApi');
+            if (!$this->session->userdata('email')) {
+                  $this->session->set_flashdata(
+                        'pesan',
+                        '<div class="alert alert-info">
+                      <div class="container">
+                      <div class="alert-icon">
+                      <i class="material-icons">error_outline</i>
+                      </div>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                      </button>
+                      <b>Anda harus login untuk melanjutkan</b>
+                      </div>
+                      </div>'
+                  );
+                  redirect('welcome/login');
+            } else {
+                  $this->load->model('M_User');
+            }
       }
       public function index()
       {
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $data['user']['id'];
             $data['toko'] = $this->M_User->get_toko($id);
+
             $this->load->view('users/header');
             $this->load->view('Toko/kelola_toko', $data);
             $this->load->view('users/footer');
@@ -27,12 +48,9 @@ class Toko extends CI_Controller
             $id_kota = $data['toko']['kota'];
             $id_kec = $data['toko']['kecamatan'];
             $id_kel = $data['toko']['kelurahan'];
-            $data['prov_name'] = $this->M_Admin->get_province_name($id_prov);
-            $data['kota_name'] = $this->M_Admin->get_kota_name($id_prov, $id_kota);
-            $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
-            $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
             $data['produk'] = $this->M_User->get_produk_by_toko($id);
-
+            $data['city'] = $this->M_GetApi->get_city_toko($id_prov, $id_kota);
+            $data['province'] = $this->M_GetApi->get_city($id_prov);
             $this->load->view('users/header');
             $this->load->view('Toko/index', $data);
             $this->load->view('users/footer');
@@ -46,6 +64,7 @@ class Toko extends CI_Controller
             $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|trim');
             if ($this->form_validation->run() == false) {
 
+                  $data['api_province'] = $this->M_GetApi->get_all_province();
                   $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                   $data['province'] = $this->M_Admin->select_province();
                   $this->load->view('users/header');
@@ -385,6 +404,42 @@ class Toko extends CI_Controller
       }
       public function payment()
       {
+            $pesan = $this->input->post('pesan');
+            $toko_in = $this->input->post('id_toko');
+            $toko_out = $this->input->post('id_toko_out');
+
+            $data = array();
+            $index = 0;
+            foreach ($pesan as $psn) :
+                  $index2 = 0;
+                  $subs = $this->input->post('subtotal_item')[$index];
+                  $sub_total = (explode(" ", $subs));
+                  foreach ($toko_out as $out) :
+                        if ($toko_in[$index] == $out) {
+                              $ongkir = $this->input->post('ongkirs')[$index2];
+                              $layanan = $this->input->post('id_layanan')[$index2];
+                              $layanan_id = (explode("/", $layanan));
+                              $id_kurir = $this->input->post('id_kurir')[$index2];
+                        }
+                        $index2++;
+                  endforeach;
+                  array_push($data, array(
+                        'id_pesan' => $psn,
+                        'alamat_pengiriman' => $this->input->post('alamat'),
+                        'ongkir' => $ongkir,
+                        'jumlah_pesan' => $this->input->post('jumlah_pesanan')[$index],
+                        'sub_total' => $sub_total[1],
+                        'pesan_pembeli' => $this->input->post('pesan_pembeli')[$index],
+                        'id_kurir' => $id_kurir,
+                        'id_layanan' => $layanan_id[0],
+                        'status' => 'pending'
+                  ));
+                  $index++;
+            endforeach;
+            var_dump($data);
+            $this->db->update_batch('keranjang', $data, 'id_pesan');
+
+            die;
             $this->load->view('users/header');
             $this->load->view('Toko/payment');
             $this->load->view('users/footer');
