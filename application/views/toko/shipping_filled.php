@@ -12,11 +12,11 @@
                         <div class="form-row">
                               <div class="col-sm-6">
                                     <label for="alamat">alamat</label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" readonly value="<?= $user['address']; ?>">
+                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?= $user['address']; ?>">
                               </div>
                               <div class="col-sm-2">
                                     <label for="kode_pos">Provinsi</label>
-                                    <select class="form-control alamatp" id="provinsi" name="provinsi" readonly>
+                                    <select class="form-control alamatp" id="provinsi" name="provinsi">
                                           <option value="0">Pilih Provinsi</option>
                                           <?php
                                           for ($i = 0; $i < count($api_province); $i++) : ?>
@@ -29,7 +29,7 @@
                               </div>
                               <div class="col-sm-2">
                                     <label for="kota">Kota/Kabupaten</label>
-                                    <select class="form-control alamatk" id="kota" name="kota" readonly>
+                                    <select class="form-control alamatk" id="kota" name="kota">
                                           <option value="0">Pilih Kota/kabupaten</option>
                                     </select>
                               </div>
@@ -87,10 +87,10 @@
                                                                   for ($i = 0; $i < count($mix); $i++) {
                                                                         if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
                                                                               echo $mix[$i]['subtotal'];
-                                                                  ?> <input type="hidden" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
-                                                                                                                                                      }
+                                                                  ?> <input type="text" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
                                                                                                                                                 }
-                                                                                                                                                            ?>
+                                                                                                                                          }
+                                                                                                                                                      ?>
 
                                                             </p>
                                                       </td>

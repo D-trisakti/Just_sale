@@ -122,12 +122,13 @@ class M_user extends CI_Model
             $toko = htmlspecialchars($this->input->post('id_toko'), true);
             $produk = htmlspecialchars($this->input->post('id_produk'), true);
             $a = $this->db->query("SELECT jumlah_pesan FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
+            $c = $this->db->query("SELECT status FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
             $b = $this->db->query("SELECT * FROM keranjang WHERE id_produk = $produk and id_user =$user")->num_rows();
-            // var_dump($a[0]['jumlah']);
+            // var_dump($c);
             // die;
 
             $a = $a[0]['jumlah_pesan'];
-            if ($b == 0) {
+            if ($b == 0 || $c == "pending") {
                   $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah_pesan) values ('$user','$toko','$produk',1)");
             } else {
                   $this->db->query("UPDATE keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
@@ -135,7 +136,7 @@ class M_user extends CI_Model
       }
       public function get_item_cart($id)
       {
-            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id' AND (ISNULL(keranjang.status) OR keranjang.status = 'N')")->result_array();
+            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id' AND (ISNULL(keranjang.status) OR keranjang.status = '0')")->result_array();
       }
       public function delete_keranjang($id)
       {
@@ -206,5 +207,17 @@ class M_user extends CI_Model
       public function delete_rekening($id)
       {
             $this->db->query("DELETE FROM rekening where no_rek = $id");
+      }
+      public function riwayat_transaksi($id)
+      {
+            return $data = $this->db->query("SELECT * FROM transaksi WHERE id_user = $id")->result_array();
+      }
+      public function riwayat_transaksi_master($id, $iduser)
+      {
+            return $data = $this->db->query("SELECT * FROM transaksi t JOIN user u ON t.id_user = u.id WHERE t.id_user = $iduser AND t.id_transaksi = '$id' ")->row_array();
+      }
+      public function riwayat_transaksi_detail($id)
+      {
+            return $data = $this->db->query("SELECT * FROM keranjang k JOIN user u ON k.id_user = u.id JOIN produk p ON k.id_produk = p.id_produk JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE t.id_transaksi ='$id' ")->result_array();
       }
 }

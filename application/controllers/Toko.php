@@ -211,7 +211,7 @@ class Toko extends CI_Controller
                   $upload_image = $_FILES['image']['name'];
                   if ($upload_image) {
 
-                        $config['upload_path']          = './assets/uploads/';
+                        $config['upload_path']          = './assets/img/product';
                         $config['allowed_types']        = 'gif|jpg|png|jpeg';
                         $config['max_size']             = 4048;
                         $this->load->library('upload', $config);
@@ -407,7 +407,9 @@ class Toko extends CI_Controller
             $pesan = $this->input->post('pesan');
             $toko_in = $this->input->post('id_toko');
             $toko_out = $this->input->post('id_toko_out');
-
+            $prefix = 'TRS';
+            $date = date('YmdHi');
+            $id_trans = $prefix .  $date;
             $data = array();
             $index = 0;
             foreach ($pesan as $psn) :
@@ -432,14 +434,21 @@ class Toko extends CI_Controller
                         'pesan_pembeli' => $this->input->post('pesan_pembeli')[$index],
                         'id_kurir' => $id_kurir,
                         'id_layanan' => $layanan_id[0],
-                        'status' => 'pending'
+                        'status' => 'pending',
+                        'id_transaksi' => $id_trans
                   ));
                   $index++;
             endforeach;
             var_dump($data);
             $this->db->update_batch('keranjang', $data, 'id_pesan');
-
-            die;
+            $trs_data = [
+                  'id_transaksi' => $id_trans,
+                  'alamat_pengiriman' => $this->input->post('alamat'),
+                  'total' => $this->input->post('grand'),
+                  'status' => 'pending',
+                  'tanggal_transaksi' => date("Y-m-d H:i:s")
+            ];
+            $this->db->insert('transaksi', $trs_data);
             $this->load->view('users/header');
             $this->load->view('Toko/payment');
             $this->load->view('users/footer');
@@ -452,8 +461,21 @@ class Toko extends CI_Controller
       }
       public function riwayat_pembelian()
       {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id = $data['user']['id'];
+            $data['trs'] = $this->M_User->riwayat_transaksi($id);;
             $this->load->view('users/header');
-            $this->load->view('Toko/buyer_transaksi');
+            $this->load->view('Toko/buyer_transaksi', $data);
+            $this->load->view('users/footer');
+      }
+      public function riwayat_pembelian_detail($id)
+      {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $id_user = $data['user']['id'];
+            $data['master'] = $this->M_User->riwayat_transaksi_master($id, $id_user);
+            $data['trs'] = $this->M_User->riwayat_transaksi_detail($id);
+            $this->load->view('users/header');
+            $this->load->view('Toko/detail_pembelian', $data);
             $this->load->view('users/footer');
       }
       public function trace()

@@ -1,5 +1,4 @@
-<div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="profile-content">
             <hr>
@@ -9,9 +8,7 @@
                   <div class="row">
                         <div class="col col-md-5">
                               <div class="card wrapper">
-                                    <img class="card-img-top"
-                                          src="<?= base_url('assets/uploads/') . $produk['img_produk']; ?>"
-                                          alt="Card image cap">
+                                    <img class="card-img-top" src="<?= base_url('assets/img/product/') . $produk['img_produk']; ?>" alt="Card image cap">
                                     <div class="card-img-overlay text-right">
                                           <p class="card-text btn btn-sm btn-primary btn-round">
                                                 Rp.<?= $produk['harga_produk']; ?></p>

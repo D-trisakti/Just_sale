@@ -1,4 +1,4 @@
-<div class="page-header header-filter" style="background-image: url('<?= base_url('assets/img/log-bg.jpg'); ?>')">
+<div class="page-header header-filter" style="background-image: url('<?= base_url('assets/img/logo-bg.jpg'); ?>')">
       <div class="container">
             <hr>
             <hr>
@@ -53,6 +53,15 @@
                                                       <input type="text" id="namabelakang" name="namabelakang" class="form-control" placeholder="Nama Belakang" value="<?= set_value('namabelakang'); ?>">
                                                 </div>
                                                 <?= form_error('namabelakang', '<small class ="text-danger">', '</small>'); ?>
+                                                <div class="input-group">
+                                                      <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                  <i class="material-icons">home</i>
+                                                            </span>
+                                                      </div>
+                                                      <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat" value="<?= set_value('alamat'); ?>">
+                                                </div>
+                                                <?= form_error('alamat', '<small class ="text-danger">', '</small>'); ?>
                                                 <div class="input-group">
                                                       <div class="input-group-prepend">
                                                             <span class="input-group-text">

@@ -1,4 +1,4 @@
-<div class="page-header header-filter" style="background-image: url('<?= base_url('assets/img/log-bg.jpg'); ?>')">
+<div class="page-header header-filter" style="background-image: url('<?= base_url('assets/img/logo-bg.jpg'); ?>')">
       <div class="container">
             <hr>
             <hr>

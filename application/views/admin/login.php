@@ -8,11 +8,9 @@
       <link rel="icon" type="image/png" href="<?= base_url('assets/img/store-icon.png') ?>">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
       <title>Tria Anugerah Shop</title>
-      <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=yes'
-            name='viewport' />
+      <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=yes' name='viewport' />
       <!--     Fonts and icons     -->
-      <link rel="stylesheet" type="text/css"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
       <!-- CSS Files -->
       <link href="<?= base_url('assets/css/material-kit.css?v=2.0.6'); ?>" rel="stylesheet" />
@@ -37,9 +35,7 @@
                                                                   <i class="material-icons">people</i>
                                                             </span>
                                                       </div>
-                                                      <input type="text" id="username" name="username"
-                                                            class="form-control" placeholder="Username"
-                                                            value="<?= set_value('username'); ?>" required>
+                                                      <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?= set_value('username'); ?>" required>
                                                 </div>
                                                 <?= form_error('username', '<small class ="text-danger">', '</small>'); ?>
                                                 <div class="input-group">
@@ -48,15 +44,12 @@
                                                                   <i class="material-icons">lock_outline</i>
                                                             </span>
                                                       </div>
-                                                      <input type="password" id="password" name="password"
-                                                            class="form-control" placeholder="Password..."
-                                                            value="<?= set_value('email'); ?>" required>
+                                                      <input type="password" id="password" name="password" class="form-control" placeholder="Password..." value="<?= set_value('email'); ?>" required>
                                                 </div>
                                                 <?= form_error('password', '<small class ="text-danger">', '</small>'); ?>
                                           </div>
                                           <div class="footer text-center">
-                                                <button type="submit" class="btn btn-primary btn-round"
-                                                      value="submit">Login</button>
+                                                <button type="submit" class="btn btn-primary btn-round" value="submit">Login</button>
                                           </div>
                                     </form>
                               </div>
@@ -72,7 +65,7 @@
                         <li>
                               <h4>
                                     &copy;<script>
-                                    document.write(new Date().getFullYear())
+                                          document.write(new Date().getFullYear())
                                     </script>
                                     Created By Creative Tim & Designed By D_Rector's
                               </h4>
@@ -94,8 +87,7 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url('assets/js/material-kit.js?v=2.0.6') ?>" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
 </body>
 

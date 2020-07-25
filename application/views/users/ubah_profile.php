@@ -246,161 +246,163 @@
                         <div class="col-md-4 ml-auto mr-auto text-center">
                               <button class="btn btn-primary btn-round btn-lg btn-block btn-submit" value="submit">Update Data</button>
                               </form>
+                              <a href="<?= base_url(); ?>users" class="btn btn-info btn-round btn-lg btn-block ">Kembali</a>
                         </div>
                   </div>
             </div>
       </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin akan logout ?</h5>
-                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">x</span>
-                              </button>
-                        </div>
-                        <div class="modal-body">Pilih "Logout" Jika anda siap mengakhiri sesi ini.</div>
-                        <div class="modal-footer">
-                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-                              <a class="btn btn-primary" href="<?= base_url('users/logout') ?>">Logout</a>
-                        </div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin akan logout ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">x</span>
+                        </button>
+                  </div>
+                  <div class="modal-body">Pilih "Logout" Jika anda siap mengakhiri sesi ini.</div>
+                  <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+                        <a class="btn btn-primary" href="<?= base_url('users/logout') ?>">Logout</a>
                   </div>
             </div>
       </div>
-      <footer class="footer footer-default">
-            <div class="container">
-                  <nav class="float-left">
-                        <ul>
-                              <li>
-                                    <a href="https://www.creative-tim.com/">
-                                          Creative Tim
-                                    </a>
-                              </li>
-                              <li>
-                                    <a href="https://www.creative-tim.com/presentation">
-                                          About Us
-                                    </a>
-                              </li>
-                              <li>
-                                    <a href="https://www.creative-tim.com/blog">
-                                          Blog
-                                    </a>
-                              </li>
-                              <li>
-                                    <a href="https://www.creative-tim.com/license">
-                                          Licenses
-                                    </a>
-                              </li>
-                        </ul>
-                  </nav>
-                  <div class="copyright float-right">
-                        &copy;
-                        <script>
-                              document.write(new Date().getFullYear())
-                        </script>, made with <i class="material-icons">favorite</i> by
-                        <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
-                  </div>
+</div>
+<footer class="footer footer-default">
+      <div class="container">
+            <nav class="float-left">
+                  <ul>
+                        <li>
+                              <a href="https://www.creative-tim.com/">
+                                    Creative Tim
+                              </a>
+                        </li>
+                        <li>
+                              <a href="https://www.creative-tim.com/presentation">
+                                    About Us
+                              </a>
+                        </li>
+                        <li>
+                              <a href="https://www.creative-tim.com/blog">
+                                    Blog
+                              </a>
+                        </li>
+                        <li>
+                              <a href="https://www.creative-tim.com/license">
+                                    Licenses
+                              </a>
+                        </li>
+                  </ul>
+            </nav>
+            <div class="copyright float-right">
+                  &copy;
+                  <script>
+                        document.write(new Date().getFullYear())
+                  </script>, made with <i class="material-icons">favorite</i> by
+                  <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
             </div>
-      </footer>
-      <!--   Core JS Files   -->
-      <script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
-      <script src="<?= base_url(); ?>assets/js/core/popper.min.js" type="text/javascript"></script>
-      <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript">
-      </script>
-      <script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
-      <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-      <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript">
-      </script>
-      <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-      <script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-      <!--  Google Maps Plugin    -->
-      <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-      <script src="<?= base_url(); ?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
-      <script type="text/javascript">
-            $(document).ready(function() {
-                  $('#provinsi').change(function() {
-                        var id = $(this).val();
-                        $.ajax({
-                              url: "<?php echo base_url(); ?>welcome/get_city",
-                              method: "POST",
-                              data: {
-                                    id: id
-                              },
-                              async: false,
-                              dataType: 'json',
-                              success: function(data) {
-                                    console.log(data);
-                                    var html =
-                                          ' <option value="">Pilih kabupaten/ Kota</option>';
-                                    var i;
-                                    for (i = 0; i < data.length; i++) {
-                                          html += '<option  value="' + data[i]
-                                                .id_kabkota + '">' + data[i]
-                                                .nama_kabkota + '</option>';
-                                    }
-                                    $('#kota').html(html);
+      </div>
+</footer>
+<!--   Core JS Files   -->
+<script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="<?= base_url(); ?>assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript">
+</script>
+<script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript">
+</script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!--  Google Maps Plugin    -->
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<script src="<?= base_url(); ?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+<script type="text/javascript">
+      $(document).ready(function() {
+            $('#provinsi').change(function() {
+                  var id = $(this).val();
+                  $.ajax({
+                        url: "<?php echo base_url(); ?>welcome/get_city",
+                        method: "POST",
+                        data: {
+                              id: id
+                        },
+                        async: false,
+                        dataType: 'json',
+                        success: function(data) {
+                              console.log(data);
+                              var html =
+                                    ' <option value="">Pilih kabupaten/ Kota</option>';
+                              var i;
+                              for (i = 0; i < data.length; i++) {
+                                    html += '<option  value="' + data[i]
+                                          .id_kabkota + '">' + data[i]
+                                          .nama_kabkota + '</option>';
                               }
-                        });
-                  });
-                  $('#kota').change(function() {
-                        var
-                              id = $(this).val();
-                        $.ajax({
-                              url: "<?php echo base_url(); ?>welcome/get_kecamatan",
-                              method: "POST",
-                              data: {
-                                    id: id
-                              },
-                              async: false,
-                              dataType: 'json',
-                              success: function(data) {
-                                    console.log(data);
-                                    var
-                                          html =
-                                          '     <option value="">Pilih kecamatan</option>';
-                                    var i;
-                                    for (i = 0; i < data.length; i++) {
-                                          html
-                                                += '<option  value="' + data[
-                                                      i].id_kecamatan + '">' +
-                                                data[i].nama_kecamatan +
-                                                '</option>';
-                                    }
-                                    $('#kecamatan').html(html);
-                              }
-                        });
-                  });
-                  $('#kecamatan').change(function() {
-                        var id = $(this).val();
-                        $.ajax({
-                              url: "<?php echo base_url(); ?>welcome/get_kelurahan",
-                              method: "POST",
-                              data: {
-                                    id: id
-                              },
-                              async: false,
-                              dataType: 'json',
-                              success: function(data) {
-                                    console.log(data);
-                                    var
-                                          html =
-                                          '     <option value="">Pilih kelurahan</option>';
-                                    var i;
-                                    for (i = 0; i < data.length; i++) {
-                                          html
-                                                += '<option  value="' + data[
-                                                      i].id_kelurahan + '">' +
-                                                data[i].nama_kelurahan +
-                                                '</option>';
-                                    }
-                                    $('#kelurahan').html(html);
-                              }
-                        });
+                              $('#kota').html(html);
+                        }
                   });
             });
-      </script>
-      </body>
+            $('#kota').change(function() {
+                  var
+                        id = $(this).val();
+                  $.ajax({
+                        url: "<?php echo base_url(); ?>welcome/get_kecamatan",
+                        method: "POST",
+                        data: {
+                              id: id
+                        },
+                        async: false,
+                        dataType: 'json',
+                        success: function(data) {
+                              console.log(data);
+                              var
+                                    html =
+                                    '     <option value="">Pilih kecamatan</option>';
+                              var i;
+                              for (i = 0; i < data.length; i++) {
+                                    html
+                                          += '<option  value="' + data[
+                                                i].id_kecamatan + '">' +
+                                          data[i].nama_kecamatan +
+                                          '</option>';
+                              }
+                              $('#kecamatan').html(html);
+                        }
+                  });
+            });
+            $('#kecamatan').change(function() {
+                  var id = $(this).val();
+                  $.ajax({
+                        url: "<?php echo base_url(); ?>welcome/get_kelurahan",
+                        method: "POST",
+                        data: {
+                              id: id
+                        },
+                        async: false,
+                        dataType: 'json',
+                        success: function(data) {
+                              console.log(data);
+                              var
+                                    html =
+                                    '     <option value="">Pilih kelurahan</option>';
+                              var i;
+                              for (i = 0; i < data.length; i++) {
+                                    html
+                                          += '<option  value="' + data[
+                                                i].id_kelurahan + '">' +
+                                          data[i].nama_kelurahan +
+                                          '</option>';
+                              }
+                              $('#kelurahan').html(html);
+                        }
+                  });
+            });
+      });
+</script>
+</body>
 
-      </html>
+</html>

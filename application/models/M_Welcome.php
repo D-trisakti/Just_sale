@@ -12,7 +12,7 @@ class M_Welcome extends CI_Model
                   'user_status' => 0, //tidak aktif
                   'first_name' => htmlspecialchars($this->input->post('namadepan', true)),
                   'last_name' => htmlspecialchars($this->input->post('namabelakang', true)),
-                  // 'address' => htmlspecialchars($this->input->post('alamat', true)),
+                  'address' => htmlspecialchars($this->input->post('alamat', true)),
                   'phone' => htmlspecialchars($this->input->post('notelepon', true)),
                   // 'postal_code' => htmlspecialchars($this->input->post('kode_pos', true)),
                   // 'provinsi' => htmlspecialchars($this->input->post('provinsi', true)),

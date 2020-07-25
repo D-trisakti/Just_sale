@@ -4,33 +4,41 @@ defined('BASEPATH') or exit('no direct script access allowed');
 class M_produk extends CI_Model
 {
 
-      public function get_subkategori_1()
+      public function get_subkategori_pakaian()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 1")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 8")->result_array();
       }
-      public function get_subkategori_2()
+      public function get_subkategori_celana()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 2")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 9")->result_array();
       }
-      public function get_subkategori_3()
+      public function get_subkategori_sepatu()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 3")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 10")->result_array();
       }
-      public function get_subkategori_4()
+      public function get_subkategori_tas()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 4")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 11")->result_array();
       }
-      public function get_subkategori_5()
+      public function get_subkategori_jaket()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 5")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 12")->result_array();
       }
-      public function get_subkategori_6()
+      public function get_subkategori_setelan()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 6")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 13")->result_array();
       }
-      public function get_subkategori_7()
+      public function get_subkategori_renang()
       {
-            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 7")->result_array();
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 14")->result_array();
+      }
+      public function get_subkategori_aksesoris()
+      {
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 15")->result_array();
+      }
+      public function get_subkategori_lainnya()
+      {
+            return $this->db->query("SELECT * FROM  sub_kategori_produk WHERE id_kategori = 16")->result_array();
       }
       public function get_sub_kategori_by_id($id)
       {

@@ -220,13 +220,15 @@ class Users extends CI_Controller
 
         $this->load->model('M_produk');
 
-        $data['pakaian'] = $this->M_produk->get_subkategori_1();
-        $data['tempur'] = $this->M_produk->get_subkategori_2();
-        $data['sepatu'] = $this->M_produk->get_subkategori_3();
-        $data['tas'] = $this->M_produk->get_subkategori_4();
-        $data['mata'] = $this->M_produk->get_subkategori_5();
-        $data['camp'] = $this->M_produk->get_subkategori_6();
-        $data['lainnya'] = $this->M_produk->get_subkategori_7();
+        $data['pakaian'] = $this->M_produk->get_subkategori_pakaian();
+        $data['tempur'] = $this->M_produk->get_subkategori_celana();
+        $data['sepatu'] = $this->M_produk->get_subkategori_sepatu();
+        $data['tas'] = $this->M_produk->get_subkategori_tas();
+        $data['mata'] = $this->M_produk->get_subkategori_jaket();
+        $data['camp'] = $this->M_produk->get_subkategori_setelan();
+        $data['renang'] = $this->M_produk->get_subkategori_renang();
+        $data['aksesoris'] = $this->M_produk->get_subkategori_aksesoris();
+        $data['lainnya'] = $this->M_produk->get_subkategori_lainnya();
 
         $this->load->view('users/header');
         $this->load->view('users/katalog', $data);
