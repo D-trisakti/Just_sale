@@ -69,8 +69,16 @@
                                                 <tr>
                                                       <td><?= $pd['nama_produk'] ?></td>
                                                       <td><?= $pd['harga_produk'] ?></td>
-                                                      <td><?= $pd['jumlah_pesan'] ?></td>
-                                                      <input type="hidden" value="<?= $ca['jumlah_pesan'] ?>" id="<?= $ca['id_pesan'] ?>pesanan" name="jumlah_pesanan[]">
+                                                      <td>
+                                                            <?php
+                                                            for ($i = 0; $i < count($mix); $i++) {
+                                                                  if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                        echo $mix[$i]['jumlah_pesan'];
+                                                            ?> <input type="hidden" name="jumlah_pesanan[]" value="<?= $mix[$i]['jumlah_pesan']; ?>" id="<?= $ca['id_pesan'] ?>pesanan"> <?php
+                                                                                                                                                                                    }
+                                                                                                                                                                              }
+                                                                                                                                                                                          ?>
+                                                      </td>
                                                       <td>
                                                             <?php
                                                             for ($i = 0; $i < count($mix); $i++) {
@@ -87,10 +95,10 @@
                                                                   for ($i = 0; $i < count($mix); $i++) {
                                                                         if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
                                                                               echo $mix[$i]['subtotal'];
-                                                                  ?> <input type="text" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
+                                                                  ?> <input type="hidden" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
+                                                                                                                                                      }
                                                                                                                                                 }
-                                                                                                                                          }
-                                                                                                                                                      ?>
+                                                                                                                                                            ?>
 
                                                             </p>
                                                       </td>

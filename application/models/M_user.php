@@ -6,7 +6,15 @@ class M_user extends CI_Model
 
       public function get_toko($id)
       {
-            return $data = $this->db->query("SELECT * FROM toko WHERE user_id = '$id'")->result_array();
+            return $data = $this->db->query("
+            SELECT
+             tk.* ,
+             (select count(k.id_transaksi) FROM keranjang k, transaksi t WHERE k.id_transaksi = t.id_transaksi 
+             AND k.id_toko = tk.id_toko
+             AND t.status ='pesanan diteruskan ke penjual') AS jumlah_pesanan
+             FROM toko tk
+             WHERE user_id = '$id'
+            ")->result_array();
       }
       public function get_toko_by_id($id_toko)
       {
@@ -123,7 +131,7 @@ class M_user extends CI_Model
             $produk = htmlspecialchars($this->input->post('id_produk'), true);
             $a = $this->db->query("SELECT jumlah_pesan FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
             $c = $this->db->query("SELECT status FROM keranjang WHERE id_produk = $produk and id_user =$user")->result_array();
-            $b = $this->db->query("SELECT * FROM keranjang WHERE id_produk = $produk and id_user =$user")->num_rows();
+            $b = $this->db->query("SELECT * FROM keranjang WHERE id_produk = $produk and id_user =$user and id_transaksi ='' ")->num_rows();
             // var_dump($c);
             // die;
 

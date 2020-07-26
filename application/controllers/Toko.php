@@ -355,12 +355,14 @@ class Toko extends CI_Controller
             $id_pesan = $this->input->post("order_no");
             $pesan = $this->input->post("pesan");
             $subtotal = $this->input->post("subtotal");
+            $jumlah = $this->input->post('quantity');
             $mix = array();
             for ($i = 0; $i < count($id_pesan); $i++) {
                   array_push($mix, array(
                         "id_pesan" => $id_pesan[$i],
                         "pesan" => $pesan[$i],
-                        "subtotal" => $subtotal[$i]
+                        "subtotal" => $subtotal[$i],
+                        "jumlah_pesan" => $jumlah[$i]
                   ));
             }
             $data['mix'] = $mix;
@@ -404,6 +406,8 @@ class Toko extends CI_Controller
       }
       public function payment()
       {
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $idusr = $data['user']['id'];
             $pesan = $this->input->post('pesan');
             $toko_in = $this->input->post('id_toko');
             $toko_out = $this->input->post('id_toko_out');
@@ -414,10 +418,11 @@ class Toko extends CI_Controller
             $index = 0;
             foreach ($pesan as $psn) :
                   $index2 = 0;
-                  $subs = $this->input->post('subtotal_item')[$index];
-                  $sub_total = (explode(" ", $subs));
+
                   foreach ($toko_out as $out) :
                         if ($toko_in[$index] == $out) {
+                              $subs = $this->input->post('subtotal_item')[$index2];
+                              $sub_total = (explode(" ", $subs));
                               $ongkir = $this->input->post('ongkirs')[$index2];
                               $layanan = $this->input->post('id_layanan')[$index2];
                               $layanan_id = (explode("/", $layanan));
@@ -446,18 +451,49 @@ class Toko extends CI_Controller
                   'alamat_pengiriman' => $this->input->post('alamat'),
                   'total' => $this->input->post('grand'),
                   'status' => 'pending',
-                  'tanggal_transaksi' => date("Y-m-d H:i:s")
+                  'tanggal_transaksi' => date("Y-m-d H:i:s"),
+                  'id_user' => $idusr
             ];
             $this->db->insert('transaksi', $trs_data);
+            $data['nom'] = $this->input->post('grand');
+            $data['trs'] = $id_trans;
             $this->load->view('users/header');
-            $this->load->view('Toko/payment');
+            $this->load->view('Toko/payment', $data);
             $this->load->view('users/footer');
       }
       public function thank_you()
       {
-            $this->load->view('users/header');
-            $this->load->view('Toko/thank_you');
-            $this->load->view('users/footer');
+            $trs = $this->input->post('trs');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $idusr = $data['user']['id'];
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                  $config['upload_path']          = './assets/img/transaksi';
+                  $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                  $config['max_size']             = 4048;
+                  $this->load->library('upload', $config);
+            }
+            if ($this->upload->do_upload('image')) {
+                  $data = array(
+                        'bukti_tf' => $upload_image,
+                        'status' => 'proses by admin',
+                  );
+                  $this->db->where('id_transaksi', $trs);
+                  $this->db->update('transaksi', $data);
+                  $data['trs'] = $trs;
+                  $this->load->view('users/header');
+                  $this->load->view('Toko/thank_you', $data);
+                  $this->load->view('users/footer');
+            } else {
+                  $this->session->set_flashdata(
+                        'pesan',
+                        $this->upload->display_errors()
+                  );
+                  $this->load->view('users/header');
+                  echo 'gagal';
+                  $this->load->view('Toko/thank_you');
+                  $this->load->view('users/footer');
+            }
       }
       public function riwayat_pembelian()
       {

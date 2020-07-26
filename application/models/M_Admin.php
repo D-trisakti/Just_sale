@@ -58,4 +58,24 @@ class M_Admin extends CI_Model
   {
     return $this->db->query("SELECT * FROM produk p JOIN toko t ON p.id_toko = t.id_toko")->result_array();
   }
+  public function num_user()
+  {
+    return $data = $this->db->query("SELECT * FROM user WHERE user_status = 0")->num_rows();
+  }
+  public function num_toko()
+  {
+    return $data = $this->db->query("SELECT * FROM toko t JOIN user u ON t.user_id = u.id WHERE u.user_status = 0")->num_rows();
+  }
+  public function get_transaksi()
+  {
+    return $data = $this->db->query("SELECT * FROM transaksi WHERE status ='proses by admin'")->result_array();
+  }
+  public function transaksi_master($id)
+  {
+    return $this->db->query("SELECT * FROM transaksi t JOIN user u  ON t.id_user = u.id WHERE t.id_transaksi ='$id'")->row_array();
+  }
+  public function transaksi_detail($id)
+  {
+    return $data = $this->db->query("SELECT * FROM keranjang k JOIN user u ON k.id_user = u.id JOIN produk p ON k.id_produk = p.id_produk JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE t.id_transaksi ='$id' ")->result_array();
+  }
 }

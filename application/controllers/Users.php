@@ -33,9 +33,10 @@ class Users extends CI_Controller
         $id = $data['user']['id'];
         $data['produk'] = $this->M_User->get_item_cart($id);
         // $data['cek'] = $this->M_User->check_toko($id);
-        // var_dump($data['cek']);
-        // die;
+
+
         $data['toko'] = $this->M_User->get_toko($id);
+
         $this->load->view('users/header');
         $this->load->view('users/index', $data);
         $this->load->view('users/footer');

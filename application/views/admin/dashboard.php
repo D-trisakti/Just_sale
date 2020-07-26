@@ -9,7 +9,7 @@
                               <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pengguna
                                           Aktif</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">600 Pengguna</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $user ?> Pengguna</div>
                               </div>
                               <div class="col-auto">
                                     <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -28,7 +28,7 @@
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">jumlah
                                           Toko</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                          242 toko</div>
+                                          <?= $toko; ?> toko</div>
                               </div>
                               <div class="col-auto">
                                     <i class="fas fa-store fa-2x text-gray-300"></i>
@@ -87,12 +87,10 @@
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Jumlah Transaksi Perbulan</h6>
                         <div class="dropdown no-arrow">
-                              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                               </a>
-                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink">
+                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Dropdown Header:</div>
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
@@ -117,12 +115,10 @@
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Kategori Produk yang di minati</h6>
                         <div class="dropdown no-arrow">
-                              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                               </a>
-                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink">
+                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Dropdown Header:</div>
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>

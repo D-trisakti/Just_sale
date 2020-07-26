@@ -12,15 +12,19 @@ class Admin extends CI_Controller
 	}
 	public function dashboard()
 	{
-		$this->load->view('admin/header');
+		$data['user'] = $this->M_Admin->num_user();
+		$data['toko'] = $this->M_Admin->num_toko();
+		$data['title'] = 'Dashboard';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		$this->load->view('admin/footer');
 	}
 	public function user()
 	{
 		$data['user'] = $this->M_Admin->get_user();
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Pengguna';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/pengguna/index', $data);
 		$this->load->view('admin/footer');
@@ -28,7 +32,8 @@ class Admin extends CI_Controller
 	public function user_not_active()
 	{
 		$data['user'] = $this->M_Admin->get_user_not_active();
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Pengguna Non Aktif';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/pengguna/non_active_user', $data);
 		$this->load->view('admin/footer');
@@ -36,8 +41,8 @@ class Admin extends CI_Controller
 	public function toko()
 	{
 		$data['toko'] = $this->M_Admin->get_toko();
-
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Toko';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/toko/index', $data);
 		$this->load->view('admin/footer');
@@ -45,7 +50,8 @@ class Admin extends CI_Controller
 	public function toko_nonaktif()
 	{
 		$data['toko'] = $this->M_Admin->get_toko_not_active();
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Toko Non Aktif';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/toko/nonaktif_toko', $data);
 		$this->load->view('admin/footer');
@@ -53,36 +59,42 @@ class Admin extends CI_Controller
 	public function product()
 	{
 		$data['product'] = $this->M_Admin->get_produk();
+		$data['title'] = 'Kelola Produk';
 
-		$this->load->view('admin/header');
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/produk/index', $data);
 		$this->load->view('admin/footer');
 	}
 	public function transaksi()
 	{
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Transaksi';
+		$data['trs'] = $this->M_Admin->get_transaksi();
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/transaksi/index');
+		$this->load->view('admin/transaksi/index', $data);
 		$this->load->view('admin/footer');
 	}
 	public function riwayat()
 	{
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Riwayat';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/riwayat_transaksi');
 		$this->load->view('admin/footer');
 	}
 	public function payment()
 	{
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Payment';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/payment');
 		$this->load->view('admin/footer');
 	}
 	public function laporan()
 	{
-		$this->load->view('admin/header');
+		$data['title'] = 'Kelola Laporan';
+		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/laporan/index');
 		$this->load->view('admin/footer');
@@ -91,5 +103,54 @@ class Admin extends CI_Controller
 	{
 		$this->session->unset_userdata('id');
 		redirect('admin_auth');
+	}
+	public function detail_pesanan($id)
+	{
+		$data['title'] = 'Kelola Laporan';
+		$data['trs'] = $this->M_Admin->transaksi_detail($id);
+		$data['master'] = $this->M_Admin->transaksi_master($id);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/transaksi/detail_pesanan', $data);
+		$this->load->view('admin/footer');
+	}
+	public function proses_pesanan($id)
+	{
+		$this->db->query("UPDATE transaksi SET status = 'Pesanan Diteruskan Ke Penjual' WHERE id_transaksi='$id'");
+		$this->session->set_flashdata(
+			'pesan',
+			'<div class="alert alert-info alert-dismissible fade show" role="alert">
+                Pesanan Berhasil Diproses
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+		);
+		redirect("admin/transaksi");
+	}
+	public function tolak_pesanan($id)
+	{
+		$data['master'] = $this->M_Admin->transaksi_master($id);
+		$data['title'] = 'Tolak Pesanan';
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/transaksi/tolak_pesanan', $data);
+		$this->load->view('admin/footer');
+	}
+	public function proses_tolak()
+	{
+		$id = $this->input->post('id');
+		$txt = $this->input->post('alasan');
+		$this->db->query("UPDATE transaksi SET status = 'Pesanan Di Tolak' , alasan_tolak = '$txt' WHERE id_transaksi='$id'");
+		$this->session->set_flashdata(
+			'pesan',
+			'<div class="alert alert-info alert-dismissible fade show" role="alert">
+                Pesanan Berhasil Diproses
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+		);
+		redirect("admin/transaksi");
 	}
 }

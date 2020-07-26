@@ -59,6 +59,7 @@
                               </div>
                         </div>
 
+
                         <div class="col col-md-8">
                               <div class="card">
                                     <div class="card-header card-header-text card-header-primary">
@@ -74,6 +75,7 @@
                                                       <tr>
                                                             <th>Nama Toko</th>
                                                             <th>Aksi</th>
+                                                            <th>Pesanan Masuk</th>
                                                       </tr>
                                                 </thead>
                                                 <tbody>
@@ -95,6 +97,7 @@
                                                                               <a href="<?= base_url() ?>toko/detail_toko/<?= $toko['id_toko'] ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Lihat Toko">
                                                                                     <i class="fas fa-eye"></i></a>
                                                                         </td>
+                                                                        <td class="text-center"><?= $toko['jumlah_pesanan']; ?></td>
                                                                   </tr>
                                                       <?php      }
                                                       endforeach ?>
