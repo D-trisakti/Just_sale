@@ -6,7 +6,7 @@
                         <div class="col-md-6 ml-auto mr-auto">
                               <div class="profile">
                                     <div class="avatar">
-                                          <img src="<?= base_url('assets/img/store/') . $toko['img_toko']; ?>" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                          <img src="<?= base_url('assets/img/toko/') . $toko['img_toko']; ?>" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                                     </div>
                                     <div class="name">
                                           <h3 class="title">

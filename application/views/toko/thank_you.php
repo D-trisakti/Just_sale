@@ -7,7 +7,7 @@
                   <?= $this->session->flashdata('pesan'); ?>
                   <hr>
                   <div class="card">
-                        <h5 class="card-title text-center">Terima kasih Sudah Percaya berbelanja di website Just Sale Pesanan Anda Dengan Nomor :<?= $trs; ?> Sedang
+                        <h5 class="card-title text-center">Terima kasih Sudah Percaya berbelanja di website Just Sale Pesanan Anda Sedang
                               Kami Proses</h5>
                         <a href="<?= base_url() ?>toko/keranjang_belanja" class="btn btn-primary btn-rounded btn-md">keranjang Belanja</a>
                         <a href="<?= base_url() ?>toko/riwayat_pembelian" class="btn btn-info btn-rounded btn-md float-left">Lihat Pesanan</a>

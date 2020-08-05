@@ -36,10 +36,23 @@
                         <div class="card-body">
                               <h4 class="card-title text-center">Ulasan Produk ini </h4>
                               <hr>
-                              <table>
-                                    <td>nama</td>
-                                    <td>rating</td>
-                                    <td>isi ulasan</td>
+                              <table class="table table-borderless">
+                                    <thead>
+                                          <th class="text-center">nama</th>
+                                          <th class="text-center"> isi ulasan</th>
+                                    </thead>
+                                    <?php foreach ($nilai as $i) : ?>
+                                          <tbody>
+                                                <tr>
+                                                      <td class="text-center">
+                                                            <?= $i['first_name'] ?> <?= $i['last_name'] ?>
+                                                      </td>
+                                                      <td class="text-center">
+                                                            <?= $i['masukan'] ?>
+                                                      </td>
+                                                </tr>
+                                          </tbody>
+                                    <?php endforeach; ?>
                               </table>
                         </div>
                   </div>

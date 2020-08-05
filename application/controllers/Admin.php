@@ -70,6 +70,7 @@ class Admin extends CI_Controller
 	{
 		$data['title'] = 'Kelola Transaksi';
 		$data['trs'] = $this->M_Admin->get_transaksi();
+		var_dump($data['trs']);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/index', $data);
@@ -109,6 +110,7 @@ class Admin extends CI_Controller
 		$data['title'] = 'Kelola Laporan';
 		$data['trs'] = $this->M_Admin->transaksi_detail($id);
 		$data['master'] = $this->M_Admin->transaksi_master($id);
+		var_dump($data['trs']);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/detail_pesanan', $data);
@@ -116,7 +118,8 @@ class Admin extends CI_Controller
 	}
 	public function proses_pesanan($id)
 	{
-		$this->db->query("UPDATE transaksi SET status = 'Pesanan Diteruskan Ke Penjual' WHERE id_transaksi='$id'");
+		$this->db->query("UPDATE transaksi SET status = 'Pesanan Diteruskan Ke Penjual' WHERE id_transaksi IN (SELECT id_transaksi FROM keranjang WHERE id_order = '$id') ");
+		$this->db->query("UPDATE keranjang SET status = 'Pesanan Diteruskan Ke Penjual'  WHERE id_order = '$id' ");
 		$this->session->set_flashdata(
 			'pesan',
 			'<div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -131,6 +134,7 @@ class Admin extends CI_Controller
 	public function tolak_pesanan($id)
 	{
 		$data['master'] = $this->M_Admin->transaksi_master($id);
+		var_dump($data['master']);
 		$data['title'] = 'Tolak Pesanan';
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
@@ -141,7 +145,7 @@ class Admin extends CI_Controller
 	{
 		$id = $this->input->post('id');
 		$txt = $this->input->post('alasan');
-		$this->db->query("UPDATE transaksi SET status = 'Pesanan Di Tolak' , alasan_tolak = '$txt' WHERE id_transaksi='$id'");
+		$this->db->query("UPDATE transaksi SET status = 'Pesanan Di Tolak' , alasan_tolak = '$txt' WHERE id_transaksi IN (SELECT id_transaksi FROM keranjang WHERE id_order = '$id') ");
 		$this->session->set_flashdata(
 			'pesan',
 			'<div class="alert alert-info alert-dismissible fade show" role="alert">

@@ -92,7 +92,7 @@
                                                                               <?php
                                                                               }
                                                                               ?>
-                                                                              <a href="" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="Lihat Pemesanan Produk" onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                                              <a href="<?= base_url(); ?>toko/pesanan_masuk/<?= $toko['id_toko'] ?> " class="btn btn-info " data-toggle="tooltip" data-placement="top" title="Lihat Pemesanan Produk">
                                                                                     <i class="fas fa-shopping-cart"></i></a>
                                                                               <a href="<?= base_url() ?>toko/detail_toko/<?= $toko['id_toko'] ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Lihat Toko">
                                                                                     <i class="fas fa-eye"></i></a>

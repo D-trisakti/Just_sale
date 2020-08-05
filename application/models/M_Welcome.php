@@ -26,6 +26,6 @@ class M_Welcome extends CI_Model
       }
       public function get_item()
       {
-            return $data = $this->db->query('SELECT * FROM produk LIMIT 8')->result_array();
+            return $data = $this->db->query('SELECT * FROM produk ORDER BY id_produk DESC LIMIT 8')->result_array();
       }
 }

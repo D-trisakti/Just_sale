@@ -3,7 +3,7 @@
       <div class="card card-nav-tabs">
             <div class="card-header card-header-primary">
                   <h3 class="card-title text-center">Buat Toko</h3>
-                  <form action="<?= base_url() ?>toko/create_toko" method="post">
+                  <form action="<?= base_url() ?>toko/create_toko" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= $user['id']; ?>">
             </div>
             <div class="container">

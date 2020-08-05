@@ -11,7 +11,7 @@
       <div class="container mt-1">
             <div class="row">
                   <div class="col-md-6">
-                        <h6 class="card-title">No Transaksi : <?= $master['id_transaksi']; ?></h6>
+                        <h6 class="card-title">No Order : <?= $master['id_order']; ?></h6>
                         <h6 class="card-title">Nama Pemesan : <?= $master['first_name']; ?> <?= $master['last_name']; ?></h6>
                         <h6 class="card-title">Alamat : <?= $master['address']; ?></h6>
                         <h6 class="card-title">Total : Rp <?= $master['total']; ?></h6>
@@ -56,7 +56,7 @@
             </div>
 
       </div>
-      <a href="<?php echo base_url(); ?>admin/proses_pesanan/<?= $usr['id_transaksi']; ?>" class="btn badge-success float-right m-1">Proses Pesanan</a>
-      <a href="<?php echo base_url(); ?>admin/tolak_pesanan/<?= $usr['id_transaksi']; ?>" class="btn badge-danger float-right m-1">Tolak Pesanan</a>
+      <a href="<?php echo base_url(); ?>admin/proses_pesanan/<?= $usr['id_order']; ?>" class="btn badge-success float-right m-1">Proses Pesanan</a>
+      <a href="<?php echo base_url(); ?>admin/tolak_pesanan/<?= $usr['id_order']; ?>" class="btn badge-danger float-right m-1">Tolak Pesanan</a>
 </div>
 </div>

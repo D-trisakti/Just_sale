@@ -35,7 +35,7 @@ class Users extends CI_Controller
         // $data['cek'] = $this->M_User->check_toko($id);
 
 
-        $data['toko'] = $this->M_User->get_toko($id);
+        $data['toko'] = $this->M_User->get_toko_pesan($id);
 
         $this->load->view('users/header');
         $this->load->view('users/index', $data);
@@ -247,7 +247,9 @@ class Users extends CI_Controller
         // $data['camp'] = $this -> M_produk -> get_subkategori_6();
         // $data['lainnya'] = $this -> M_produk -> get_subkategori_7();
         $data['var'] = $id;
-        $data['produk'] = $this->M_produk->get_sub_kategori_by_id($id);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $usr = $data['user']['id'];
+        $data['produk'] = $this->M_produk->get_sub_kategori_by_id($id, $usr);
         $data['banner'] = $this->M_produk->get_sub_kategori_by_id_name($id);
         $this->load->view('users/header');
         $this->load->view('users/sub_katalog', $data);

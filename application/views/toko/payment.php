@@ -28,7 +28,7 @@
                                     </script>
                                     <label for="image">Upload Bukti Transfer</label>
                                     <input type='file' id="image" name="image" required accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
-                                    <input type="hidden" name="trs" value="<?= $trs; ?>">
+                                    <input type="text" name="trs" value="<?= $trs; ?>">
                               </div>
 
                               <div class="col-md-4">

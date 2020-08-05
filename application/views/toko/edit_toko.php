@@ -63,7 +63,7 @@
                               </div>
                               <div class="col-sm-6">
                                     <label for="alamat">alamat</label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?= $user['address']; ?>">
+                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?= $toko['address']; ?>">
                                     <label for="kode_pos">Provinsi</label>
                                     <select class="form-control" id="provinsi" name="provinsi">
                                           <option value="<?= $city->province_id ?>"><?= $city->province ?></option>
@@ -79,12 +79,12 @@
                               <div class="col-sm-2">
                                     <label for="kota">Kota/Kabupaten</label>
                                     <select class="form-control alamatk" id="kota" name="kota">
-                                          <option value="<?= $user['kota']; ?>"><?= $city->city_name; ?></option>
+                                          <option value="<?= $toko['kota']; ?>"><?= $city->city_name; ?></option>
                                     </select>
                               </div>
                               <div class="col-md-3">
                                     <label for="image">Gambar Produk</label>
-                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+                                    <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" value="">
                               </div>
                               <div class="col-md-3">
                                     <div class="card bordered">

@@ -3,7 +3,7 @@
 <div class="main main-raised">
       <div class="profile-content">
             <hr>
-            <form id="form" action="<?= base_url('toko/payment'); ?>" method="post">
+            <form id="form" action="<?= base_url('toko/konfirmasi_bayar'); ?>" method="post">
                   <div class="container">
                         <h2 class="title text-center ">Pengiriman Barang</h2>
                         <?= $this->session->flashdata('pesan'); ?>
@@ -58,6 +58,7 @@
                                                 </tr>
                                           </thead>
                                           <input type="hidden" value="<?= $ca['id_toko'] ?>" name="id_toko_out[]">
+                                          <input type="hidden" value="<?= 'TRS' . $ca['id_toko'] . date('YmdHi') ?>" name="id_transaksi[]">
                                           <?php $this->load->model('M_User');
                                           $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
 

@@ -15,12 +15,11 @@
                                                       <h4 class="card-title">No Order : <?= $master['id_order'] ?></h4>
                                                       <p class="category">Nama Pemesan : <?= $master['first_name'] ?> <?= $master['last_name'] ?></p>
                                                       <p class="category">Alamat : <?= $master['address'] ?></p>
-                                                      <p class="category">Total : <?= $master['total'] ?></p>
+                                                      <p class="category">Total : <?= $total_belanja['total'] ?></p>
 
                                                 </div>
                                                 <div class="col-md-6">
                                                       <h4 class="card-title">Tanggal Transaksi : <?= $master['tanggal_transaksi']; ?></h4>
-                                                      <p class="category">Status Pemesan : <?= $master['status']; ?></p>
                                                 </div>
                                           </div>
                                     </div>
@@ -33,9 +32,12 @@
                                                 <th>Nama Barang</th>
                                                 <th>Harga</th>
                                                 <th>Satuan</th>
-                                                <th>Jumlah</th>
                                                 <th>Ongkir</th>
+                                                <th>Jumlah</th>
                                                 <th>Pesan Pembeli</th>
+                                                <th>Status Barang</th>
+                                                <th>No Resi</th>
+                                                <th>keterangan</th>
                                           </thead>
                                           <tbody>
                                                 <?php $x = 1;
@@ -45,9 +47,21 @@
                                                             <td><?= $trs['nama_produk'] ?></td>
                                                             <td>Rp.<?= $trs['harga_produk'] ?></td>
                                                             <td><?= $trs['jumlah_pesan'] ?></td>
-                                                            <td>Rp.<?= $trs['sub_total'] ?></td>
                                                             <td>Rp.<?= $trs['ongkir'] ?></td>
+                                                            <td>Rp.<?= $trs['sub_total'] ?></td>
                                                             <td><?= $trs['pesan_pembeli'] ?></td>
+                                                            <td><?= $trs['kirim'] ?></td>
+                                                            <td><?= $trs['no_resi'] ?></td>
+                                                            <?php if ($trs['kirim'] == 'barang sedang dikirim') { ?>
+                                                                  <td><a href="<?= base_url() ?>toko/barang_diterima_pembeli/<?= $trs['id_pesan'] ?>-<?= $trs['id_produk'] ?> " class="btn-sm btn -rounded btn-success btn-outined">Barang Di terima</a></td>
+                                                            <?php } else if ($trs['kirim'] == 'Pemesanan Barang di tolak') { ?>
+                                                                  <td>
+                                                                        <?= $trs['alasan'] ?>
+                                                                  </td>
+                                                            <?php } else { ?>
+                                                                  <td></td>
+                                                            <?php } ?>
+
                                                       </tr>
                                           </tbody>
                                     <?php $x++;
@@ -55,7 +69,7 @@
                                     </table>
                               </div>
                               <hr>
-                              <h6 class="text-center">Bukti Pembayaran</h6>
+                              <!-- <h6 class="text-center">Bukti Pembayaran</h6> -->
                         </div>
                         <?= $this->session->flashdata('pesan'); ?>
                   </div>

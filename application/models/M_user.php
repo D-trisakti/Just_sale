@@ -3,8 +3,12 @@ defined('BASEPATH') or exit('no scipt direct access allowed');
 
 class M_user extends CI_Model
 {
-
       public function get_toko($id)
+      {
+            return $data = $this->db->query("SELECT * FROM toko WHERE user_id = '$id'")->result_array();
+      }
+
+      public function get_toko_pesan($id)
       {
             return $data = $this->db->query("
             SELECT
@@ -58,8 +62,9 @@ class M_user extends CI_Model
             $kota = htmlspecialchars($this->input->post('kota'), true);
             $kecamatan = htmlspecialchars($this->input->post('kecamatan'), true);
             $kelurahan = htmlspecialchars($this->input->post('kelurahan'), true);
+            $img = $this->upload->data('file_name');
 
-            $this->db->query("INSERT INTO toko (user_id,nama_toko,deskripsi_toko,phone,postal_code,address,provinsi,kota,kecamatan,kelurahan) values ('$userid','$nama_toko','$deskripsi','$phone','$kode_pos','$alamat','$provinsi','$kota','$kecamatan','$kelurahan')");
+            $this->db->query("INSERT INTO toko (user_id,nama_toko,deskripsi_toko,phone,postal_code,address,provinsi,kota,kecamatan,kelurahan,img_toko) values ('$userid','$nama_toko','$deskripsi','$phone','$kode_pos','$alamat','$provinsi','$kota','$kecamatan','$kelurahan','$img')");
       }
       public function update_toko($id, $kode_pos, $kota)
       {
@@ -218,14 +223,73 @@ class M_user extends CI_Model
       }
       public function riwayat_transaksi($id)
       {
-            return $data = $this->db->query("SELECT * FROM transaksi WHERE id_user = $id")->result_array();
+            return $data = $this->db->query("SELECT
+            * FROM 
+            keranjang k,
+            transaksi t
+            WHERE
+            t.id_user ='$id' AND k.id_transaksi = t.id_transaksi
+            GROUP BY  k.id_order")->result_array();
       }
       public function riwayat_transaksi_master($id, $iduser)
       {
-            return $data = $this->db->query("SELECT * FROM transaksi t JOIN user u ON t.id_user = u.id WHERE t.id_user = $iduser AND t.id_transaksi = '$id' ")->row_array();
+            return $data = $this->db->query("SELECT
+            * FROM 
+            keranjang k
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+            JOIN user u ON k.id_user = u.id
+            WHERE
+            t.id_user ='$iduser' AND k.id_order ='$id' ")->row_array();
       }
       public function riwayat_transaksi_detail($id)
       {
-            return $data = $this->db->query("SELECT * FROM keranjang k JOIN user u ON k.id_user = u.id JOIN produk p ON k.id_produk = p.id_produk JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE t.id_transaksi ='$id' ")->result_array();
+            return $data = $this->db->query("SELECT * 
+            FROM 
+            keranjang k 
+            JOIN user u ON k.id_user = u.id 
+            JOIN produk p ON k.id_produk = p.id_produk 
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
+            WHERE k.id_order = '$id' ")->result_array();
+      }
+      public function riwayat_transaksi_detail_penjual($id)
+      {
+            return $data = $this->db->query("SELECT k.status AS kirim , k.alasan_tolak AS alasan, k.*,u.* ,p.*,t.*
+            FROM 
+            keranjang k 
+            JOIN user u ON k.id_user = u.id 
+            JOIN produk p ON k.id_produk = p.id_produk 
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
+            WHERE k.id_order = '$id' ")->result_array();
+      }
+      public function get_pesanan_toko($id)
+      {
+            return $this->db->query("SELECT
+             * 
+             FROM
+            keranjang k 
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+            JOIN user u ON u.id = t.id_user
+            JOIN produk p ON p.id_produk = k.id_produk
+            where k.id_toko = $id AND k.status ='pesanan diteruskan ke penjual' ")->result_array();
+      }
+      public function total_belanja($id_order)
+      {
+            $a = $this->db->query("SELECT SUM(ongkir)+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order ='$id_order'")->row_array();
+            $b = $this->db->query("SELECT SUM(sub_total) AS jumlah_semua FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order ='$id_order'")->row_array();
+
+            return $a;
+      }
+      public function masukan()
+      {
+            $data = [
+                  'id_user' => $this->input->post('id_user'),
+                  'id_produk' => $this->input->post('id_produk'),
+                  'masukan' => $this->input->post('masukan'),
+            ];
+            $this->db->insert('penilaian', $data);
+      }
+      public function get_masukan($id)
+      {
+            return $this->db->query("SELECT p.*,u.first_name,u.last_name FROM penilaian p JOIN user u ON p.id_user = u.id WHERE id_produk ='$id'")->result_array();
       }
 }

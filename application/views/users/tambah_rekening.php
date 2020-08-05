@@ -28,7 +28,7 @@
                               <!-- form jumlah -->
                               <div class="form-group col-md-4">
                                     <label for="pemilik">Pemilik Rekening</label>
-                                    <input type="text" class="form-control" id="pemilik" placeholder="Jumlah pemilik" required name="pemilik">
+                                    <input type="text" class="form-control" id="pemilik" placeholder="nama pemilik" required name="pemilik">
                               </div>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>

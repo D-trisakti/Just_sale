@@ -68,14 +68,37 @@ class M_Admin extends CI_Model
   }
   public function get_transaksi()
   {
-    return $data = $this->db->query("SELECT * FROM transaksi WHERE status ='proses by admin'")->result_array();
+    return $data = $this->db->query("
+                                                            SELECT
+                                                            * FROM 
+                                                            keranjang k,
+                                                            transaksi t
+                                                            WHERE
+                                                            t.status ='proses by admin' AND k.id_transaksi = t.id_transaksi
+                                                            GROUP BY  k.id_order")->result_array();
   }
   public function transaksi_master($id)
   {
-    return $this->db->query("SELECT * FROM transaksi t JOIN user u  ON t.id_user = u.id WHERE t.id_transaksi ='$id'")->row_array();
+    return $this->db->query("
+    SELECT 
+    * 
+    FROM 
+    keranjang k
+    JOIN user u ON k.id_user = u.id 
+    JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+    WHERE k.id_order = '$id'
+    GROUP BY k.id_order
+    ")->row_array();
   }
   public function transaksi_detail($id)
   {
-    return $data = $this->db->query("SELECT * FROM keranjang k JOIN user u ON k.id_user = u.id JOIN produk p ON k.id_produk = p.id_produk JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE t.id_transaksi ='$id' ")->result_array();
+    return $data = $this->db->query("
+    SELECT * 
+    FROM 
+    keranjang k 
+    JOIN user u ON k.id_user = u.id 
+    JOIN produk p ON k.id_produk = p.id_produk 
+    JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
+    WHERE k.id_order = '$id' ")->result_array();
   }
 }

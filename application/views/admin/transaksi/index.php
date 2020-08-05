@@ -11,7 +11,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                   <tr>
-                        <th>No Transaksi</th>
+                        <th>No Order</th>
                         <th>Status</th>
                         <th>Total</th>
                         <th>aksi</th>
@@ -20,11 +20,11 @@
             <tbody>
                   <?php foreach ($trs as $usr) : ?>
                         <tr>
-                              <td><?= $usr['id_transaksi']; ?></td>
+                              <td><?= $usr['id_order']; ?></td>
                               <td><?= $usr['status']; ?></td>
                               <td>Rp.<?= $usr['total']; ?></td>
                               <td>
-                                    <a href="<?php echo base_url(); ?>admin/detail_pesanan/<?= $usr['id_transaksi']; ?>" class="btn badge-success float-right m-1">Detail</a>
+                                    <a href="<?php echo base_url(); ?>admin/detail_pesanan/<?= $usr['id_order']; ?>" class="btn badge-success float-right m-1">Detail</a>
                               </td>
                         </tr>
                   <?php endforeach ?>

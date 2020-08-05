@@ -12,27 +12,33 @@
                         <table class="table table-borderedless" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                     <tr>
-                                          <th>No Transaksi</th>
+                                          <th>No Order</th>
                                           <th>Status</th>
                                           <th>Total</th>
                                           <th>aksi</th>
                                     </tr>
                               </thead>
                               <tbody>
-                                    <?php $x = 0;
+                                    <?php
                                     foreach ($trs as $trs) : ?>
                                           <tr>
-                                                <td><?= $trs['id_transaksi']; ?>.</td>
+                                                <td><?= $trs['id_order']; ?>.</td>
                                                 <td>
                                                       <?= $trs['status']; ?>
                                                 </td>
                                                 <td id='tot<?= $x ?>'>
                                                       <?= $trs['total']; ?>
                                                 </td>
-                                                <td><a href="<?= base_url(); ?>toko/riwayat_pembelian_detail/<?= $trs['id_transaksi']; ?>" class="btn btn-danger">Lihat
-                                                            Riwayat</button></td>
+                                                <td>
+                                                      <?php if ($trs['status'] == 'proses by admin') { ?>
+                                                            <a href="<?= base_url(); ?>toko/riwayat_pembelian_detail/<?= $trs['id_order']; ?>" class="btn btn-danger">Lihat
+                                                                  Riwayat</button></td>
+                                          <?php  } elseif ($trs['status'] == 'Pesanan Diteruskan Ke Penjual') { ?>
+                                                <a href="<?= base_url(); ?>toko/pesanan_di_penjual/<?= $trs['id_order']; ?>" class="btn btn-danger">Lihat
+                                                      Detail</button></td>
+                                                <?php } ?>
                                           </tr>
-                                    <?php $x++;
+                                    <?php
                                     endforeach; ?>
 
                               </tbody>

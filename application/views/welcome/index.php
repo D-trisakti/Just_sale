@@ -12,7 +12,7 @@
                         <?php foreach ($produk as $prod) : ?>
                               <div class="col col-md-3">
                                     <div class="card" style="width: 15rem;">
-                                          <img class="card-img-top" src="<?= base_url('assets/uploads/') . $prod['img_produk']; ?>" rel="nofollow" alt="Card image cap">
+                                          <img class="card-img-top" src="<?= base_url('assets/img/product/') . $prod['img_produk']; ?>" rel="nofollow" alt="Card image cap">
                                           <div class="card-img-overlay text-right">
                                                 <div class="card-img-overlay text-right">
                                                       <p class="card-text btn btn-sm btn-primary btn-round">
