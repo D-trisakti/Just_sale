@@ -31,12 +31,16 @@
                                                 </td>
                                                 <td>
                                                       <?php if ($trs['status'] == 'proses by admin') { ?>
-                                                            <a href="<?= base_url(); ?>toko/riwayat_pembelian_detail/<?= $trs['id_order']; ?>" class="btn btn-danger">Lihat
-                                                                  Riwayat</button></td>
+                                                            <a href="<?= base_url(); ?>toko/riwayat_pembelian_detail/<?= $trs['id_order']; ?>" class="btn btn-success">Lihat
+                                                                  Riwayat</button>
+                                                                  <a href="<?= base_url(); ?>toko/batal_pesan_pembeli/<?= $trs['id_order']; ?>" class="btn btn-danger">Batalkan Pesanan</button>
+                                                </td>
                                           <?php  } elseif ($trs['status'] == 'Pesanan Diteruskan Ke Penjual') { ?>
                                                 <a href="<?= base_url(); ?>toko/pesanan_di_penjual/<?= $trs['id_order']; ?>" class="btn btn-danger">Lihat
                                                       Detail</button></td>
-                                                <?php } ?>
+                                                <?php  } elseif ($trs['status'] == 'Pesanan Dibatalkan Pembeli') { ?>
+                                                      <a href="<?= base_url(); ?>users/money<?= $trs['id_order']; ?>" class="btn btn-info">Cek Pengembalian Dana</button></td>
+                                                      <?php } ?>
                                           </tr>
                                     <?php
                                     endforeach; ?>

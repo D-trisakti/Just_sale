@@ -662,9 +662,37 @@ class Toko extends CI_Controller
             $ids = (explode('-', $id));
             $id_pesan = $ids[0];
             $id_barang = $ids[1];
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $retur = $this->db->query("SELECT 
+            k.id_transaksi,
+           (select user_id from toko where id_toko in (select id_toko from keranjang where id_pesan = '$id_pesan')) as user_id,
+            t.bukti_tf
+            FROM 
+            keranjang k
+            JOIN user u ON k.id_user = u.id
+            JOIN transaksi t on k.id_transaksi = t.id_transaksi
+            WHERE
+            k.id_pesan = '$id_pesan'
+      ")->row_array();
+
+            $id_user = $retur['user_id'];
+            $id_trs = $retur['id_transaksi'];
+            $bukti_tf = $retur['bukti_tf'];
+            $arr = [
+                  'id_user ' => $id_user,
+                  'id_transaksi' => $id_trs,
+                  'bukti_tf' => $bukti_tf,
+                  'status_retur' => 'Proses by admin',
+                  'jenis_pembayaran' => 'Pembayaran produk'
+            ];
+            $this->db->insert('retur_dana', $arr);
+            $this->db->query("UPDATE keranjang SET status ='barang di terima' WHERE id_pesan = '$id_pesan' ");
+            header("Location: ../penilaian_produk/" . $id_barang);
+      }
+      public  function penilaian_produk($id_barang)
+      {
             $data['produk'] = $this->M_User->detail_produk($id_barang);
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $this->db->query("UPDATE keranjang SET status ='barang di terima' WHERE id_pesan = '$id_pesan' ");
             $this->load->view('users/header');
             $this->load->view('Toko/masukan', $data);
             $this->load->view('users/footer');
@@ -673,5 +701,44 @@ class Toko extends CI_Controller
       {
             $this->M_User->masukan();
             redirect('users/index');
+      }
+      public function batal_pesan_pembeli($id_order)
+      {
+            $this->db->query("UPDATE keranjang SET status ='Pesanan Dibatalkan Pembeli' WHERE id_order = '$id_order'");
+            $this->db->query("UPDATE transaksi SET status = 'Pesanan Dibatalkan Pembeli' WHERE id_transaksi IN (SELECT id_transaksi FROM keranjang WHERE id_order = '$id_order')");
+            $retur = $this->db->query("
+            SELECT 
+            k.id_order,
+            k.id_user,
+            t.bukti_tf
+            FROM 
+            keranjang k
+            JOIN user u ON k.id_user = u.id
+            JOIN transaksi t on k.id_transaksi = t.id_transaksi
+            WHERE
+            k.id_order = '$id_order'
+            ")->row_array();
+            $id_user = $retur['id_user'];
+            $id_order = $retur['id_order'];
+            $bukti_tf = $retur['bukti_tf'];
+
+            $data = [
+                  'id_user ' => $id_user,
+                  'id_order' => $id_order,
+                  'bukti_tf' => $bukti_tf,
+                  'status_retur' => 'Proses by admin',
+                  'jenis_pembayaran' => 'Retur'
+            ];
+            $this->db->insert('retur_dana', $data);
+            $this->session->set_flashdata(
+                  'pesan',
+                  '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                 Status Pesanan Telah diupdate
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>'
+            );
+            redirect('toko/keranjang_belanja');
       }
 }

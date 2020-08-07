@@ -145,7 +145,7 @@ class Users extends CI_Controller
         $this->load->view('users/pembayaran');
         $this->load->view('users/footer');
     }
-    public function track_shipping()
+    public function money()
     {
         $this->load->view('users/header');
         $this->load->view('users/lacak_barang');
@@ -261,6 +261,15 @@ class Users extends CI_Controller
         die;
         $this->load->view('users/header');
         $this->load->view('users/katalog');
+        $this->load->view('users/footer');
+    }
+    public function retur_pembayaran()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id = $data['user']['id'];
+        $data['rek'] = $this->M_User->get_transaksi_retur();
+        $this->load->view('users/header');
+        $this->load->view('users/returpembayaran', $data);
         $this->load->view('users/footer');
     }
 }

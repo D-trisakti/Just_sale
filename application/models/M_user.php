@@ -292,4 +292,8 @@ class M_user extends CI_Model
       {
             return $this->db->query("SELECT p.*,u.first_name,u.last_name FROM penilaian p JOIN user u ON p.id_user = u.id WHERE id_produk ='$id'")->result_array();
       }
+      public function get_transaksi_retur()
+      {
+            return $data = $this->db->query("SELECT * FROM retur_dana")->result_array();
+      }
 }
