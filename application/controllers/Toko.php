@@ -515,7 +515,8 @@ class Toko extends CI_Controller
       }
       public function payment($id_order)
       {
-            $data['nom'] = $this->input->post('grand');
+            $total = $this->M_User->total_belanja($id_order);
+            $data['nom'] = $total['total'];
             $data['trs'] = $id_order;
             $this->load->view('users/header');
             $this->load->view('Toko/payment', $data);
@@ -527,18 +528,22 @@ class Toko extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $idusr = $data['user']['id'];
             $upload_image = $_FILES['image']['name'];
+            $image_types = explode(".", $upload_image);
+            $types = end($image_types);
+            $image_name = 'IMGPAY' . $trs . "." . $types;
             if ($upload_image) {
-                  $config['upload_path']          = './assets/img/transaksi';
-                  $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                  $config['max_size']             = 4048;
+                  $config['upload_path']         = './assets/img/transaksi';
+                  $config['allowed_types']      = 'gif|jpg|png|jpeg';
+                  $config['max_size']               = 4048;
+                  $config['file_name']              = $image_name;
                   $this->load->library('upload', $config);
             }
             if ($this->upload->do_upload('image')) {
                   $data = array(
-                        'bukti_tf' => $upload_image,
+                        'bukti_tf' => $image_name,
                         'status' => '',
                   );
-                  $this->db->query("UPDATE transaksi SET bukti_tf ='$upload_image',status ='proses by admin'  where id_transaksi IN(SELECT id_transaksi FROM keranjang WHERE id_order = '$trs')");
+                  $this->db->query("UPDATE transaksi SET bukti_tf ='$image_name',status ='proses by admin'  where id_transaksi IN(SELECT id_transaksi FROM keranjang WHERE id_order = '$trs')");
                   $this->load->view('users/header');
                   $this->load->view('Toko/thank_you');
                   $this->load->view('users/footer');
@@ -557,6 +562,14 @@ class Toko extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $id = $data['user']['id'];
             $data['trs'] = $this->M_User->riwayat_transaksi($id);
+            // $validation = $this->M_User->validasi_status($id);
+            // foreach ($validation as $validation) {
+            //       if ($validation['statement'] == 1) {
+            //             $this -> db -> query("")
+            //       } else {
+            //             echo "tidak eksekusi";
+            //       }
+            // }
             $this->load->view('users/header');
             $this->load->view('Toko/buyer_transaksi', $data);
             $this->load->view('users/footer');
@@ -687,6 +700,7 @@ class Toko extends CI_Controller
             ];
             $this->db->insert('retur_dana', $arr);
             $this->db->query("UPDATE keranjang SET status ='barang di terima' WHERE id_pesan = '$id_pesan' ");
+            $this->db->query("UPDATE transaksi SET status ='barang di terima' WHERE id_transaksi = '$id_trs' ");
             header("Location: ../penilaian_produk/" . $id_barang);
       }
       public  function penilaian_produk($id_barang)

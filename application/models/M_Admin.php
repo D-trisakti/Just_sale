@@ -69,8 +69,9 @@ class M_Admin extends CI_Model
   public function get_transaksi()
   {
     return $data = $this->db->query("
-                                                            SELECT
-                                                            * FROM 
+                                                            SELECT 
+                                                            SUM(k.ongkir)+SUM(k.sub_total) as totals ,
+                                                            k.*,t.* FROM 
                                                             keranjang k,
                                                             transaksi t
                                                             WHERE
@@ -90,6 +91,18 @@ class M_Admin extends CI_Model
     GROUP BY k.id_order
     ")->row_array();
   }
+  // public function transaksi_master_pending($id)
+  // {
+  //   return $this->db->query("
+  //   SELECT 
+  //   * 
+  //   FROM 
+  //   keranjang k
+  //   JOIN user u ON k.id_user = u.id 
+  //   JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+  //   WHERE k.id_transaksi = '$id'
+  //   ")->row_array();
+  // }
   public function transaksi_detail($id)
   {
     return $data = $this->db->query("
@@ -100,5 +113,27 @@ class M_Admin extends CI_Model
     JOIN produk p ON k.id_produk = p.id_produk 
     JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
     WHERE k.id_order = '$id' ")->result_array();
+  }
+  public function get_payment()
+  {
+    return $this->db->query("SELECT * FROM retur_dana WHERE status_retur != 'refund' AND status_retur != 'payed' AND status_retur = 'pending' ")->result_array();
+  }
+  public function get_rekening_payment($id)
+  {
+    return $this->db->query("SELECT * FROM rekening where user_id ='$id' ")->result_array();
+  }
+  public function get_payment_master($id)
+  {
+    return $this->db->query("
+    SELECT 
+* 
+FROM transaksi t 
+JOIN keranjang k ON t.id_transaksi = k.id_transaksi 
+JOIN toko tk ON k.id_toko = tk.id_toko
+JOIN user u ON tk.user_id = u.id
+JOIN retur_dana rd ON rd.id_transaksi = t.id_transaksi
+JOIN produk p ON  k.id_produk =  p.id_produk
+WHERE k.id_transaksi = '$id'
+    ")->row_array();
   }
 }

@@ -13,9 +13,12 @@ class M_user extends CI_Model
             return $data = $this->db->query("
             SELECT
              tk.* ,
-             (select count(k.id_transaksi) FROM keranjang k, transaksi t WHERE k.id_transaksi = t.id_transaksi 
-             AND k.id_toko = tk.id_toko
-             AND t.status ='pesanan diteruskan ke penjual') AS jumlah_pesanan
+             ( select count(k.id_transaksi) AS jumlah_pesanan
+FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+JOIN toko tk ON k.id_toko = tk.id_toko
+JOIN user u ON tk.user_id = u.id 
+WHERE u.id = '$id' AND t.status ='pesanan diteruskan ke penjual'
+             AND k.status ='pesanan diteruskan ke penjual') AS jumlah_pesanan
              FROM toko tk
              WHERE user_id = '$id'
             ")->result_array();
@@ -198,7 +201,11 @@ class M_user extends CI_Model
                               where k.id_toko in(" . $id . ")
                               and k.id_user = " . $id_user . "
                               and k.id_toko = t.id_toko
+                              and k.status = 0
+                              and k.id_transaksi =''
+                              and k.id_order =''
                               and k.id_produk = p.id_produk";
+
 
 
             return $this->db->query($query)->result_array();
@@ -241,6 +248,30 @@ class M_user extends CI_Model
             WHERE
             t.id_user ='$iduser' AND k.id_order ='$id' ")->row_array();
       }
+      public function riwayat_transaksi_master_refund($id)
+      {
+            return $data = $this->db->query("SELECT 
+            * 
+            FROM 
+            keranjang k
+            JOIN user u ON k.id_user = u.id 
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+            JOIN retur_dana rd ON rd.id_order = k.id_order
+            WHERE k.id_order = '$id'
+             ")->row_array();
+      }
+      public function riwayat_transaksi_master_payment($id)
+      {
+            return $data = $this->db->query("SELECT 
+            * 
+            FROM 
+            keranjang k
+            JOIN user u ON k.id_user = u.id 
+            JOIN transaksi t ON k.id_transaksi = t.id_transaksi
+            JOIN retur_dana rd ON rd.id_transaksi = k.id_transaksi
+            WHERE t.id_transaksi = '$id'
+             ")->row_array();
+      }
       public function riwayat_transaksi_detail($id)
       {
             return $data = $this->db->query("SELECT * 
@@ -279,6 +310,18 @@ class M_user extends CI_Model
 
             return $a;
       }
+      public function total_belanja_all()
+      {
+            $a = $this->db->query("SELECT SUM(ongkir)+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order IN (SELECT
+            k.id_order FROM 
+            keranjang k,
+            transaksi t
+            WHERE
+            t.status ='proses by admin' AND k.id_transaksi = t.id_transaksi
+            GROUP BY  k.id_order)")->result_array();
+
+            return $a;
+      }
       public function masukan()
       {
             $data = [
@@ -295,5 +338,17 @@ class M_user extends CI_Model
       public function get_transaksi_retur()
       {
             return $data = $this->db->query("SELECT * FROM retur_dana")->result_array();
+      }
+      public function validasi_status($id)
+      {
+            return  $this->db->query("
+            SELECT
+            IFNULL ((k.status ='barang di terima'), 'eksekusi') AS statement,
+            k.status, k.id_transaksi,k.id_order FROM 
+            keranjang k,
+            transaksi t
+            WHERE
+            t.id_user ='$id' AND k.id_transaksi = t.id_transaksi
+            ")->result_array();
       }
 }

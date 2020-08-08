@@ -272,4 +272,24 @@ class Users extends CI_Controller
         $this->load->view('users/returpembayaran', $data);
         $this->load->view('users/footer');
     }
+    public function refund_detail($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['master'] = $this->M_User->riwayat_transaksi_master_refund($id);
+        $data['trs'] = $this->M_User->riwayat_transaksi_detail($id);
+        var_dump($data['master']);
+        $this->load->view('users/header');
+        $this->load->view('users/detail_refund', $data);
+        $this->load->view('users/footer');
+    }
+    public function payment_detail($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['master'] = $this->M_User->riwayat_transaksi_master_payment($id);
+        $data['trs'] =  $this->db->query("SELECT * FROM keranjang k JOIN produk p ON k.id_produk = p.id_produk WHERE id_transaksi = '$id'")->result_array();
+        var_dump($data['trs']);
+        $this->load->view('users/header');
+        $this->load->view('users/detail_payment', $data);
+        $this->load->view('users/footer');
+    }
 }

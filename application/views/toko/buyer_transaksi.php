@@ -35,11 +35,11 @@
                                                                   Riwayat</button>
                                                                   <a href="<?= base_url(); ?>toko/batal_pesan_pembeli/<?= $trs['id_order']; ?>" class="btn btn-danger">Batalkan Pesanan</button>
                                                 </td>
-                                          <?php  } elseif ($trs['status'] == 'Pesanan Diteruskan Ke Penjual') { ?>
+                                          <?php  } elseif ($trs['status'] == 'Pesanan Diteruskan Ke Penjual' || $trs['status'] == 'barang di terima') { ?>
                                                 <a href="<?= base_url(); ?>toko/pesanan_di_penjual/<?= $trs['id_order']; ?>" class="btn btn-danger">Lihat
                                                       Detail</button></td>
                                                 <?php  } elseif ($trs['status'] == 'Pesanan Dibatalkan Pembeli') { ?>
-                                                      <a href="<?= base_url(); ?>users/money<?= $trs['id_order']; ?>" class="btn btn-info">Cek Pengembalian Dana</button></td>
+                                                      <a href="<?= base_url(); ?>users/refund_detail/<?= $trs['id_order']; ?>" class="btn btn-info">Cek Pengembalian Dana</button></td>
                                                       <?php } ?>
                                           </tr>
                                     <?php

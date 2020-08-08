@@ -4,7 +4,7 @@
             <?= $this->session->flashdata('pesan'); ?>
       </div>
 </div>
-<h3 class="title">Detail Pesanan</h3>
+<h3 class="title">Detail Retur</h3>
 <br>
 <br>
 <div class="card">
@@ -14,7 +14,7 @@
                         <h6 class="card-title">No Order : <?= $master['id_order']; ?></h6>
                         <h6 class="card-title">Nama Pemesan : <?= $master['first_name']; ?> <?= $master['last_name']; ?></h6>
                         <h6 class="card-title">Alamat : <?= $master['address']; ?></h6>
-                        <h6 class="card-title">Total : Rp <?= $nom ?></h6>
+                        <h6 class="card-title">Total : Rp <?= $master['total']; ?></h6>
                   </div>
                   <div class="col-md-6">
                         <h6 class="card-title">tanggal_transaksi : <?= $master['tanggal_transaksi']; ?></h6>
@@ -56,7 +56,7 @@
             </div>
 
       </div>
-      <a href="<?php echo base_url(); ?>admin/proses_pesanan/<?= $usr['id_order']; ?>" class="btn badge-success float-right m-1">Proses Pesanan</a>
-      <a href="<?php echo base_url(); ?>admin/tolak_pesanan/<?= $usr['id_order']; ?>" class="btn badge-danger float-right m-1">Tolak Pesanan</a>
+      <a href="<?php echo base_url(); ?>admin/refund/<?= $master['id_order']; ?>" class="btn badge-success float-right m-1">Proses Refund</a>
+      <a href="<?php echo base_url(); ?>admin/payment" class="btn badge-danger float-right m-1">Kembali</a>
 </div>
 </div>

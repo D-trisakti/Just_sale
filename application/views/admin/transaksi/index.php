@@ -22,7 +22,7 @@
                         <tr>
                               <td><?= $usr['id_order']; ?></td>
                               <td><?= $usr['status']; ?></td>
-                              <td>Rp.<?= $usr['total']; ?></td>
+                              <td>Rp.<?= $usr['totals']; ?></td>
                               <td>
                                     <a href="<?php echo base_url(); ?>admin/detail_pesanan/<?= $usr['id_order']; ?>" class="btn badge-success float-right m-1">Detail</a>
                               </td>

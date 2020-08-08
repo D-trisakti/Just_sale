@@ -18,13 +18,25 @@
                               <tbody>
                                     <?php foreach ($rek as $rek) : ?>
                                           <tr>
-                                                <td><?= $rek['id_order'] ?></td>
+                                                <?php if ($rek['jenis_pembayaran'] == 'Retur') { ?>
+                                                      <td><?= $rek['id_order'] ?></td>
+                                                <?php } else { ?>
+                                                      <td><?= $rek['id_transaksi'] ?></td>
+                                                <?php } ?>
                                                 <td><?= $rek['jenis_pembayaran'] ?></td>
                                                 <td><?= $rek['status_retur'] ?></td>
-                                                <td>
-                                                      <a href="<?= base_url() ?>users/delete_rekening/<?= $rek['id_order'] ?>" class="btn btn-success" onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
-                                                            Detail</a>
-                                                </td>
+                                                <?php if ($rek['jenis_pembayaran'] == 'Retur') { ?>
+                                                      <td>
+                                                            <a href="<?= base_url() ?>users/refund_detail/<?= $rek['id_order'] ?>" class="btn btn-success">
+                                                                  Detail Refund</a>
+                                                      </td>
+                                                <?php } else { ?>
+                                                      <td>
+                                                            <a href="<?= base_url() ?>users/payment_detail/<?= $rek['id_transaksi'] ?>" class="btn btn-success">
+                                                                  Detail Payment</a>
+                                                      </td>
+                                                <?php } ?>
+
                                           </tr>
                                     <?php endforeach ?>
                               </tbody>
