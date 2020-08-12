@@ -35,7 +35,7 @@
                         <?php foreach ($produk as $prod) : ?>
                               <div class="col col-md-3">
                                     <div class="card" style="width: 15rem;">
-                                          <img class="card-img-top" src="<?= base_url('assets/uploads/') . $prod['img_produk']; ?>" rel="nofollow" alt="Card image cap">
+                                          <img class="card-img-top" src="<?= base_url('assets/img/product/') . $prod['img_produk']; ?>" rel="nofollow" alt="Card image cap">
                                           <div class="card-body">
                                                 <h5 class="card-title"><?= $prod['nama_produk'] ?></h5>
                                                 <p class="card-text"><?= $prod['deskripsi_produk'] ?>.</p>

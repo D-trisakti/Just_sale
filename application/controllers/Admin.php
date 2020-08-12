@@ -15,6 +15,9 @@ class Admin extends CI_Controller
 	{
 		$data['user'] = $this->M_Admin->num_user();
 		$data['toko'] = $this->M_Admin->num_toko();
+		// $data['user'] = $this->M_Admin->hitung_user_aktif();
+		// $data['toko'] = $this->M_Admin->hitung_toko_aktif();
+		$data['transaksi'] = $this->M_Admin->hitung_transaksi();
 		$data['title'] = 'Dashboard';
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
@@ -73,7 +76,7 @@ class Admin extends CI_Controller
 		$data['trs'] = $this->M_Admin->get_transaksi();
 		$total = $this->M_User->total_belanja_all();
 		$data['nom'] = $total;
-		var_dump($total);
+		// var_dump($total);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/index', $data);
@@ -139,7 +142,7 @@ class Admin extends CI_Controller
 	public function tolak_pesanan($id)
 	{
 		$data['master'] = $this->M_Admin->transaksi_master($id);
-		var_dump($data['master']);
+		// var_dump($data['master']);
 		$data['title'] = 'Tolak Pesanan';
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
@@ -167,7 +170,7 @@ class Admin extends CI_Controller
 		$data['title'] = 'Kelola Refund';
 		$data['trs'] = $this->M_Admin->transaksi_detail($id);
 		$data['master'] = $this->M_Admin->transaksi_master($id);
-		var_dump($data['trs']);
+		// var_dump($data['trs']);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/detail_retur', $data);
@@ -178,7 +181,7 @@ class Admin extends CI_Controller
 		$data['title'] = 'Kelola Refund';
 		$data['trs'] = $this->M_Admin->transaksi_detail($id);
 		$data['master'] = $this->M_Admin->get_payment_master($id);
-		var_dump($data['master']);
+		// var_dump($data['master']);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/detail_payment', $data);
@@ -192,7 +195,7 @@ class Admin extends CI_Controller
 		$data['validation'] = $this->db->query("SELECT user_id FROM rekening WHERE user_id = '$id_user'")->num_rows();
 		$data['title'] = 'Proses Refund Dana';
 		$data['rek'] = $this->M_Admin->get_rekening_payment($id_user);
-		var_dump($id_user);
+		//var_dump($id_user);
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/transaksi/refund', $data);
@@ -205,9 +208,8 @@ class Admin extends CI_Controller
 	}
 	public function bayar_retur()
 	{
-
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']      = '2048';
+		$config['allowed_types']      = 'gif|jpg|png|jpeg';
+		$config['max_size']               = 4048;
 		$config['upload_path'] = './assets/img/transaksi';
 		$this->load->library('upload', $config);
 		if ($this->upload->do_upload('image')) {
@@ -229,7 +231,7 @@ class Admin extends CI_Controller
 			$data['validation'] = $this->db->query("SELECT user_id FROM rekening WHERE user_id = '$id_user'")->num_rows();
 			$data['title'] = 'Proses Refund Dana';
 			$data['rek'] = $this->M_Admin->get_rekening_payment($id_user);
-			var_dump($id_user);
+			//var_dump($id_user);
 			$this->load->view('admin/header', $data);
 			$this->load->view('admin/sidebar');
 			$this->load->view('admin/transaksi/refund', $data);
@@ -239,7 +241,7 @@ class Admin extends CI_Controller
 	public function bayar_payment()
 	{
 
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']      = '2048';
 		$config['upload_path'] = './assets/img/transaksi';
 		$this->load->library('upload', $config);
@@ -255,18 +257,20 @@ class Admin extends CI_Controller
 				'pesan',
 				$this->upload->display_errors()
 			);
-			$id = $this->input->post('id');
-			$data['master'] = $this->M_Admin->transaksi_master($id);
-			$data_retur = $this->db->query("SELECT * FROM retur_dana WHERE id_order ='$id'")->result_array();
-			$id_user = $data_retur[0]['id_user'];
-			$data['validation'] = $this->db->query("SELECT user_id FROM rekening WHERE user_id = '$id_user'")->num_rows();
-			$data['title'] = 'Proses Refund Dana';
-			$data['rek'] = $this->M_Admin->get_rekening_payment($id_user);
-			var_dump($id_user);
-			$this->load->view('admin/header', $data);
-			$this->load->view('admin/sidebar');
-			$this->load->view('admin/transaksi/refund', $data);
-			$this->load->view('admin/footer');
+			$this->payment();
+
+			// $id = $this->input->post('id');
+			// $data['master'] = $this->M_Admin->transaksi_master($id);
+			// $data_retur = $this->db->query("SELECT * FROM retur_dana WHERE id_order ='$id'")->result_array();
+			// $id_user = $data_retur[0]['id_user'];
+			// $data['validation'] = $this->db->query("SELECT user_id FROM rekening WHERE user_id = '$id_user'")->num_rows();
+			// $data['title'] = 'Proses Refund Dana';
+			// $data['rek'] = $this->M_Admin->get_rekening_payment($id_user);
+			// //var_dump($id_user);
+			// $this->load->view('admin/header', $data);
+			// $this->load->view('admin/sidebar');
+			// $this->load->view('admin/transaksi/refund', $data);
+			// $this->load->view('admin/footer');
 		}
 	}
 	public function get_rekening_detail()

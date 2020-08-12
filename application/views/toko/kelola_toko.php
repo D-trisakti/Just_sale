@@ -44,7 +44,7 @@
                                                                   <i class="fas fa-plus"></i></a>
                                                       </td>
                                                       <td>
-                                                            <a href="" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Lihat Riwayat Transaksi" onclick="return confirm ('Apakah anda akan menonaktifkan Toko ini ?');">
+                                                            <a href="<?= base_url(); ?>toko/riwayat_transaksi_toko/<?= $toko['id_toko']; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Lihat Riwayat Transaksi">
                                                                   <i class="fas fa-cash-register"></i></a>
                                                             <a href="<?= base_url(); ?>toko/pesanan_masuk/<?= $toko['id_toko']; ?>" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="Lihat Pemesanan Produk">
                                                                   <i class="fas fa-shopping-cart"></i></a>
@@ -58,3 +58,5 @@
                   </div>
             </div>
       </div>
+</div>
+</div>

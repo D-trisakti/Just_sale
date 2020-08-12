@@ -129,15 +129,12 @@ class Toko extends CI_Controller
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['province'] = $this->M_Admin->select_province();
             $data['city'] = $this->M_GetApi->get_city_toko($id_prov, $id_kota);
-            var_dump($id_kota);
 
             $this->load->view('users/header');
             $this->load->view('Toko/edit_toko', $data);
       }
       public function edit_toko_process()
       {
-            var_dump($_POST);
-            die;
             $id = $this->input->post("id");
             $kota_pos = $this->input->post("kota");
             $explod = explode("/", $kota_pos);
@@ -268,11 +265,34 @@ class Toko extends CI_Controller
                   }
             }
       }
-      public function edit_produk()
+      public function edit_produk($id)
       {
-            $this->load->view('users/header');
-            $this->load->view('Toko/edit_produk');
-            $this->load->view('users/footer');
+            $this->form_validation->set_rules('nama_produk', 'nama_produk', 'trim|required');
+            $this->form_validation->set_rules('deskripsi_produk', 'deskripsi_produk', 'trim|required');
+            $this->form_validation->set_rules('harga_produk', 'harga_produk', 'required');
+            $this->form_validation->set_rules('jumlah_produk', 'jumlah_produk', 'required|trim');
+            if ($this->form_validation->run() == false) {
+                  $data['produk'] = $this->M_User->detail_produk($id);
+                  $data['kategori'] = $this->M_User->get_kategori();
+                  $data['kategorisub'] = $this->db->query("SELECT p.kategori ,p.subkategori,sb.nama_sub_kategori,k.nama_kategori FROM produk p JOIN kategori_produk k ON p.kategori JOIN sub_kategori_produk sb ON p.subkategori = sb.id_sub_kategori WHERE id_produk ='$id' AND p.kategori = k.id_kategori AND p.subkategori = sb.id_sub_kategori ")->row_array();
+                  $this->load->view('users/header');
+                  $this->load->view('Toko/edit_produk', $data);
+                  $this->load->view('users/footer');
+            } else {
+                  $id_tokos = htmlspecialchars($this->input->post('id_toko'), true);
+                  $param = (int) $id_tokos;
+                  $this->M_User->edit_produk($id);
+                  $this->session->set_flashdata(
+                        'pesan',
+                        '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Produk Berhasil di Update
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>'
+                  );
+                  redirect("toko/kelola_produk/$param");
+            };
       }
       public function pesanan_masuk($id)
       {
@@ -289,10 +309,13 @@ class Toko extends CI_Controller
             $this->load->view('Toko/transaksi');
             $this->load->view('users/footer');
       }
-      public function riwayat_transaksi_toko()
+      public function riwayat_transaksi_toko($id)
       {
+            $data['toko'] = $this->M_User->get_toko_by_id($id);
+            $data['pesan'] = $this->M_User->get_riwayat_pesanan_toko($id);
+
             $this->load->view('users/header');
-            $this->load->view('Toko/riwayat_transaksi');
+            $this->load->view('Toko/riwayat_transaksi', $data);
             $this->load->view('users/footer');
       }
       public function pengaduan_pelanggan()
@@ -315,7 +338,6 @@ class Toko extends CI_Controller
             // $data['kecamatan_name'] = $this->M_Admin->get_kec_name($id_prov, $id_kota, $id_kec);
             // $data['kelurahan_name'] = $this->M_Admin->get_kel_name($id_prov, $id_kota, $id_kec, $id_kel);
             $data['nilai'] = $this->M_User->get_masukan($id);
-            var_dump($data['nilai']);
             $this->load->view('users/header');
             $this->load->view('Toko/detail_produk', $data);
             $this->load->view('users/footer');

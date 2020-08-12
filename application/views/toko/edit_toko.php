@@ -61,28 +61,70 @@
                                           <?= form_error('notelepon', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
                                     </div>
                               </div>
-                              <div class="col-sm-6">
-                                    <label for="alamat">alamat</label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?= $toko['address']; ?>">
-                                    <label for="kode_pos">Provinsi</label>
-                                    <select class="form-control" id="provinsi" name="provinsi">
-                                          <option value="<?= $city->province_id ?>"><?= $city->province ?></option>
-                                          <?php
-                                          for ($i = 0; $i < count($api_province); $i++) : ?>
-                                                <option value="<?= $api_province[$i]->province_id ?>">
-                                                      <?= $api_province[$i]->province ?></option>
-                                          <?php
-                                          endfor;
-                                          ?>
-                                    </select>
+                              <div class="form-group col-sm-6">
+                                    <div class="card-body">
+                                          <Label class="col col-label text-left">
+                                                <label for="alamat">alamat</label>
+                                          </Label>
+                                          <div class="input-group no-border input-lg">
+                                                <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                            <i class="fas fa-home-square-alt"></i>
+                                                      </span>
+                                                </div>
+
+                                                <input type="text" name="alamat" value="<?= $toko['address']; ?>" class="form-control">
+                                          </div>
+                                          <?= form_error('notelepon', '<h6 class ="text-danger pl-3">', '</h6>'); ?>
+                                    </div>
                               </div>
-                              <div class="col-sm-2">
-                                    <label for="kota">Kota/Kabupaten</label>
-                                    <select class="form-control alamatk" id="kota" name="kota">
-                                          <option value="<?= $toko['kota']; ?>"><?= $city->city_name; ?></option>
-                                    </select>
+                              <div class="form-group col-sm-6">
+                                    <div class="card-body">
+                                          <Label class="col col-label text-left">
+                                                <label for="kode_pos">Provinsi</label>
+                                          </Label>
+                                          <div class="input-group no-border input-lg">
+                                                <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                            <i class="fas fa-phone-square-alt"></i>
+                                                      </span>
+                                                </div>
+
+                                                <select class="form-control" id="provinsi" name="provinsi">
+                                                      <option value="<?= $city->province_id ?>"><?= $city->province ?></option>
+                                                      <?php
+                                                      for ($i = 0; $i < count($api_province); $i++) : ?>
+                                                            <option value="<?= $api_province[$i]->province_id ?>">
+                                                                  <?= $api_province[$i]->province ?></option>
+                                                      <?php
+                                                      endfor;
+                                                      ?>
+                                                </select>
+                                          </div>
+                                    </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="form-group col-sm-6">
+                                    <div class="card-body">
+                                          <Label class="col col-label text-left">
+                                                <label for="kota">Kota/Kabupaten</label>
+                                          </Label>
+                                          <div class="input-group no-border input-lg">
+                                                <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                            <i class="fas fa-phone-square-alt"></i>
+                                                      </span>
+                                                </div>
+                                                <select class="form-control alamatk" id="kota" name="kota">
+                                                      <option value="<?= $toko['kota']; ?>"><?= $city->city_name; ?></option>
+                                                </select>
+                                          </div>
+
+                                    </div>
+                              </div>
+                        </div>
+
+
+                        <!-- <div class="col-md-3">
                                     <label for="image">Gambar Produk</label>
                                     <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" value="">
                               </div>
@@ -101,9 +143,9 @@
                                                 reader.readAsDataURL(event.target.files[0]);
                                           };
                                     </script>
-                              </div>
+                              </div> -->
 
-                        </div>
+
 
                         <div class="text-center">
                               <div class="col-md-4 ml-auto mr-auto text-center">

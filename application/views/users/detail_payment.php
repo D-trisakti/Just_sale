@@ -23,6 +23,7 @@
                                                       <h4 class="card-title">Tanggal Transaksi : <?= $master['tanggal_transaksi']; ?></h4>
                                                       <p class="category">Status Refund : <?= $master['status_retur']; ?></p>
                                                       <p class="category">Alasan Pending : <?= $master['alasan']; ?></p>
+                                                      <p class="category">No Rekening : <?= $master['no_rek']; ?></p>
                                                 </div>
                                           </div>
                                     </div>

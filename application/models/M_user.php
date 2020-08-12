@@ -11,16 +11,12 @@ class M_user extends CI_Model
       public function get_toko_pesan($id)
       {
             return $data = $this->db->query("
-            SELECT
-             tk.* ,
-             ( select count(k.id_transaksi) AS jumlah_pesanan
-FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi
-JOIN toko tk ON k.id_toko = tk.id_toko
-JOIN user u ON tk.user_id = u.id 
-WHERE u.id = '$id' AND t.status ='pesanan diteruskan ke penjual'
-             AND k.status ='pesanan diteruskan ke penjual') AS jumlah_pesanan
-             FROM toko tk
-             WHERE user_id = '$id'
+            select
+
+            *,
+            (select count(t.id_transaksi) from transaksi t,keranjang k where t.id_transaksi = k.id_transaksi and k.id_toko = toko.id_toko and t.status = 'Pesanan Diteruskan Ke Penjual') jumlah_pesanan
+            
+            from toko where user_id = '$id'
             ")->result_array();
       }
       public function get_toko_by_id($id_toko)
@@ -111,6 +107,19 @@ WHERE u.id = '$id' AND t.status ='pesanan diteruskan ke penjual'
                   'id_toko' => htmlspecialchars($this->input->post('toko'), true),
             ];
             $this->db->insert('produk', $data);
+      }
+      public function edit_produk($id)
+      {
+            $data = [
+                  'nama_produk'  => htmlspecialchars($this->input->post('nama_produk'), true),
+                  'harga_produk' => htmlspecialchars($this->input->post('harga_produk'), true),
+                  'jumlah_produk' => htmlspecialchars($this->input->post('jumlah_produk'), true),
+                  'kategori' => htmlspecialchars($this->input->post('kategori'), true),
+                  'subkategori' => htmlspecialchars($this->input->post('subkategori'), true),
+                  'deskripsi_produk' => htmlspecialchars($this->input->post('deskripsi_produk'), true),
+            ];
+            $this->db->where('id_produk', $id);
+            $this->db->update('produk', $data);
       }
       public function get_produk($id)
       {
@@ -302,6 +311,20 @@ WHERE u.id = '$id' AND t.status ='pesanan diteruskan ke penjual'
             JOIN user u ON u.id = t.id_user
             JOIN produk p ON p.id_produk = k.id_produk
             where k.id_toko = $id AND k.status ='pesanan diteruskan ke penjual' ")->result_array();
+      }
+      public function get_riwayat_pesanan_toko($id)
+      {
+            return $this->db->query("
+            SELECT 
+            *
+            FROM
+                  retur_dana rd
+            JOIN keranjang k ON rd.id_transaksi = k.id_transaksi
+            JOIN user u ON u.id = k.id_user
+            JOIN produk p ON p.id_produk = k.id_produk
+            JOIN Transaksi t ON t.id_transaksi = k.id_transaksi
+            WHERE k.id_toko = '$id' AND rd.status_retur = 'payed'
+            ")->result_array();
       }
       public function total_belanja($id_order)
       {

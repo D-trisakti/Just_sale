@@ -48,11 +48,11 @@ class M_Admin extends CI_Model
   }
   public function get_toko()
   {
-    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 0")->result_array();
+    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 1")->result_array();
   }
   public function get_toko_not_active()
   {
-    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 1")->result_array();
+    return $this->db->query("SELECT * FROM user a join toko b ON a.id = b.user_id where b.status = 0")->result_array();
   }
   public function get_produk()
   {
@@ -116,7 +116,7 @@ class M_Admin extends CI_Model
   }
   public function get_payment()
   {
-    return $this->db->query("SELECT * FROM retur_dana WHERE status_retur != 'refund' AND status_retur != 'payed' AND status_retur = 'pending' ")->result_array();
+    return $this->db->query("SELECT * FROM retur_dana WHERE status_retur != 'refund' AND status_retur != 'payed' AND status_retur = 'pending'  OR status_retur = 'Proses by admin'")->result_array();
   }
   public function get_rekening_payment($id)
   {
@@ -135,5 +135,17 @@ JOIN retur_dana rd ON rd.id_transaksi = t.id_transaksi
 JOIN produk p ON  k.id_produk =  p.id_produk
 WHERE k.id_transaksi = '$id'
     ")->row_array();
+  }
+  public function hitung_user_aktif()
+  {
+    return $this->db->query("SELECT COUNT(*) FROM user WHERE user_status = 0")->row_array();
+  }
+  public function hitung_toko_aktif()
+  {
+    return $this->db->query("SELECT COUNT(*) FROM toko WHERE status = 1")->row_array();
+  }
+  public function hitung_transaksi()
+  {
+    return $this->db->query("SELECT * FROM transaksi WHERE status = 'barang diterima' ")->num_rows();
   }
 }

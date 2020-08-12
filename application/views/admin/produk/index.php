@@ -13,7 +13,7 @@
                   <tr>
                         <th>Nama Produk</th>
                         <th>Nama Toko</th>
-                        <th>Status Barang</th>
+                        <th>Jumlah Barang</th>
                         <th>aksi</th>
                   </tr>
             </thead>
@@ -22,14 +22,12 @@
                         <tr>
                               <td><?= $usr['nama_produk']; ?></td>
                               <td><?= $usr['nama_toko']; ?></td>
-                              <td><?= $usr['status_barang']; ?></td>
+                              <td><?= $usr['jumlah_produk']; ?></td>
                               <!-- <td>
                                   <div class="text-center mt-3"><i class="fas fa-check-circle" style="color:green"></i></div>';
                               </td> -->
-                              <td>
-                                    <a href="<?php echo base_url(); ?>admin/deactive_user/<?= $usr['id_produk']; ?>" class="btn badge-danger float-right m-1">Non Aktifkan Akun</a>
-                                    <a href="<?php echo base_url(); ?>admin/detail_user/<?= $usr['id_produk']; ?>" class="btn badge-primary float-right m-1"> Detail</a>
-                                    <a href="<?php echo base_url(); ?>admin/active_user/<?= $usr['id_produk']; ?>" class="btn badge-success float-right m-1"> Aktifkan Akun</a>
+                              <td class="text-center">
+                                    <a href="<?php echo base_url(); ?>admin/detail_user/<?= $usr['id_produk']; ?>" class="btn badge-primary  m-1"> Detail</a>
                               </td>
                         </tr>
                   <?php endforeach ?>
