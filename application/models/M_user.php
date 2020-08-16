@@ -137,9 +137,13 @@ class M_user extends CI_Model
             $this->db->where('id_produk', $id);
             $this->db->delete('produk');
       }
-      public function detail_produk($id)
+      public function detail_produk_master($id)
       {
-            return $this->db->query("SELECT * FROM produk WHERE id_produk ='$id'")->row_array();
+            return $this->db->query("SELECT * FROM produk p JOIN produk_detail pd ON p.id_produk = pd.id_produk WHERE p.id_produk ='$id'")->row_array();
+      }
+      public function detail_produk_detail($id)
+      {
+            return $this->db->query("SELECT * FROM produk p JOIN produk_detail pd ON p.id_produk = pd.id_produk WHERE p.id_produk ='$id'")->result_array();
       }
       public function add_item_cart()
       {
@@ -154,14 +158,46 @@ class M_user extends CI_Model
 
             $a = $a[0]['jumlah_pesan'];
             if ($b == 0 || $c == "pending") {
-                  $this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah_pesan) values ('$user','$toko','$produk',1)");
+                  //$this->db->query("INSERT INTO keranjang (id_user,id_toko,id_produk,jumlah_pesan) values ('$user','$toko','$produk',1)");
+                  $i = 0;
+                  $data_detail = array();
+                  foreach ($this->input->post('detail') as $det) {
+                        $jumlah = $this->input->post('jumlah')[$i];
+                        $berat = $this->input->post('berat')[$i];
+                        if ($jumlah != 0) {
+                              $arr = [
+                                    'id_user'  => $user,
+                                    'id_toko' => $toko,
+                                    'id_produk' => $produk,
+                                    'id_produk_detail' => $det,
+                                    'jumlah_pesan' => $jumlah,
+                                    'berat' => $berat * $jumlah
+                              ];
+                              array_push($data_detail, $arr);
+                              $stok = $this->db->query("SELECT stok FROM produk_detail WHERE id_detail='$det' ")->row_array();
+                              $sisa = ($stok['stok'] - $jumlah);
+                              $this->db->query("UPDATE produk_detail SET stok ='$sisa' WHERE id_detail='$det'");
+                        }
+                        $i++;
+                  }
+                  $this->db->insert_batch('keranjang', $data_detail);
             } else {
-                  $this->db->query("UPDATE keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
+                  //harusnya update karena sudah ada set jumlah pesanan jadi di buat select
+                  $this->db->query("SELECT keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
             }
       }
       public function get_item_cart($id)
       {
-            return $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk = keranjang.id_produk JOIN toko ON toko.id_toko = keranjang.id_toko JOIN user ON user.id = keranjang.id_user AND keranjang.id_user  ='$id' AND (ISNULL(keranjang.status) OR keranjang.status = '0')")->result_array();
+            return $this->db->query("
+            SELECT 
+            * 
+            FROM keranjang 
+            JOIN produk ON produk.id_produk = keranjang.id_produk 
+            JOIN toko ON toko.id_toko = keranjang.id_toko 
+            JOIN user ON user.id = keranjang.id_user 
+            JOIN produk_detail ON produk_detail.id_detail = keranjang.id_produk_detail
+            AND keranjang.id_user  ='$id' AND (ISNULL(keranjang.status) OR keranjang.status = '0')
+            ")->result_array();
       }
       public function delete_keranjang($id)
       {
@@ -179,15 +215,29 @@ class M_user extends CI_Model
                               k.id_produk,
                               p.nama_produk,
                               p.img_produk,
-                              p.harga_produk,
+                              pd.harga,
                               k.id_user,
                               k.jumlah_pesan 
-                              from keranjang k,toko t,produk p
+                              from keranjang k,toko t,produk p, produk_detail pd
                               where k.id_pesan in(" . $id . ")
                               and k.id_user = " . $id_user . "
                               and k.id_toko = t.id_toko
                               and k.id_produk = p.id_produk
+                              and k.id_produk_detail = pd.id_detail
                               group by t.id_toko";
+
+
+            return $this->db->query($query)->result_array();
+      }
+      public function get_data_chart_temp($id, $id_user)
+      {
+            $query = "select * from keranjang k 
+            join toko tk on tk.id_toko = k.id_toko
+            join produk p on p.id_produk = k.id_produk 
+            join produk_detail pd on k.id_produk_detail = pd.id_detail
+                        where id_pesan IN (" . $id . ")
+                        AND id_user = $id_user
+            group by k.id_toko";
 
 
             return $this->db->query($query)->result_array();
@@ -203,20 +253,34 @@ class M_user extends CI_Model
                               k.id_produk,
                               p.nama_produk,
                               p.img_produk,
-                              p.harga_produk,
+                              pd.harga,
+                              pd.warna,
+                              pd.ukuran,
                               k.id_user,
-                              k.jumlah_pesan 
-                              from keranjang k,toko t,produk p
+                              k.sub_total,
+                              k.jumlah_pesan ,
+                              k.pesan_pembeli
+                              from keranjang k,toko t,produk p, produk_detail pd
                               where k.id_toko in(" . $id . ")
                               and k.id_user = " . $id_user . "
                               and k.id_toko = t.id_toko
-                              and k.status = 0
+                              and k.status = 'pending'
                               and k.id_transaksi =''
                               and k.id_order =''
-                              and k.id_produk = p.id_produk";
-
-
-
+                              and k.id_produk = p.id_produk
+                              and k.id_produk_detail = pd.id_detail
+                              ";
+            return $this->db->query($query)->result_array();
+      }
+      public function get_data_chart_produk_temp($id, $id_user)
+      {
+            $query = "select * from keranjang k 
+            join toko tk on tk.id_toko = k.id_toko
+            join produk p on p.id_produk = k.id_produk 
+            join produk_detail pd on k.id_produk_detail = pd.id_detail
+                        where k.id_toko IN (" . $id . ")
+                        AND id_user = $id_user
+                      ";
             return $this->db->query($query)->result_array();
       }
       public function add_rekening($id)
@@ -373,5 +437,9 @@ class M_user extends CI_Model
             WHERE
             t.id_user ='$id' AND k.id_transaksi = t.id_transaksi
             ")->result_array();
+      }
+      public function get_detail_produk($id)
+      {
+            return $this->db->query("SELECT * FROM produk_detail WHERE id_produk = $id AND stok != 0")->result_array();
       }
 }

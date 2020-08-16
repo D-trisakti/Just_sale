@@ -69,38 +69,40 @@
                                                 <input type="hidden" value="<?= $pd['id_toko'] ?>" name="id_toko[]">
                                                 <tr>
                                                       <td><?= $pd['nama_produk'] ?></td>
-                                                      <td><?= $pd['harga_produk'] ?></td>
+                                                      <td><?= $pd['harga'] ?></td>
                                                       <td>
-                                                            <?php
-                                                            for ($i = 0; $i < count($mix); $i++) {
-                                                                  if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
-                                                                        echo $mix[$i]['jumlah_pesan'];
-                                                            ?> <input type="hidden" name="jumlah_pesanan[]" value="<?= $mix[$i]['jumlah_pesan']; ?>" id="<?= $ca['id_pesan'] ?>pesanan"> <?php
+                                                            <!-- <?php
+                                                                  for ($i = 0; $i < count($mix); $i++) {
+                                                                        if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                              echo $mix[$i]['jumlah_pesan'];
+                                                                  ?> <input type="hidden" name="jumlah_pesanan[]" value="<?= $pd['jumlah_pesan'] ?>" id="<?= $ca['id_pesan'] ?>pesanan"> <?php
                                                                                                                                                                                     }
                                                                                                                                                                               }
-                                                                                                                                                                                          ?>
+                                                                                                                                                                                          ?> -->
+                                                            <?= $pd['jumlah_pesan'] ?>
                                                       </td>
                                                       <td>
-                                                            <?php
-                                                            for ($i = 0; $i < count($mix); $i++) {
-                                                                  if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
-                                                                        echo $mix[$i]['pesan'];
-                                                            ?> <input type="hidden" name="pesan_pembeli[]" value="<?= $mix[$i]['pesan']; ?>"> <?php
+                                                            <!-- <?php
+                                                                  for ($i = 0; $i < count($mix); $i++) {
+                                                                        if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                              echo $mix[$i]['pesan'];
+                                                                  ?> <input type="hidden" name="pesan_pembeli[]" value="<?= $mix[$i]['pesan']; ?>"> <?php
+                                                                                                                                                }
                                                                                                                                           }
-                                                                                                                                    }
-                                                                                                                                                ?>
+                                                                                                                                                      ?> -->
+                                                            <?= $pd['pesan_pembeli'] ?>
                                                       </td>
                                                       <td>
                                                             <p class="text-right" id="<?= $ca['id_toko'] ?><?= $pd['id_pesan'] ?>t">
-                                                                  <?php
-                                                                  for ($i = 0; $i < count($mix); $i++) {
-                                                                        if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
-                                                                              echo $mix[$i]['subtotal'];
-                                                                  ?> <input type="hidden" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
+                                                                  <!-- <?php
+                                                                        for ($i = 0; $i < count($mix); $i++) {
+                                                                              if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                                                    echo $mix[$i]['subtotal'];
+                                                                        ?> <input type="hidden" name="subtotal_item[]" value="<?= $mix[$i]['subtotal']; ?>"> <?php
+                                                                                                                                                            }
                                                                                                                                                       }
-                                                                                                                                                }
-                                                                                                                                                            ?>
-
+                                                                                                                                                                  ?> -->
+                                                                  <?= $pd['sub_total'] ?>
                                                             </p>
                                                       </td>
                                                 </tr>
@@ -109,7 +111,7 @@
 
 
                                           <tr>
-                                                <th>Ongkir</th>
+                                                <th><input type="text" value="<?= $berat ?>" name="berat" id="berat"> Ongkir</th>
                                                 <th colspan="2"><select class="form-control kurir" name="id_kurir[]" id="<?= $ca['id_toko'] ?>id_kurir">
                                                             <option value="0">Pilih Kurir</option>
                                                             <option value="pos">POS Indonesia</option>
@@ -142,13 +144,14 @@
                                                 $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
                                                 $tot = 0;
                                                 foreach ($produk as $pd) :
-                                                      for ($i = 0; $i < count($mix); $i++) {
-                                                            if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
-                                                                  //echo $mix[$i]['subtotal'];
-                                                                  $t =  explode(" ", $mix[$i]['subtotal']);
-                                                                  $tot = $tot + $t[1];
-                                                            }
-                                                      }
+                                                      // for ($i = 0; $i < count($mix); $i++) {
+                                                      //       if ($mix[$i]['id_pesan'] == $pd['id_pesan']) {
+                                                      //             //echo $mix[$i]['subtotal'];
+                                                      //             $t =  explode(" ", $mix[$i]['subtotal']);
+                                                      //             $tot = $tot + $t[1];
+                                                      //       }
+                                                      //}
+                                                      $tot = $pd['sub_total'];
                                                 endforeach;
 
                                                 ?>
@@ -161,6 +164,7 @@
                                                       city_id = city_id.split('/');
                                                       var city = city_id[0];
                                                       var origin = city;
+                                                      var berat = $("#berat").val();
                                                       var des = $("#<?= $ca['id_toko'] ?>toko_kota").val();
                                                       $.ajax({
                                                             url: " <?= base_url('toko/get_ongkir ') ?>",
@@ -168,7 +172,8 @@
                                                             data: {
                                                                   origin: origin,
                                                                   des: des,
-                                                                  kurir: kurir
+                                                                  kurir: kurir,
+                                                                  berat: berat
                                                             },
                                                             //async: false,
                                                             dataType: 'json',

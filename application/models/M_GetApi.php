@@ -90,7 +90,7 @@ class M_GetApi extends CI_Model
         }
         return $response;
     }
-    public function get_ongkir($origin, $des, $kurir)
+    public function get_ongkir($origin, $des, $kurir, $berat)
     {
         $curl = curl_init();
 
@@ -102,7 +102,7 @@ class M_GetApi extends CI_Model
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "origin=$origin&destination=$des&weight=1700&courier=$kurir",
+            CURLOPT_POSTFIELDS => "origin=$origin&destination=$des&weight=$berat&courier=$kurir",
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
                 "key: 7f6058ab73e3727b281eccf68dec2504"

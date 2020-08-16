@@ -1,174 +1,137 @@
-<div class="page-header header-filter" data-parallax="true"
-      style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('<?= base_url(); ?>assets/img/header.jpg');"></div>
 <div class="main main-raised">
       <div class="profile-content">
             <hr>
-            <div class="container text-center">
-                  <h3 class="title text-center">Tambah Produk </h3>
-                  <hr>
-                  <?= form_open_multipart('toko/create_produk'); ?>
-                  <?= $this->session->flashdata('pesan'); ?>
-                  <div class="form-row ">
-                        <!-- form nama -->
-                        <div class="form-group col-md-4">
-                              <label for="nama_produk">Nama Produk</label>
-                              <input type="text" class="form-control" id="nama_produk" name="nama_produk"
-                                    value="<?= set_value('nama_produk') ?>" required>
-                              <?= form_error('nama_produk', '<small class="text-danger">', '</small>'); ?>
-                        </div>
-                        <!-- form harga -->
-                        <div class="form-group col-md-4">
-                              <label for="harga_produk">Harga Produk</label>
-                              <input type="number" class="form-control" id="harga_produk" name="harga_produk"
-                                    value="<?= set_value('harga_produk') ?>" required>
-                              <?= form_error('harga_produk', '<small class="text-danger">', '</small>'); ?>
-                        </div>
-                        <!-- form jumlah -->
-                        <div class="form-group col-md-4">
-                              <label for="Jumlah_produk">Jumlah produk</label>
-                              <input type="number" class="form-control" id="jumlah_produk" name="jumlah_produk"
-                                    value="<?= set_value('jumlah_produk') ?>" required>
-                              <?= form_error('jumlah_produk', '<small class="text-danger">', '</small>'); ?>
-                        </div>
-                        <!-- form kategori -->
-                        <div class="form-group col-md-2">
-                              <label for="kategori">kategori produk</label>
-                              <select type="text" class="form-control" id="Kategori" name="kategori" required
-                                    value="<?= set_value('kategori') ?>">
-                                    <option value="">Pilih Kategori</option>
-                                    <?php foreach ($kategori as $kat) : ?>
-                                    <option value="<?= $kat['id_kategori'] ?>"><?= $kat['nama_kategori'] ?>
-                                    </option>
-                                    <?php
-                                    endforeach ?>
-                              </select>
-                        </div>
-                        <!-- form-sub-kategori -->
-                        <div class="form-group col-md-2">
-                              <label for="subkategori"> subkategori produk</label>
-                              <select type="text" class="form-control" id="subkategori" name="subkategori" required
-                                    value="<?= set_value('subkategori') ?>>
-                                    <option value="">Pilih subkategori</option>
-                              </select>
-                        </div>
-                        <div class=" form-group col-md-2">
-                                    <label for="toko">Toko</label>
-                                    <select type="text" class="form-control" id="toko" name="toko" required value="<?= set_value('toko') ?>>
-                                    <option value="">Pilih Toko</option>
-                                    <?php foreach ($toko as $toko) : ?>
-                                    <option value=" <?= $toko['id_toko'] ?>"><?= $toko['nama_toko'] ?>
-                                          </option>
-                                          <?php
-                                    endforeach ?>
-                                    </select>
-                        </div>
-                        <!-- form-deskripsi-produk -->
-                        <div class="form-group col-md-6">
-                              <label for="deskripsi_produk">Deskripsi Produk</label>
-                              <textarea class="form-control" id="deskripsi_produk" rows="3" name="deskripsi_produk"
-                                    value="<?= set_value('deskripsi_produk') ?>"></textarea>
-                        </div>
+            <div class="container">
+                  <form action="" enctype="multipart/form-data" method="post">
+                        <div class="row">
+                              <div class="col-md">
+                                    <div class="card">
+                                          <div class="card-header card-header-primary">
+                                                <h2 class="title text-center ">Tambah Produk</h2>
+                                                <div class="row">
+                                                      <div class="col-md-6">
+                                                            <label for="nama" class="card-title">Nama Produk</label>
+                                                            <input type="text" class="form-control" id="nama" name="nama" value="<?= set_value('nama') ?>" placeholder="Nama produk">
+                                                            <input type="hidden" name='toko' value="<?= $this->uri->segment(3) ?>">
+                                                            <label for="des" class="card-title">Deskripsi Produk</label>
+                                                            <input type="text" class="form-control" id="des" name="des" value="<?= set_value('des') ?>" placeholder="Deskripsi produk">
 
-                        <div class="col-md-4">
-                              <div class="card bordered">
-                                    <img width="350" height="auto" id="output" />
+                                                      </div>
+                                                      <div class="col-md-6">
+                                                            <label for="kategori" class="card-title">Kategori Produk</label>
+                                                            <select name="kategori" id="Kategori" class="form-control">
+                                                                  <option value="">Pilih Kategori</option>
+                                                                  <?php foreach ($kategori as $k) {  ?>
+                                                                        <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
+                                                                  <?php }  ?>
+                                                            </select>
+                                                            <label for="subkategori" class="card-title">Sub-Kategori Produk</label>
+                                                            <select name="subkategori" id="subkategori" class="form-control">
+                                                                  <option value="">Pilih Sub-kategori</option>
+                                                            </select>
+                                                      </div>
+                                                      <div class="col- col-md-4">
+                                                            <label for="stock" class="card-title">Gambar</label>
+                                                            <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg" onchange="loadFile(event)" required>
+                                                      </div>
+                                                      <div class="col- col-md-4">
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <div class="card-body">
+                                                <!-- <div class="row">
+                                                <div class="col- col-md-3">
+                                                      <label for="warna" class="card-title">Warna</label>
+                                                      <input type="text" class="form-control" id="nama" name="warna" value="<?= set_value('warna') ?>" placeholder="warna">
+                                                </div>
+                                                <div class="col- col-md-3">
+                                                      <label for="ukuran" class="card-title">Ukuran</label>
+                                                      <input type="text" class="form-control" id="ukuran" name="ukuran" value="<?= set_value('ukuran') ?>" placeholder="Ukuran">
+                                                </div>
+                                                <div class="col- col-md-3">
+                                                      <label for="harga" class="card-title">harga</label>
+                                                      <input type="text" class="form-control" id="harga" name="harga" value="<?= set_value('harga') ?>" placeholder="Harga">
+                                                </div>
+                                                <div class="col- col-md-3">
+                                                      <label for="stock" class="card-title">Stock</label>
+                                                      <input type="text" class="form-control" id="stock" name="stock" value="<?= set_value('stock') ?>" placeholder="stock">
+                                                </div>
+                                          </div>
+                                           -->
+                                                <br>
+                                                <h3>Detail produk</h3>
+                                                <br>
+                                                <div class="text-left">
+                                                      <button type="button" class="btn btn-sm btn-rounded btn-rose" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Detail</button>
+                                                </div>
+                                                <br>
+                                                <table class="table table-bordeless">
+                                                      <tr>
+                                                            <th>Warna</th>
+                                                            <th>Ukuran</th>
+                                                            <th>Harga</th>
+                                                            <th>Stok</th>
+                                                            <th>Berat</th>
+                                                      </tr>
+                                                      <tbody id="data_detail">
+
+                                                      </tbody>
+                                                </table>
+                                                <br>
+                                                <div class="text-right">
+                                                      <!-- <button type="button" class="btn btn-sm btn-rounded btn-rose" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Detail</button> -->
+                                                      <button type="submit" class="btn btn-sm btn-rounded btn-danger">Simpan</button>
+                                                </div>
+                                          </div>
+                                          <hr>
+                                    </div>
                               </div>
-
-                              <script>
-                              var loadFile = function(event) {
-                                    var reader = new FileReader();
-                                    reader.onload = function() {
-                                          var output = document.getElementById('output');
-                                          output.src = reader.result;
-                                    };
-                                    reader.readAsDataURL(event.target.files[0]);
-                              };
-                              </script>
                         </div>
-                        <div class="col-md-3">
-                              <label for="image">Gambar Produk</label>
-                              <input type='file' id="image" name="image" accept=".png, .jpg, .jpeg"
-                                    onchange="loadFile(event)">
-                        </div>
-
-                  </div>
-                  <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
-
+                  </form>
             </div>
       </div>
-      </form>
 </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id='modal'>
+      <div class="modal-dialog modal-lg">
             <div class="modal-content">
                   <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin akan logout ?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Detail</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">x</span>
                         </button>
                   </div>
-                  <div class="modal-body">Pilih "Logout" Jika anda siap mengakhiri sesi ini.</div>
+                  <div class="card-body">
+                        <div class="row">
+                              <div class="col- col-md-3">
+                                    <label for="warna" class="card-title">Warna</label>
+                                    <input type="text" class="form-control" id="input_warna" name="warna" value="<?= set_value('warna') ?>" placeholder="warna">
+                              </div>
+                              <div class="col- col-md-3">
+                                    <label for="ukuran" class="card-title">Ukuran</label>
+                                    <input type="text" class="form-control" id="input_ukuran" name="ukuran" value="<?= set_value('ukuran') ?>" placeholder="Ukuran">
+                              </div>
+                              <div class="col- col-md-3">
+                                    <label for="harga" class="card-title">harga</label>
+                                    <input type="number" class="form-control" id="input_harga" name="harga" value="<?= set_value('harga') ?>" placeholder="Harga">
+                              </div>
+                              <div class="col- col-md-3">
+                                    <label for="stock" class="card-title">Stock</label>
+                                    <input type="number" class="form-control" id="input_stok" name="stock" value="<?= set_value('stock') ?>" placeholder="stock">
+                              </div>
+                              <div class="col- col-md-3">
+                                    <label for="stock" class="card-title">Berat</label>
+                                    <input type="number" class="form-control" id="input_berat" name="berat" value="<?= set_value('berat') ?>" placeholder="berat (gram)">
+                              </div>
+                        </div>
+                  </div>
                   <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-                        <a class="btn btn-primary" href="<?= base_url('users/logout') ?>">Logout</a>
+                        <a class="btn btn-primary" href="#" onclick="tambah_row()">Tambah</a>
                   </div>
             </div>
       </div>
 </div>
-<footer class="footer footer-default">
-      <div class="container">
-            <nav class="float-left">
-                  <ul>
-                        <li>
-                              <a href="https://www.creative-tim.com/">
-                                    Creative Tim
-                              </a>
-                        </li>
-                        <li>
-                              <a href="https://www.creative-tim.com/presentation">
-                                    About Us
-                              </a>
-                        </li>
-                        <li>
-                              <a href="https://www.creative-tim.com/blog">
-                                    Blog
-                              </a>
-                        </li>
-                        <li>
-                              <a href="https://www.creative-tim.com/license">
-                                    Licenses
-                              </a>
-                        </li>
-                  </ul>
-            </nav>
-            <div class="copyright float-right">
-                  &copy;
-                  <script>
-                  document.write(new Date().getFullYear())
-                  </script>, made with <i class="material-icons">favorite</i> by
-                  <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.
-            </div>
-      </div>
-</footer>
-<!--   Core JS Files   -->
-<script src="<?= base_url(); ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="<?= base_url(); ?>assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript">
-</script>
-<script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
-<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript">
-</script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-<!--  Google Maps Plugin    -->
-<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-<script src="<?= base_url(); ?>assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
-<script type="text/javascript">
-$(document).ready(function() {
+<script>
       $('#Kategori').change(function() {
             var id = $(this).val();
             $.ajax({
@@ -199,5 +162,38 @@ $(document).ready(function() {
                   }
             });
       });
-});
+
+      function tambah_row() {
+
+            var warna = $("#input_warna").val();
+            var ukuran = $("#input_ukuran").val();
+            var harga = $("#input_harga").val();
+            var stok = $("#input_stok").val();
+            var berat = $("#input_berat").val();
+
+            if (harga == "") {
+                  alert("harga tidak boleh kosong");
+            } else {
+                  $('#modal').modal('toggle');
+                  if (stok == "") {
+                        stok = 0;
+                  };
+                  var html = "<tr>" +
+                        "<td>" + warna + "<input type='hidden' name='data_warna[]' value='" + warna + "'></td>" +
+                        "<td>" + ukuran + "<input type='hidden' name='data_ukuran[]' value='" + ukuran + "'></td>" +
+                        "<td>" + harga + "<input type='hidden' name='data_harga[]' value='" + harga + "'></td>" +
+                        "<td>" + stok + "<input type='hidden' name='data_stok[]' value='" + stok + "'></td>" +
+                        "<td>" + berat + "<input type='hidden' name='data_berat[]' value='" + berat + "'></td>" +
+                        "</tr>";
+
+                  $("#data_detail").append(html);
+
+                  var warna = $("#input_warna").val("");
+                  var ukuran = $("#input_ukuran").val("");
+                  var harga = $("#input_harga").val("");
+                  var stok = $("#input_stok").val("");
+                  var berat = $("#input_berat").val("");
+            }
+
+      }
 </script>

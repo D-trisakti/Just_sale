@@ -15,6 +15,7 @@
                                                 <th></th>
                                                 <th>Nama Produk</th>
                                                 <th>Harga Produk</th>
+                                                <th>Varian</th>
                                                 <th>Jumlah</th>
                                                 <th>Pesan pembelian</th>
                                                 <th>Total</th>
@@ -35,36 +36,35 @@
                                                             </div>
                                                       </td>
                                                       <td><?= $prod['nama_produk'] ?></td>
-                                                      <td id="<?= $prod['id_produk'] ?>harga">
-                                                            <?= $prod['harga_produk'] ?>
+                                                      <td id="<?= $prod['id_produk_detail'] ?>harga">
+                                                            <?= $prod['harga'] ?>
                                                       </td>
-
+                                                      <td>Warna : <?= $prod['warna'] ?> Ukuran : <?= $prod['ukuran'] ?></td>
                                                       <td>
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-primary btn-round btn-sm">-</button>
-                                                            <input id="<?= $prod['id_produk'] ?>quantity" class="form-control" min="1" max="<?= $prod['jumlah_produk'] ?>" name="quantity[]" value="<?= $prod['jumlah_pesan'] ?>" type="number" readonly style="width: 50px;">
+                                                            <input id="<?= $prod['id_produk_detail'] ?>quantity" class="form-control" min="1" max="<?= $prod['stok'] ?>" name="<?= $prod['id_pesan'] ?>quantity[]" value="<?= $prod['jumlah_pesan'] ?>" type="number" readonly style="width: 50px;">
                                                             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-primary btn-round btn-sm">+</button>
                                                       </td>
-
                                                       <td>
-                                                            <input type="text" id="pesan" class="form-control" name="pesan[]">
+                                                            <input type="text" id="pesan" class="form-control" name="<?= $prod['id_pesan'] ?>pesan[]">
                                                       </td>
                                                       <td>
-                                                            <input readonly type="text" id="<?= $prod['id_produk'] ?>subtotal" class="form-control" name="subtotal[]">
+                                                            <input readonly type="text" id="<?= $prod['id_produk_detail'] ?>subtotal" class="form-control" name="<?= $prod['id_pesan'] ?>subtotal[]">
                                                       <td>
                                                             <a href="<?= base_url() ?>toko/delete_keranjang/<?= $prod['id_pesan'] ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Pesanan"><i class="fas fa-trash"></i></button></td>
                                                 </tr>
                                                 <script>
                                                       $(document).ready(function() {
 
-                                                            var id_harga = '<?= $prod['id_produk'] ?>' + 'harga';
-                                                            var id_quantity = '<?= $prod['id_produk'] ?>' + 'quantity';
-                                                            var id_subtotal = '<?= $prod['id_produk'] ?>' + 'sub_total';
+                                                            var id_harga = '<?= $prod['id_produk_detail'] ?>' + 'harga';
+                                                            var id_quantity = '<?= $prod['id_produk_detail'] ?>' + 'quantity';
+                                                            var id_subtotal = '<?= $prod['id_produk_detail'] ?>' + 'sub_total';
                                                             //hitung_total(id_harga, id_quantity, id_subtotal);
                                                             setInterval(function() {
-                                                                  var harga = $("#" + <?= $prod['id_produk'] ?> + "harga").html();
-                                                                  var quantity = $("#" + <?= $prod['id_produk'] ?> + "quantity").val();
+                                                                  var harga = $("#" + <?= $prod['id_produk_detail'] ?> + "harga").html();
+                                                                  var quantity = $("#" + <?= $prod['id_produk_detail'] ?> + "quantity").val();
                                                                   var total = parseInt(harga) * parseInt(quantity);
-                                                                  $("#" + <?= $prod['id_produk'] ?> + "subtotal").val("Rp. " + total);
+                                                                  $("#" + <?= $prod['id_produk_detail'] ?> + "subtotal").val("Rp. " + total);
                                                             }, 500);
                                                       });
                                                 </script>
