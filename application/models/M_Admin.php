@@ -111,6 +111,7 @@ class M_Admin extends CI_Model
     keranjang k 
     JOIN user u ON k.id_user = u.id 
     JOIN produk p ON k.id_produk = p.id_produk 
+    JOIN produk_detail pd ON k.id_produk_detail = pd.id_detail
     JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
     WHERE k.id_order = '$id' ")->result_array();
   }
@@ -133,6 +134,7 @@ JOIN toko tk ON k.id_toko = tk.id_toko
 JOIN user u ON tk.user_id = u.id
 JOIN retur_dana rd ON rd.id_transaksi = t.id_transaksi
 JOIN produk p ON  k.id_produk =  p.id_produk
+JOIN produk_detail pd ON  k.id_produk_detail =  pd.id_detail
 WHERE k.id_transaksi = '$id'
     ")->row_array();
   }

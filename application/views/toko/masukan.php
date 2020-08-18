@@ -10,8 +10,6 @@
                               <div class="card wrapper">
                                     <img class="card-img-top" src="<?= base_url('assets/img/product/') . $produk['img_produk']; ?>" alt="Card image cap">
                                     <div class="card-img-overlay text-right">
-                                          <p class="card-text btn btn-sm btn-primary btn-round">
-                                                Rp.<?= $produk['harga_produk']; ?></p>
                                     </div>
                               </div>
                         </div>

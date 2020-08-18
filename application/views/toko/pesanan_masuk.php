@@ -13,6 +13,7 @@
                                           <th>Nama Pemesan</th>
                                           <th>Alamat Pemesan</th>
                                           <th>Nama Produk</th>
+                                          <th>Varian</th>
                                           <th>Jumlah Barang</th>
                                           <th>Harga Produk</th>
                                           <th>total pembayaran</th>
@@ -29,9 +30,10 @@
                                                 <td><?= $psn['first_name'] ?> <?= $psn['last_name'] ?></td>
                                                 <td><?= $psn['address'] ?> <?= $psn['kota_pesan'] ?> <?= $psn['provinsi_pesan'] ?></td>
                                                 <td><?= $psn['nama_produk'] ?></td>
+                                                <td>Warna : <?= $psn['warna'] ?> Ukuran : <?= $psn['ukuran'] ?></td>
                                                 <td><?= $psn['jumlah_pesan'] ?></td>
-                                                <td>Rp.<?= $psn['harga_produk'] ?></td>
-                                                <td>Rp.<?= $psn['total'] ?></td>
+                                                <td>Rp.<?= $psn['harga'] ?></td>
+                                                <td>Rp.<?= $psn['sub_total'] ?></td>
                                                 <td><?= $psn['pesan_pembeli'] ?></td>
                                                 <td><?= $psn['id_kurir'] ?></td>
                                                 <td><?= $psn['id_layanan'] ?></td>

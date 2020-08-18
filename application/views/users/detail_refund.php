@@ -32,6 +32,7 @@
                                           <thead>
                                                 <th>No</th>
                                                 <th>Nama Barang</th>
+                                                <th>Varian</th>
                                                 <th>Harga</th>
                                                 <th>Satuan</th>
                                                 <th>Jumlah</th>
@@ -44,7 +45,8 @@
                                                       <tr>
                                                             <td><?= $x ?></td>
                                                             <td><?= $trs['nama_produk'] ?></td>
-                                                            <td>Rp.<?= $trs['harga_produk'] ?></td>
+                                                            <td>Warna : <?= $trs['warna'] ?> Ukuran : <?= $trs['ukuran'] ?></td>
+                                                            <td>Rp.<?= $trs['harga'] ?></td>
                                                             <td><?= $trs['jumlah_pesan'] ?></td>
                                                             <td>Rp.<?= $trs['sub_total'] ?></td>
                                                             <td>Rp.<?= $trs['ongkir'] ?></td>

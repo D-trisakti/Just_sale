@@ -380,6 +380,8 @@ class Toko extends CI_Controller
             $data['warna'] = $this->db->query("SELECT warna,ukuran FROM produk_detail WHERE id_produk = '$id' ")->result_array();
             $data['nilai'] = $this->M_User->get_masukan($id);
             $data['detail'] = $this->M_User->get_detail_produk($id);
+            $data['total_beli'] = $this->db->query("SELECT COUNT(id_produk_detail) AS total FROM keranjang WHERE status ='barang di terima'")->row_array();
+
             $this->load->view('users/header');
             $this->load->view('Toko/detail_produk', $data);
             $this->load->view('users/footer');
@@ -836,7 +838,8 @@ class Toko extends CI_Controller
       }
       public  function penilaian_produk($id_barang)
       {
-            $data['produk'] = $this->M_User->detail_produk($id_barang);
+            $data['produk'] = $this->M_User->masukan_detail($id_barang);
+            var_dump($data['produk']);
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('users/header');
             $this->load->view('Toko/masukan', $data);

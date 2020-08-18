@@ -26,6 +26,7 @@
                         <tr>
                               <th>No</th>
                               <th>Nama Barang</th>
+                              <th>Varian</th>
                               <th>Harga</th>
                               <th>Satuan</th>
                               <th>Ongkir</th>
@@ -38,7 +39,8 @@
                         <tr>
                               <td><?= $master['id_transaksi']; ?></td>
                               <td><?= $master['nama_produk']; ?></td>
-                              <td>Rp.<?= $master['harga_produk']; ?></td>
+                              <td>Warna : <?= $master['warna']; ?> Ukuran:<?= $master['ukuran']; ?></td>
+                              <td>Rp.<?= $master['harga']; ?></td>
                               <td><?= $master['jumlah_pesan']; ?></td>
                               <td>Rp.<?= $master['ongkir']; ?></td>
                               <td>Rp.<?= $master['total']; ?></td>

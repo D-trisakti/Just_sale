@@ -42,7 +42,7 @@ class M_produk extends CI_Model
       }
       public function get_sub_kategori_by_id($id, $usr)
       {
-            return $this->db->query("SELECT * FROM produk p  JOIN produk_detail pd ON pd.id_produk = p.id_produk   JOIN toko t ON t.id_toko = p.id_toko WHERE p.subkategori = '$id' AND t.user_id !='$usr' ")->result_array();
+            return $this->db->query("SELECT * FROM produk p  JOIN produk_detail pd ON pd.id_produk = p.id_produk   JOIN toko t ON t.id_toko = p.id_toko WHERE p.subkategori = '$id' AND t.user_id !='$usr'  group by p.id_produk")->result_array();
       }
       public function get_sub_kategori_by_id_name($id)
       {

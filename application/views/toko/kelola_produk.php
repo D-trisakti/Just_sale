@@ -23,7 +23,7 @@
                                           <tr>
                                                 <td><?= $prod['nama_produk'] ?></td>
                                                 <td>
-                                                      <?= $prod['harga_produk'] ?>
+                                                      <?= $prod['harga'] ?>
                                                 </td>
 
                                                 <td>
@@ -33,7 +33,7 @@
                                                       TERSEDIA
                                                 </td>
                                                 <td>
-                                                      <?= $prod['jumlah_produk'] ?></td>
+                                                      <?= $prod['stok'] ?></td>
                                                 <td>
                                                       <a href="<?= base_url() ?>toko/delete_produk/<?= $prod['id_produk'] ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus Produk" onclick="return confirm ('Apakah anda akan menghapus produk ini ?');">
                                                             <i class="fas fa-trash"></i></a>

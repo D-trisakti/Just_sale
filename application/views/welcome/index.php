@@ -16,7 +16,7 @@
                                           <div class="card-img-overlay text-right">
                                                 <div class="card-img-overlay text-right">
                                                       <p class="card-text btn btn-sm btn-primary btn-round">
-                                                            Rp.<?= $prod['harga_produk']; ?>,-IDR</p>
+                                                            Rp.10000,-IDR</p>
                                                 </div>
                                           </div>
                                           <div class="card-body">

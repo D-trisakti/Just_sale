@@ -44,7 +44,7 @@
                                     foreach ($chart as $ca) : ?>
                                           <thead>
                                                 <tr>
-                                                      <th class="alert alert-success" colspan="5">Toko Name : <?= $ca['nama_toko'] ?></th>
+                                                      <th class="alert alert-success" colspan="6">Toko Name : <?= $ca['nama_toko'] ?></th>
                                                 </tr>
                                                 <input type="hidden" value="<?= $ca['toko_kota'] ?>" id="<?= $ca['id_toko'] ?>toko_kota" name="toko_kota[]">
                                                 <tr>
@@ -69,6 +69,7 @@
                                                 <input type="hidden" value="<?= $pd['id_toko'] ?>" name="id_toko[]">
                                                 <tr>
                                                       <td><?= $pd['nama_produk'] ?></td>
+                                                      <td>Warna : <?= $pd['warna'] ?> Ukuran : <?= $pd['ukuran'] ?></td>
                                                       <td><?= $pd['harga'] ?></td>
                                                       <td>
                                                             <!-- <?php
@@ -111,14 +112,14 @@
 
 
                                           <tr>
-                                                <th><input type="text" value="<?= $berat ?>" name="berat" id="berat"> Ongkir</th>
+                                                <th><input type="hidden" value="<?= $berat ?>" name="berat" id="berat"> Ongkir</th>
                                                 <th colspan="2"><select class="form-control kurir" name="id_kurir[]" id="<?= $ca['id_toko'] ?>id_kurir">
                                                             <option value="0">Pilih Kurir</option>
                                                             <option value="pos">POS Indonesia</option>
                                                             <option value="jne">JNE</option>
                                                             <option value="tiki">TIKI</option>
                                                       </select></th>
-                                                <th colspan="1"><select class="form-control" name="id_layanan[]" id="<?= $ca['id_toko'] ?>id_layanan">
+                                                <th colspan="2"><select class="form-control" name="id_layanan[]" id="<?= $ca['id_toko'] ?>id_layanan">
                                                             <option value="0">Pilih Layanan</option>
                                                       </select></th>
                                                 <th>
@@ -127,7 +128,7 @@
                                                 </th>
                                           </tr>
                                           <tr>
-                                                <th colspan="4">
+                                                <th colspan="5">
                                                       Subtotal
                                                 </th>
                                                 <th>
@@ -205,7 +206,7 @@
                                     <?php endforeach; ?>
                                     <tfoot>
                                           <tr>
-                                                <th colspan="4" class="alert alert-danger">Grand Total</th>
+                                                <th colspan="5" class="alert alert-danger">Grand Total</th>
                                                 <th class="alert alert-danger">
 
                                                       <p class="text-right" id="grand_totals">

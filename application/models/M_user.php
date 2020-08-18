@@ -123,11 +123,11 @@ class M_user extends CI_Model
       }
       public function get_produk($id)
       {
-            return $data = $this->db->query("SELECT * FROM produk WHERE id_toko ='$id'")->result_array();
+            return $data = $this->db->query("SELECT * FROM produk p JOIN produk_detail pd ON p.id_produk = pd.id_produk WHERE id_toko ='$id'")->result_array();
       }
       public function get_produk_by_toko($id)
       {
-            return $data = $this->db->query("SELECT * FROM produk WHERE id_toko ='$id' AND jumlah_produk > 0")->result_array();
+            return $data = $this->db->query("SELECT * FROM produk_detail pd  JOIN produk p on pd.id_produk = p.id_produk WHERE id_toko ='$id' AND pd.stok > 0 GROUP BY pd.id_produk")->result_array();
       }
       public function delete_produk($id)
       {
@@ -335,14 +335,17 @@ class M_user extends CI_Model
       }
       public function riwayat_transaksi_master_payment($id)
       {
-            return $data = $this->db->query("SELECT 
-            * 
-            FROM 
-            keranjang k
-            JOIN user u ON k.id_user = u.id 
-            JOIN transaksi t ON k.id_transaksi = t.id_transaksi
-            JOIN retur_dana rd ON rd.id_transaksi = k.id_transaksi
-            WHERE t.id_transaksi = '$id'
+            return $data = $this->db->query("
+            SELECT 
+* 
+FROM transaksi t 
+JOIN keranjang k ON t.id_transaksi = k.id_transaksi 
+JOIN toko tk ON k.id_toko = tk.id_toko
+JOIN user u ON tk.user_id = u.id
+JOIN retur_dana rd ON rd.id_transaksi = t.id_transaksi
+JOIN produk p ON  k.id_produk =  p.id_produk
+JOIN produk_detail pd ON  k.id_produk_detail =  pd.id_detail
+WHERE k.id_transaksi = '$id'
              ")->row_array();
       }
       public function riwayat_transaksi_detail($id)
@@ -352,16 +355,18 @@ class M_user extends CI_Model
             keranjang k 
             JOIN user u ON k.id_user = u.id 
             JOIN produk p ON k.id_produk = p.id_produk 
+            JOIN produk_detail pd ON k.id_produk_detail = pd.id_detail
             JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
             WHERE k.id_order = '$id' ")->result_array();
       }
       public function riwayat_transaksi_detail_penjual($id)
       {
-            return $data = $this->db->query("SELECT k.status AS kirim , k.alasan_tolak AS alasan, k.*,u.* ,p.*,t.*
+            return $data = $this->db->query("SELECT k.status AS kirim , k.alasan_tolak AS alasan, k.*,u.* ,p.*,t.*,pd.*
             FROM 
             keranjang k 
             JOIN user u ON k.id_user = u.id 
             JOIN produk p ON k.id_produk = p.id_produk 
+            JOIN produk_detail pd ON k.id_produk_detail = pd.id_detail
             JOIN transaksi t ON k.id_transaksi = t.id_transaksi 
             WHERE k.id_order = '$id' ")->result_array();
       }
@@ -374,6 +379,7 @@ class M_user extends CI_Model
             JOIN transaksi t ON k.id_transaksi = t.id_transaksi
             JOIN user u ON u.id = t.id_user
             JOIN produk p ON p.id_produk = k.id_produk
+            JOIN produk_detail pd ON pd.id_detail = k.id_produk_detail
             where k.id_toko = $id AND k.status ='pesanan diteruskan ke penjual' ")->result_array();
       }
       public function get_riwayat_pesanan_toko($id)
@@ -441,5 +447,9 @@ class M_user extends CI_Model
       public function get_detail_produk($id)
       {
             return $this->db->query("SELECT * FROM produk_detail WHERE id_produk = $id AND stok != 0")->result_array();
+      }
+      public function masukan_detail($id)
+      {
+            return $this->db->query("SELECT * FROM produk   WHERE id_produk = $id ")->row_array();
       }
 }

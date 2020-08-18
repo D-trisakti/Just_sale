@@ -115,7 +115,7 @@
                                                 }
                                           endforeach ?>
                                           <tr>
-                                                <th><input type="text" value="<?= $berat ?>" name="berat" id="berat"> Ongkir</th>
+                                                <th><input type="hidden" value="<?= $berat ?>" name="berat" id="berat"> Ongkir</th>
                                                 <th colspan="2"><select class="form-control kurir" name="id_kurir[]" id="<?= $ca['id_toko'] ?>id_kurir">
                                                             <option value="0">Pilih Kurir</option>
                                                             <option value="pos">POS Indonesia</option>
