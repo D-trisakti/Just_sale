@@ -70,7 +70,7 @@ class M_Admin extends CI_Model
   {
     return $data = $this->db->query("
                                                             SELECT 
-                                                            SUM(k.ongkir)+SUM(k.sub_total) as totals ,
+                                                            k.ongkir+SUM(k.sub_total) as totals ,
                                                             k.*,t.* FROM 
                                                             keranjang k,
                                                             transaksi t

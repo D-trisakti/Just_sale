@@ -299,11 +299,13 @@ class Toko extends CI_Controller
                         redirect("toko/kelola_produk/$param");
                   } else {
                         echo  $this->upload->display_errors();
-                        die;
+
                         $this->session->set_flashdata(
                               'pesan',
                               $this->upload->display_errors()
+
                         );
+                        die;
                         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
                         $id_user = $data['user']['id'];
                         $data['toko'] = $this->M_User->get_toko($id_user);
@@ -381,7 +383,7 @@ class Toko extends CI_Controller
             $data['nilai'] = $this->M_User->get_masukan($id);
             $data['detail'] = $this->M_User->get_detail_produk($id);
             $data['total_beli'] = $this->db->query("SELECT COUNT(id_produk_detail) AS total FROM keranjang WHERE status ='barang di terima'")->row_array();
-
+            $data['nama'] = $this->db->query("SELECT nama_toko FROM toko where id_toko IN (SELECT id_toko FROM produk where id_produk ='$id')")->row_array();
             $this->load->view('users/header');
             $this->load->view('Toko/detail_produk', $data);
             $this->load->view('users/footer');
@@ -454,7 +456,7 @@ class Toko extends CI_Controller
                   $this->db->query("UPDATE keranjang set pesan_pembeli ='$pesan', sub_total ='$subtotals', jumlah_pesan ='$jumlah',status='pending' where id_pesan ='$psn'");
             }
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            var_dump($subtotal);
+            //var_dump($subtotal);
             // $id_prov = $data['user']['provinsi'];
             // $id_kota = $data['user']['kota'];
             // $id_kec = $data['user']['kecamatan'];
@@ -498,9 +500,25 @@ class Toko extends CI_Controller
                   $c = $c + $b;
             };
             $data['berat'] = $c;
-            $this->load->view('users/header');
-            $this->load->view('Toko/shipping_filled', $data);
-            $this->load->view('users/footer');
+            if ($data['berat'] >= 5000) {
+                  foreach ($id_pesan as $psn) {
+                        $this->db->query("UPDATE keranjang set status='0' where id_pesan ='$psn'");
+                  }
+                  $this->session->set_flashdata(
+                        'pesan',
+                        '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                      total berat barang melebihi maksimal ketentuan expedisi
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>'
+                  );
+                  redirect("toko/keranjang_belanja");
+            } else {
+                  $this->load->view('users/header');
+                  $this->load->view('Toko/shipping_filled', $data);
+                  $this->load->view('users/footer');
+            }
       }
       public function get_kota()
       {
@@ -539,7 +557,6 @@ class Toko extends CI_Controller
                   ));
             }
             $data['mix'] = $mix;
-            die;
             $id = "";
             foreach ($id_pesan as $a) {
                   $id  = $id . $a . ",";
@@ -549,7 +566,7 @@ class Toko extends CI_Controller
 
 
             $data['chart'] = $this->M_User->get_data_chart($id, $id_user);
-            var_dump($data['chart']);
+            //var_dump($data['chart']);
             $a = 0;
             $b = 0;
             $c = 0;
@@ -567,7 +584,7 @@ class Toko extends CI_Controller
       }
       public function konfirmasi_bayar()
       {
-            var_dump($_POST);
+            //var_dump($_POST);
 
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $idusr = $data['user']['id'];
@@ -627,10 +644,10 @@ class Toko extends CI_Controller
                   $index++;
             endforeach;
             $this->db->update_batch('keranjang', $data, 'id_pesan');
-            var_dump($id_order);
+            //var_dump($id_order);
             //die;
-            $item = $this->db->query("SELECT SUM(sub_total) as subtotal,ongkir,id_transaksi FROM keranjang WHERE id_order = '$id_order' GROUP BY id_transaksi ")->result_array();
-            var_dump(($item));
+            $item = $this->db->query("SELECT ongkir + SUM(sub_total) as subtotal,id_transaksi FROM keranjang WHERE id_order = '$id_order' GROUP BY id_transaksi ")->result_array();
+            //var_dump(($item));
 
             foreach ($item as $i) :
                   $trs_data = [
@@ -839,7 +856,7 @@ class Toko extends CI_Controller
       public  function penilaian_produk($id_barang)
       {
             $data['produk'] = $this->M_User->masukan_detail($id_barang);
-            var_dump($data['produk']);
+            //var_dump($data['produk']);
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('users/header');
             $this->load->view('Toko/masukan', $data);

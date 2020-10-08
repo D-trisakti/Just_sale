@@ -127,19 +127,19 @@
                                                       </p>
                                                 </th>
                                           </tr>
-                                          <tr>
+                                          <!-- <tr>
                                                 <th colspan="5">
                                                       Subtotal
                                                 </th>
-                                                <th>
-                                                      <input type="hidden" id="<?= $ca['id_toko'] ?>subasli" name="subasli[]">
-                                                      <input type="hidden" id="<?= $ca['id_toko'] ?>ongkirs" name="ongkirs[]">
-
+                                                <th> -->
+                                          <input type="hidden" id="<?= $ca['id_toko'] ?>subasli" name="subasli[]">
+                                          <input type="hidden" id="<?= $ca['id_toko'] ?>ongkirs" name="ongkirs[]">
+                                          <!-- 
                                                       <p class="text-right" id="<?= $ca['id_toko'] ?>sub">
                                                             Rp. 0
                                                       </p>
                                                 </th>
-                                          </tr>
+                                          </tr> -->
                                           <script>
                                                 <?php $this->load->model('M_User');
                                                 $produk = $this->M_User->get_data_chart_produk($ca['id_toko'], $ca['id_user']);
@@ -152,7 +152,7 @@
                                                       //             $tot = $tot + $t[1];
                                                       //       }
                                                       //}
-                                                      $tot = $pd['sub_total'];
+                                                      $tot = $pd['sub_total'] + $pd['sub_total'];
                                                 endforeach;
 
                                                 ?>
@@ -205,16 +205,16 @@
                                           </script>
                                     <?php endforeach; ?>
                                     <tfoot>
-                                          <tr>
+                                          <!-- <tr>
                                                 <th colspan="5" class="alert alert-danger">Grand Total</th>
                                                 <th class="alert alert-danger">
 
                                                       <p class="text-right" id="grand_totals">
                                                             Rp. 0
-                                                      </p>
-                                                      <input type="hidden" id="grand" class="form-control" readonly name="grand">
-                                                </th>
-                                          </tr>
+                                                      </p> -->
+                                          <input type="hidden" id="grand" class="form-control" readonly name="grand">
+                                          <!-- </th>
+                                          </tr> -->
                                     </tfoot>
                               </table>
                               <button class="text-title btn btn-md btn-success text-right" type="button" onclick="check()">Lanjutkan Bayar</button>

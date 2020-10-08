@@ -102,7 +102,7 @@
                                                       <?php      }
                                                       endforeach ?>
                                                       <tr>
-                                                            <td colspan="2">
+                                                            <td colspan="3">
                                                                   <h6 class="text-center mt-3"><a href="<?= base_url(); ?>toko" class="link text-info">Cek
                                                                               Selengkapnya</a>
                                                                   </h6>

@@ -183,7 +183,7 @@ class M_user extends CI_Model
                   $this->db->insert_batch('keranjang', $data_detail);
             } else {
                   //harusnya update karena sudah ada set jumlah pesanan jadi di buat select
-                  $this->db->query("SELECT keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
+                  //$this->db->query("SELECT keranjang SET jumlah_pesan = $a+1 WHERE id_produk = $produk and id_user =$user");
             }
       }
       public function get_item_cart($id)
@@ -262,6 +262,22 @@ class M_user extends CI_Model
                               k.pesan_pembeli
                               from keranjang k,toko t,produk p, produk_detail pd
                               where k.id_toko in(" . $id . ")
+                              and k.id_user = " . $id_user . "
+                              and k.id_toko = t.id_toko
+                              and k.status = 'pending'
+                              and k.id_transaksi =''
+                              and k.id_order =''
+                              and k.id_produk = p.id_produk
+                              and k.id_produk_detail = pd.id_detail
+                              ";
+            return $this->db->query($query)->result_array();
+      }
+      public function get_data_chart_produk_id_pesan($id, $id_user)
+      {
+            $query = "select 
+                              k.id_pesan
+                              from keranjang k,toko t,produk p, produk_detail pd
+                              where k.id_toko = 10
                               and k.id_user = " . $id_user . "
                               and k.id_toko = t.id_toko
                               and k.status = 'pending'
@@ -393,19 +409,20 @@ WHERE k.id_transaksi = '$id'
             JOIN user u ON u.id = k.id_user
             JOIN produk p ON p.id_produk = k.id_produk
             JOIN Transaksi t ON t.id_transaksi = k.id_transaksi
+            JOIN produk_detail pd ON pd.id_detail = k.id_produk_detail
             WHERE k.id_toko = '$id' AND rd.status_retur = 'payed'
             ")->result_array();
       }
       public function total_belanja($id_order)
       {
-            $a = $this->db->query("SELECT SUM(ongkir)+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order ='$id_order'")->row_array();
+            $a = $this->db->query("SELECT ongkir+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order ='$id_order'")->row_array();
             $b = $this->db->query("SELECT SUM(sub_total) AS jumlah_semua FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order ='$id_order'")->row_array();
 
             return $a;
       }
       public function total_belanja_all()
       {
-            $a = $this->db->query("SELECT SUM(ongkir)+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order IN (SELECT
+            $a = $this->db->query("SELECT ongkir+SUM(sub_total) as total FROM keranjang k JOIN transaksi t ON k.id_transaksi = t.id_transaksi WHERE k.id_order IN (SELECT
             k.id_order FROM 
             keranjang k,
             transaksi t

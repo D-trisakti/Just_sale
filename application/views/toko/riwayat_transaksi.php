@@ -30,8 +30,8 @@
                                                 <td><?= $psn['address'] ?> <?= $psn['kota_pesan'] ?> <?= $psn['provinsi_pesan'] ?></td>
                                                 <td><?= $psn['nama_produk'] ?></td>
                                                 <td><?= $psn['jumlah_pesan'] ?></td>
-                                                <td>Rp.<?= $psn['harga_produk'] ?></td>
-                                                <td>Rp.<?= $psn['total'] ?></td>
+                                                <td>Rp.<?= $psn['harga'] ?></td>
+                                                <td>Rp.<?= $psn['sub_total'] ?></td>
                                                 <td><?= $psn['pesan_pembeli'] ?></td>
                                                 <td><?= $psn['id_kurir'] ?></td>
                                                 <td><?= $psn['id_layanan'] ?></td>

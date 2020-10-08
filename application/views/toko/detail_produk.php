@@ -20,7 +20,7 @@
                         <div class="col col-md-6">
                               <div class="card-body">
                                     <h4 class="btn btn-md btn-info btn-rounded">Produk Terjual : <?= $total_beli['total']; ?></h4>
-                                    <h2 class="title text-center ">Detail Produk</h2>
+                                    <h2 class="title text-center ">Detail Produk Dari Toko <?= $nama['nama_toko'] ?></h2>
                                     <h4 class="card-title"><?= $produk['nama_produk']; ?></h4>
                                     <p class="card-text"><?= $produk['deskripsi_produk']; ?></p>
 

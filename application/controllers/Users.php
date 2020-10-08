@@ -257,7 +257,7 @@ class Users extends CI_Controller
     }
     public function test()
     {
-        var_dump($_POST);
+        //var_dump($_POST);
         die;
         $this->load->view('users/header');
         $this->load->view('users/katalog');
@@ -277,7 +277,7 @@ class Users extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['master'] = $this->M_User->riwayat_transaksi_master_refund($id);
         $data['trs'] = $this->M_User->riwayat_transaksi_detail($id);
-        var_dump($data['master']);
+        //var_dump($data['master']);
         $this->load->view('users/header');
         $this->load->view('users/detail_refund', $data);
         $this->load->view('users/footer');
